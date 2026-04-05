@@ -1,27 +1,12 @@
-import { Icon } from "@/components/ui";
+import { Icon } from "../ui";
 
-type SocialMediaItem = {
-  page: string;
-  link: string;
-  className: string;
-};
-type HeroSectionProps = {
-  socialMedia: SocialMediaItem[];
-};
-export default function HeroSection({ socialMedia }: HeroSectionProps) {
+export default function SocialMediaButtons({
+  socialMedia,
+}: {
+  socialMedia: any[];
+}) {
   return (
     <div className="dark flex flex-col items-center space-y-4">
-      <h1 className="text-5xl text-foreground font-bold text-center sm:text-left">
-        Welcome to IBRATT's Website
-      </h1>
-      <p className="text-foreground mt-4 text-2xl text-center sm:text-left">
-        Explore the latest beats and music from IBRATT, your go-to music
-        producer.
-      </p>
-      <h1 className="text-4xl font-bold text-foreground">Ibratt</h1>
-      <p className="text-lg text-muted-foreground">
-        Bienvenido a mi sitio web personal
-      </p>
       <h1 className="p-2 text-2xl text-foreground font-extrabold mb-4 flex items-center justify-center  gap-2 border-3 border-foreground rounded-full px-4 hover:scale-115 transition-transform cursor-pointer shadow shadow-amber-500/30 bg-background/50">
         @ibratt.wav
         <svg
@@ -44,9 +29,6 @@ export default function HeroSection({ socialMedia }: HeroSectionProps) {
             <Icon name={item.page} size={6} />
           </a>
         ))}
-      </div>
-      <div>
-        <h2>Mixing & Mastering</h2>
       </div>
     </div>
   );
