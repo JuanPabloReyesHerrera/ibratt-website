@@ -118,4 +118,12 @@
   html {
     @apply font-sans;
   }
+
+  /* Fix para iOS — activa :active en elementos interactivos */
+  button,
+  a,
+  [role="button"] {
+    @apply cursor-pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
