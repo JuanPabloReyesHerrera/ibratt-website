@@ -8,7 +8,6 @@
   --font-heading: var(--font-sans);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -25,105 +24,113 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
 }
 
-/* ── MODO CLARO — marrón naranja con guindo ── */
 :root {
-  /* Fondos — crema cálida con tinte naranja */
-  --background: oklch(0.88 0.04 65); /* crema naranja, no blanco */
-  --card: oklch(0.91 0.03 60); /* cards ligeramente más claras */
-
-  /* Textos */
-  --foreground: oklch(0.2 0.04 40); /* marrón oscuro profundo */
+  --background: oklch(0.88 0.04 65);
+  --card: oklch(0.91 0.03 60);
+  --foreground: oklch(0.2 0.04 40);
   --card-foreground: oklch(0.2 0.04 40);
-
-  /* Primary — guindo/burgundy */
-  --primary: oklch(0.42 0.16 12); /* vino/guindo */
-  --primary-foreground: oklch(
-    0.95 0.02 60
-  ); /* crema claro para texto sobre guindo */
-
-  /* Secondary — marrón medio */
-  --secondary: oklch(0.78 0.06 55); /* marrón naranja medio */
+  --primary: oklch(0.42 0.16 12);
+  --primary-foreground: oklch(0.95 0.02 60);
+  --secondary: oklch(0.78 0.06 55);
   --secondary-foreground: oklch(0.2 0.04 40);
-
-  /* Muted — para textos secundarios */
   --muted: oklch(0.82 0.04 58);
-  --muted-foreground: oklch(0.45 0.05 45); /* marrón grisáceo */
-
-  /* Accent — naranja más vivo para highlights */
-  --accent: oklch(0.72 0.12 55); /* naranja cálido */
+  --muted-foreground: oklch(0.45 0.05 45);
+  --accent: oklch(0.72 0.12 55);
   --accent-foreground: oklch(0.15 0.04 40);
-
-  /* Destructive — rojo */
   --destructive: oklch(0.55 0.22 25);
-
-  /* Bordes e inputs */
-  --border: oklch(0.72 0.06 55); /* marrón suave */
+  --border: oklch(0.72 0.06 55);
   --input: oklch(0.84 0.04 62);
-  --ring: oklch(0.42 0.16 12); /* guindo para focus ring */
-
+  --ring: oklch(0.42 0.16 12);
   --radius: 0.75rem;
 }
 
-/* ── MODO OSCURO — oscuro cálido con guindo ── */
 .dark {
-  /* Fondos — negro cálido con tinte marrón */
-  --background: oklch(0.13 0.03 40); /* casi negro con tinte marrón */
-  --card: oklch(0.18 0.03 42); /* cards ligeramente más claras */
-
-  /* Textos */
-  --foreground: oklch(0.9 0.03 65); /* crema cálida */
+  --background: oklch(0.13 0.03 40);
+  --card: rgb(29, 13, 7);
+  --foreground: oklch(0.9 0.03 65);
   --card-foreground: oklch(0.9 0.03 65);
-
-  /* Primary — guindo más suave en dark */
-  --primary: oklch(0.6 0.16 12); /* guindo más claro para dark */
+  --primary: oklch(0.6 0.16 12);
   --primary-foreground: oklch(0.1 0.02 40);
-
-  /* Secondary */
   --secondary: oklch(0.25 0.04 42);
   --secondary-foreground: oklch(0.9 0.03 65);
-
-  /* Muted */
   --muted: oklch(0.22 0.03 42);
   --muted-foreground: oklch(0.6 0.04 55);
-
-  /* Accent — naranja más suave en dark */
   --accent: oklch(0.35 0.08 50);
   --accent-foreground: oklch(0.9 0.03 65);
-
-  /* Destructive */
   --destructive: oklch(0.65 0.22 25);
-
-  /* Bordes */
   --border: oklch(0.28 0.04 42);
   --input: oklch(0.22 0.03 42);
   --ring: oklch(0.6 0.16 12);
-
   --radius: 0.75rem;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    /* Elimina el flash azul/gris de iOS en todos los elementos */
+    -webkit-tap-highlight-color: transparent;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
 
-  /* Fix para iOS — activa :active en elementos interactivos */
+  @supports (-webkit-touch-callout: none) {
+    button,
+    a,
+    [role="button"] {
+      /* Fuerza a Safari a considerar el elemento como "clickeable" */
+      cursor: pointer;
+      /* Elimina el delay de tap */
+      touch-action: manipulation;
+      /* Sin esto Safari muestra un highlight azul */
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+  /* Fix iOS — elimina el delay de 300ms en elementos interactivos */
   button,
   a,
-  [role="button"] {
-    @apply cursor-pointer;
-    -webkit-tap-highlight-color: transparent;
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  label[for],
+  select {
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+
+  /* Fix iOS — evita zoom automático en inputs */
+  input,
+  textarea,
+  select {
+    font-size: max(16px, 1em);
+  }
+
+  /* Fix iOS — scroll suave en contenedores */
+  .overflow-auto,
+  .overflow-scroll,
+  .overflow-y-auto,
+  .overflow-y-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@layer utilities {
+  /* Fix iOS — viewport height real sin la barra del navegador */
+  .h-dvh {
+    height: 100dvh;
+  }
+  .min-h-dvh {
+    min-height: 100dvh;
   }
 }

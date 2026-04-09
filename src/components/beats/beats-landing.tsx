@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Table,
   TableBody,
@@ -11,6 +13,7 @@ import {
 import { Play } from "lucide-react";
 import Image from "next/image";
 import type { BeatsList } from "@/types/beat";
+
 type BeatsLandingProps = BeatsList;
 
 export default function BeatsLanding({ beats = [] }: BeatsLandingProps) {
@@ -32,8 +35,8 @@ export default function BeatsLanding({ beats = [] }: BeatsLandingProps) {
           style={{
             WebkitOverflowScrolling: "touch",
             maskImage:
-              "linear-gradient(to-bottom, transparent 0%, black 10%, black 80%, transparent 100%)",
-            WebkitMaskBoxImage:
+              "linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)",
+            WebkitMaskImage:
               "linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)",
           }}
         >
@@ -44,21 +47,23 @@ export default function BeatsLanding({ beats = [] }: BeatsLandingProps) {
             <TableHeader>
               <TableRow>
                 <TableHead className="text-foreground">Play</TableHead>
-
                 <TableHead className="text-foreground">Beat</TableHead>
                 <TableHead className="text-foreground">Name</TableHead>
                 <TableHead className="text-foreground">Genre</TableHead>
-                <TableCell className="text-foreground">bpm</TableCell>
-                <TableCell className="text-foreground">key</TableCell>
+                <TableCell className="text-foreground">BPM</TableCell>
+                <TableCell className="text-foreground">Key</TableCell>
                 <TableHead className="text-foreground">Price</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {beats.map(({ portada, name, genre, bpm, key, price }, index) => (
-                <TableRow key={index}>
-                  <TableCell className="text-foreground hover:bg-foreground/40 group active:bg-primary/70">
-                    <Button className="w-full  bg-transparent">
-                      <Play className="size-5 group-hover:scale-130 group-active:scale-95 group-hover:text-background transition-transform" />
+                <TableRow key={index} className="border-b-foreground/10">
+                  <TableCell>
+                    <Button
+                      variant="ghost"
+                      className="w-full h-12 bg-transparent md:hover:bg-foreground/40 active:bg-primary/70 transition-all active:scale-95 group touch-manipulation"
+                    >
+                      <Play className="size-5 text-foreground md:group-hover:scale-125 group-active:scale-95 md:group-hover:text-background transition-transform touch-manipulation" />
                     </Button>
                   </TableCell>
                   <TableCell>
@@ -73,7 +78,11 @@ export default function BeatsLanding({ beats = [] }: BeatsLandingProps) {
                   <TableCell className="text-foreground">{bpm}</TableCell>
                   <TableCell className="text-foreground">{key}</TableCell>
                   <TableCell className="text-foreground">
-                    <Button className="hover:scale-115 active:scale-95 active:bg-primary/70">
+                    <Button
+                      // Repetimos la dosis de fluidez en el botón de precio
+                      onTouchStart={() => {}}
+                      className="transition-all transform-gpu hover:scale-110 active:scale-95 active:bg-primary/70 touch-manipulation"
+                    >
                       {price}
                     </Button>
                   </TableCell>

@@ -8,7 +8,7 @@ type SkillsProps = {
   skills: string[];
 };
 
-export default function Skills({ skills }: SkillsProps) {
+export function Skills({ skills }: SkillsProps) {
   return (
     <div className="flex flex-wrap justify-center items-center gap-6 mx-4">
       {skills.map((skill) => (

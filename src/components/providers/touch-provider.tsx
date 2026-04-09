@@ -3,20 +3,30 @@ import { useEffect } from "react";
 
 export function TouchProvider() {
   useEffect(() => {
-    // Fix global para iOS active states
-    const handler = () => {};
-    document.addEventListener("touchstart", handler, { passive: true });
+    // Delegación de eventos — un solo listener en document
+    // que captura todos los touchstart de cualquier elemento
+    // incluso los que se renderizan después
+    function handleTouchStart(e: TouchEvent) {
+      // Busca el elemento interactivo más cercano al punto de toque
+      const target = e.target as HTMLElement;
+      const interactive = target.closest("button, a, [role='button']");
 
-    // Agrega touch listener a todos los elementos interactivos
-    const interactiveElements = document.querySelectorAll(
-      "button, a, [role='button']",
-    );
-    interactiveElements.forEach((el) => {
-      el.addEventListener("touchstart", handler, { passive: true });
+      // Si encontró un elemento interactivo, no hace nada especial
+      // pero el hecho de tener este listener activa :active en Safari
+      if (interactive) return;
+    }
+
+    // capture: true — el listener corre antes de que el evento
+    // llegue al elemento destino, captura TODOS los toques
+    document.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+      capture: true,
     });
 
     return () => {
-      document.removeEventListener("touchstart", handler);
+      document.removeEventListener("touchstart", handleTouchStart, {
+        capture: true,
+      });
     };
   }, []);
 

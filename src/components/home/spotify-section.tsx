@@ -4,7 +4,7 @@ type SpotifyProps = {
   spotifyUrl: string[];
 };
 
-export default function Spotify({ spotifyUrl }: SpotifyProps) {
+export default function SpotifySection({ spotifyUrl }: SpotifyProps) {
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center bg-gradient-to-b from-foreground via-foreground/100 to-background font-sans p-8">
       <h1 className="text-5xl text-background font-bold text-center sm:text-left">
@@ -30,19 +30,17 @@ export default function Spotify({ spotifyUrl }: SpotifyProps) {
                 "linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)",
             }}
           >
-            {spotifyUrl.map((url, index) => (
-              <div key={index} className="h-20">
+            {spotifyUrl.map((url) => (
+              <div key={url} className="h-20">
                 <iframe
-                  className="h-full rounded-3xl w-[100%] "
+                  className="h-full rounded-3xl w-[100%] border-0"
                   data-testid="embed-iframe"
                   style={{ borderRadius: "12px" }}
                   src={url}
                   width="100%"
                   height="80"
-                  frameBorder="0"
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
-                  key={index}
                 ></iframe>
                 <Separator className="my-3" />
               </div>
