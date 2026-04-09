@@ -1,15 +1,10 @@
-import SocialMediaButtons from "../shared/social-media-buttons";
+import { SocialsMediasButtons, Skills } from "../shared";
 import PresentationsText from "./presentations-text";
 import YoutubeCarousel from "./youtube-section";
-import Skills from "../shared/skills";
+import type { SocialMedia } from "@/types";
 
-type SocialMediaItem = {
-  page: string;
-  link: string;
-  className: string;
-};
 type HeroSectionProps = {
-  socialMedia: SocialMediaItem[];
+  socialsMedias: SocialMedia[];
   youtubeVideos: string[];
 };
 
@@ -22,11 +17,11 @@ const producerSkills = [
 ];
 
 export default function HeroSection({
-  socialMedia,
+  socialsMedias,
   youtubeVideos,
 }: HeroSectionProps) {
   return (
-    <div className="w-full flex flex-col items-center space-y-10 bg-gradient-to-b from-transparent via-transparent/30 to-foreground">
+    <div className="w-full h-full flex flex-col items-center space-y-10 bg-linear-to-b from-transparent via-transparent to-background to-90%">
       {/* PRESENTATION */}
       <PresentationsText />
 
@@ -34,7 +29,7 @@ export default function HeroSection({
       <YoutubeCarousel videos={youtubeVideos} />
 
       {/* TITLE */}
-      <h1 className="p-2 text-2xl text-foreground font-extrabold mb-4 flex items-center justify-center  gap-2 border-3 border-foreground rounded-full px-4 hover:scale-115 transition-transform cursor-pointer shadow shadow-amber-500/30 bg-background/50">
+      <h1 className="p-2 text-2xl text-foreground font-extrabold mb-4 flex items-center justify-center gap-2 border-2 border-foreground/50 rounded-full px-4 hover:scale-115 transition-transform cursor-pointer shadow-md shadow-foreground/30 bg-background/50">
         @ibratt.wav
         <svg
           viewBox="0 0 24 24"
@@ -46,7 +41,7 @@ export default function HeroSection({
       </h1>
 
       {/* SOCIAL MEDIA */}
-      <SocialMediaButtons socialMedia={socialMedia} size={6} />
+      <SocialsMediasButtons socialsMedias={socialsMedias} size={6} />
 
       {/* SKILL */}
       <Skills skills={producerSkills} />

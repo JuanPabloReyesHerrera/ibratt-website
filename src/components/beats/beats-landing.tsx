@@ -23,11 +23,12 @@ export default function BeatsLanding({ beats = [] }: BeatsLandingProps) {
         className="object-cover"
         src="/assets/beat-section.jpg"
         alt="Hero"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 50vw"
         fill
         priority
       />
-      <div className="w-full h-full flex flex-col items-center justify-start z-10 bg-gradient-to-b from-background via-foreground/10 to-transparent">
-        <h1 className="text-4xl font-bold text-foreground mb-8">
+      <div className="w-full h-full flex flex-col items-center justify-start z-10 bg-gradient-to-b from-primary via-foreground/10 to-transparent">
+        <h1 className="dark text-4xl font-bold text-background my-10">
           Beats Catalog
         </h1>
         <div
@@ -40,7 +41,7 @@ export default function BeatsLanding({ beats = [] }: BeatsLandingProps) {
               "linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)",
           }}
         >
-          <Table>
+          <Table className="dark">
             <TableCaption className="text-foreground">
               Beats Catalog
             </TableCaption>

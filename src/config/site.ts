@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: "Ibratt",
   title: "Ibratt — Producer",
+  logo: "IBRATT",
   description: "Beats, production and sound design.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   spotifyArtistId: process.env.SPOTIFY_ARTIST_ID ?? "",

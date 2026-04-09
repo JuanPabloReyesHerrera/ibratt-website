@@ -13,11 +13,13 @@ export function Skills({ skills }: SkillsProps) {
     <div className="flex flex-wrap justify-center items-center gap-6 mx-4">
       {skills.map((skill) => (
         <HoverCard key={skill}>
-          <HoverCardTrigger className="text-background border-2 border-background rounded-full p-2">
+          <HoverCardTrigger className="backdrop-blur-2xl text-foreground border-2 border-foreground rounded-full p-2 shadow-md shadow-foreground/30 hover:scale-110 transition-all">
             {skill}
           </HoverCardTrigger>
-          <HoverCardContent>
-            <p>Explore our mixing and mastering services.</p>
+          <HoverCardContent className="backdrop-blur border border-foreground/20">
+            <p className="text-muted-foreground">
+              Explore our mixing and mastering services.
+            </p>
           </HoverCardContent>
         </HoverCard>
       ))}

@@ -13,20 +13,22 @@ import { AudioLines } from "lucide-react";
 import Link from "next/link";
 import type { NavBarCategory } from "@/types";
 import { MOCK_SOCIAL_MEDIA } from "@/lib/mock-data";
-
-import SocialMediaButtons from "../shared/social-media-buttons";
+import { SocialsMediasButtons } from "../shared";
+import { siteConfig } from "@/config/site";
 
 type PhoneNavBarProps = { categories: NavBarCategory[] };
 
 export default function PhoneNavBar({ categories }: PhoneNavBarProps) {
   return (
     <Sheet>
-      <SheetTrigger className="flex md:hidden text-primary bg-transparent touch-manipulation group">
+      <SheetTrigger className="flex md:hidden text-ring bg-transparent touch-manipulation group">
         <AudioLines className="size-8 rounded-md p-1 group-hover:border group-hover:scale-125 group-active:bg-accent/50 group-active:text-white group-active:scale-50 transition-all" />
       </SheetTrigger>
       <SheetContent className="bg-black/80">
         <SheetHeader>
-          <SheetTitle className="dark text-foreground">🪬 IBRATT</SheetTitle>
+          <SheetTitle className="dark text-foreground">
+            🪬 {siteConfig.logo}
+          </SheetTitle>
           <SheetDescription>Producer/Songwriter</SheetDescription>
         </SheetHeader>
         <nav className="flex flex-col mt-6">
@@ -43,7 +45,7 @@ export default function PhoneNavBar({ categories }: PhoneNavBarProps) {
           ))}
         </nav>
         <SheetFooter className="w-full flex items-center justify-center">
-          <SocialMediaButtons socialMedia={MOCK_SOCIAL_MEDIA} size={3} />
+          <SocialsMediasButtons socialsMedias={MOCK_SOCIAL_MEDIA} size={3} />
         </SheetFooter>
       </SheetContent>
     </Sheet>

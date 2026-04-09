@@ -29,7 +29,7 @@ export default function AudioPlayer({ beat }: { beat: Beat }) {
         className="mx-auto w-full max-w-xs bg-foreground"
       />
       <h1 className="text-muted-foreground font-bold mr-4">{name}</h1>
-      <Button className="text-foreground flex justify-center items-center bg-linear-to-t from-primary/70 w-20 h-full rounded-none hover:bg-black/10 active:bg-primary/50 group">
+      <Button className="text-foreground flex justify-center items-center bg-linear-to-t from-primary/70 to-black w-20 h-full rounded-none hover:bg-black/10 active:bg-primary/50 group">
         <Image
           src={portada}
           alt={name}

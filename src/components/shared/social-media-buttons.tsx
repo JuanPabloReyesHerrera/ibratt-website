@@ -1,30 +1,31 @@
 import { SocialMedia } from "@/types";
 import { Icon } from "../ui";
 
-type SocialMediaButtonsProps = {
-  socialMedia: SocialMedia[];
+type SocialsMediasButtonsProps = {
+  socialsMedias: SocialMedia[];
   size: number;
 };
 
-export default function SocialMediaButtons({
-  socialMedia,
+export function SocialsMediasButtons({
+  socialsMedias,
   size,
-}: SocialMediaButtonsProps) {
+}: SocialsMediasButtonsProps) {
   return (
-    <div className="dark">
-      <div className={`w-full flex space-x-${Math.ceil((2 / 3) * size)}`}>
-        {socialMedia.map(({ page, link, className }) => (
-          <a
-            key={page}
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`p-2 rounded-full text-white hover:scale-125 transition-transform ${className}`}
-          >
-            <Icon name={page} size={size} />
-          </a>
-        ))}
-      </div>
+    <div
+      className={`w-full flex items-center justify-center`}
+      style={{ gap: `${Math.ceil((2 / 3) * size) * 4}px` }}
+    >
+      {socialsMedias.map(({ page, link, className }) => (
+        <a
+          key={page}
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`p-2 flex justify-center items-center rounded-full shadow-md shadow-background/30 hover:scale-125 hover:shadow-background active:scale-90 transition-transform ${className}`}
+        >
+          <Icon name={page} size={size} />
+        </a>
+      ))}
     </div>
   );
 }

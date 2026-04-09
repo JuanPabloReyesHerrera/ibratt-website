@@ -182,17 +182,20 @@ export const MOCK_SOCIAL_MEDIA = [
   {
     page: "instagram",
     link: "instagram",
+    userId: "ibratt.wav",
     className: "bg-gradient-to-bl from-purple-600 via-pink-500 to-yellow-400",
   },
   { page: "youtube", link: "youtube", className: "bg-white" },
   {
     page: "github",
     link: "github",
+    userId: "ibratt.wav",
     className: "bg-gray-800",
   },
   {
     page: "x",
     link: "x",
+    userId: "ibratt.wav",
     className: "bg-black",
   },
 ];

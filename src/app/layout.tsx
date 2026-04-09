@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider, TouchProvider } from "@/components/providers";
+import NavBar from "@/components/layout/nav-bar";
+import AudioPlayer from "@/components/layout/audio-player";
+import { MOCK_BEATS } from "@/lib/mock-data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,8 +33,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <TouchProvider />
-        <ThemeProvider>{children}</ThemeProvider>
+        <NavBar />
+        <main className="py-12">
+          <TouchProvider />
+          <ThemeProvider>{children}</ThemeProvider>
+        </main>
+        <AudioPlayer beat={MOCK_BEATS[0]} />
       </body>
     </html>
   );
