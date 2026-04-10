@@ -32,12 +32,15 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-screen flex flex-col">
         <NavBar />
-        <main className="py-12">
-          <TouchProvider />
-          <ThemeProvider>{children}</ThemeProvider>
-        </main>
+        <TouchProvider />
+        <ThemeProvider>
+          <main className="flex-1 pt-12 pb-12">{children}</main>
+          <footer className="w-full h-12 bg-muted flex items-center px-4 text-sm text-muted-foreground z-100">
+            ibratt.prod@gmail.com
+          </footer>
+        </ThemeProvider>
         <AudioPlayer beat={MOCK_BEATS[0]} />
       </body>
     </html>

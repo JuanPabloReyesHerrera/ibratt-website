@@ -13,8 +13,9 @@ import {
 
 export default function Home() {
   return (
-    <div className="w-screen h-fit font-sans flex flex-col items-center justify-center bg-linear-to-b from-foreground via-foreground to-background">
-      <section className="relative inset-0 h-[215vh] w-full md:max-w-[80vw] xl:max-w-[60vw]">
+    <div className="w-full h-fit font-sans flex flex-col items-center justify-center bg-linear-to-b from-foreground via-foreground to-background">
+      <section className="relative inset-0 h-[220vh] w-full md:max-w-[80vw] xl:max-w-[60vw]">
+        {/* imagen sticky */}
         <div className="sticky top-0 h-screen w-full">
           <div className="relative w-full h-full">
             <Image
@@ -27,7 +28,8 @@ export default function Home() {
             />
           </div>
         </div>
-        <main className="absolute w-full h-full -mt-[100vh] md:max-w-[80vw] xl:max-w-[60vw] shadow-background shadow-2xl ">
+        {/* contenido encima de la imagen */}
+        <div className="w-full h-full -mt-[100vh] md:max-w-[80vw] xl:max-w-[60vw] shadow-background shadow-2xl ">
           <div className="w-fit h-fit [clip-path:polygon(-50%_-50%,_150%_-50%,_150%_100%,_-50%_100%)]">
             <HeroSection
               socialsMedias={MOCK_SOCIAL_MEDIA}
@@ -35,10 +37,10 @@ export default function Home() {
             />
             <SpotifySection spotifyUrl={MOCK_SPOTIFY_TRACK} />
           </div>
-          <div className="[clip-path:polygon(-50%_0%,_150%_0%,_150%_150%,_-50%_150%)]">
+          <div className="w-full h-[150vh] [clip-path:polygon(-50%_0%,_150%_0%,_150%_150%,_-50%_150%)]">
             <BeatsLanding beats={MOCK_BEATS} />
           </div>
-        </main>
+        </div>
       </section>
     </div>
   );

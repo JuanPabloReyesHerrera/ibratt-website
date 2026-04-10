@@ -15,7 +15,7 @@ export default function SpotifySection({ spotifyUrl }: SpotifyProps) {
           This is where you can display the ibratt Spotify playlists, tracks, or
           albums.
         </p>
-        <section className="w-full max-w-2xl flex flex-col items-center justify-center space-y-4 mt-8 overflow-hidden">
+        <section className="w-full max-w-2xl flex flex-col items-center justify-center space-y-4 mt-8">
           <div className="flex flex-col items-center justify-center space-x-4 h-full">
             <Separator
               className="mb-5 translate-x-2 bg-border/30"
