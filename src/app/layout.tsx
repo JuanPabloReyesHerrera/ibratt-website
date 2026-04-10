@@ -36,10 +36,12 @@ export default function RootLayout({
         <NavBar />
         <TouchProvider />
         <ThemeProvider>
-          <main className="flex-1 pt-12 pb-12">{children}</main>
-          <footer className="w-full h-12 bg-muted flex items-center px-4 text-sm text-muted-foreground z-100">
-            ibratt.prod@gmail.com
-          </footer>
+          <main className="flex-1 pt-12 pb-12">
+            {children}
+            <footer className="w-full h-12 bg-muted flex items-center justify-center px-4 text-sm text-muted-foreground z-100">
+              ibratt.prod@gmail.com
+            </footer>
+          </main>
         </ThemeProvider>
         <AudioPlayer beat={MOCK_BEATS[0]} />
       </body>

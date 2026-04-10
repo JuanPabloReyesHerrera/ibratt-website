@@ -19,7 +19,8 @@ type BeatsLandingProps = BeatsList;
 
 export default function BeatsLanding({ beats = [] }: BeatsLandingProps) {
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center font-sans shadow-2xl shadow-foreground">
+    <div className="relative h-full w-full md:max-w-[80vw] xl:max-w-[60vw] flex flex-col items-center justify-center font-sans shadow-2xl shadow-foreground">
+      {/* imagen sticky */}
       <div className="sticky top-0 h-screen w-full">
         <div className="relative inset-0 w-full h-full">
           <Image
@@ -52,7 +53,7 @@ export default function BeatsLanding({ beats = [] }: BeatsLandingProps) {
           </ToggleGroup>
         </div>
         <section
-          className="w-full md:w-[80%] h-[350vh] flex items-start justify-center p-4 overflow-auto"
+          className="w-full md:w-[80%] h-fit flex items-start justify-center p-4 overflow-auto"
           style={{
             WebkitOverflowScrolling: "touch",
             maskImage:

@@ -12,7 +12,7 @@ type YoutubeCarouselProps = {
 
 export default function YoutubeCarousel({ videos }: YoutubeCarouselProps) {
   return (
-    <div className="w-full h-full flex items-center justify-center">
+    <div className="w-full h-fit flex items-center justify-center">
       <Carousel className="w-2/3 h-full">
         <CarouselContent>
           {videos.map((video, index) => (

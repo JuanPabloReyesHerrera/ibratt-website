@@ -6,8 +6,8 @@ type SpotifyProps = {
 
 export default function SpotifySection({ spotifyUrl }: SpotifyProps) {
   return (
-    <div className="bg-linear-to-b from-background from-10% via-transparent via-40% to-transparent">
-      <div className="w-full h-screen flex flex-col items-center justify-center bg-gradient-to-t from-primary via-foreground/50 to-transparent font-sans p-8">
+    <div className="bg-linear-to-b from-background from-10% via-transparent via-40% to-transparent shadow-2xl shadow-background w-full h-full flex flex-col items-center justify-center font-sans">
+      <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-t from-primary via-foreground/50 to-transparent font-sans p-8">
         <h1 className="text-5xl text-background font-bold text-center sm:text-left">
           Spotify Section
         </h1>

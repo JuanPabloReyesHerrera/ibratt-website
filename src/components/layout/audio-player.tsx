@@ -2,6 +2,7 @@ import { Slider, Button } from "@/components/ui";
 import { Play, RotateCcw, RotateCw } from "lucide-react";
 import Image from "next/image";
 import type { Beat } from "@/types";
+import WaveSurfer from "wavesurfer.js";
 
 export default function AudioPlayer({ beat }: { beat: Beat }) {
   const { portada, name } = beat;
@@ -9,7 +10,7 @@ export default function AudioPlayer({ beat }: { beat: Beat }) {
   const buttonActive =
     "size-6 transition-all group-hover:scale-125 group-active:scale-95";
   return (
-    <div className="dark h-12 w-screen bg-gray-950 z-30 fixed bottom-0 flex flex-row justify-center items-center">
+    <div className="dark h-12 w-full bg-gray-950 z-30 fixed bottom-0 flex flex-row justify-center items-center">
       <Button className="relative text-muted-foreground bg-transparent group ">
         <RotateCcw strokeWidth={2.5} className={`${buttonActive}`} />
         <span className="absolute text-[10px] font-bold">15</span>

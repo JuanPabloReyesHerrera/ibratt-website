@@ -21,7 +21,7 @@ export default function HeroSection({
   youtubeVideos,
 }: HeroSectionProps) {
   return (
-    <div className="w-full h-full flex flex-col items-center space-y-10 bg-linear-to-b from-transparent via-transparent to-background to-90%">
+    <div className="w-full h-full flex flex-col items-center justify-start space-y-10 bg-linear-to-b from-transparent via-transparent to-background to-90% overflow-hidden">
       {/* PRESENTATION */}
       <PresentationsText />
 

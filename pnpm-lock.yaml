@@ -56,6 +56,9 @@ importers:
       tw-animate-css:
         specifier: ^1.4.0
         version: 1.4.0
+      wavesurfer.js:
+        specifier: ^7.12.6
+        version: 7.12.6
       zod:
         specifier: ^4.3.6
         version: 4.3.6
@@ -4545,6 +4548,9 @@ packages:
         optional: true
       jsdom:
         optional: true
+
+  wavesurfer.js@7.12.6:
+    resolution: {integrity: sha512-zSxPgOFprtyJ31ppHQF0+E9jAmjAhi1rR36yIW6h1GOYdpRxDe6mbkYtlChqLK0Iz8ROBweiEFw2zus7tDFibA==}
 
   web-streams-polyfill@3.3.3:
     resolution: {integrity: sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==}
@@ -9099,6 +9105,8 @@ snapshots:
       '@types/node': 20.19.37
     transitivePeerDependencies:
       - msw
+
+  wavesurfer.js@7.12.6: {}
 
   web-streams-polyfill@3.3.3: {}
 
