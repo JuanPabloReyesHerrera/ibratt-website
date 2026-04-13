@@ -5,8 +5,5 @@ export type Beat = {
   bpm: string;
   key: string;
   price: string;
-};
-
-export type BeatsList = {
-  beats: Beat[];
+  audioUrl: string;
 };
