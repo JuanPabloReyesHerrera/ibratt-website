@@ -1,11 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, use } from "react";
 import WaveSurfer from "wavesurfer.js";
+import { useShallow } from "zustand/shallow";
 import { usePlayerStore } from "@/store/player-store";
 
 type WaveSurferFormOptions = {
   audioUrl: string;
   //   playbackRate: number;
-  isPlaying: boolean;
+
   skipForward: boolean;
   skipBack: boolean;
   volume: number;
@@ -17,7 +18,7 @@ type WaveSurferFormOptions = {
 
 export function WaveSurferForm({
   audioUrl,
-  isPlaying,
+
   skipForward,
   skipBack,
   volume,
@@ -26,6 +27,17 @@ export function WaveSurferForm({
   const wavesurferRef = useRef<WaveSurfer | null>(null);
 
   const [isReady, setIsReady] = useState(false);
+
+  const { isPlaying, currentTime, setCurrentTime, duration, setDuration } =
+    usePlayerStore(
+      useShallow((state) => ({
+        isPlaying: state.isPlaying,
+        currentTime: state.currentTime,
+        setCurrentTime: state.setCurrentTime,
+        duration: state.duration,
+        setDuration: state.setDuration,
+      })),
+    );
 
   //wavesurferRef.current?.destroy();
 
@@ -46,13 +58,9 @@ export function WaveSurferForm({
 
     ws.load(audioUrl);
 
-    ws.on("ready", (dur) => {
+    ws.on("ready", () => {
       setIsReady(true);
-      //onDuration(dur);
-    });
-
-    ws.on("timeupdate", (time) => {
-      //onTimeUpdate(time);
+      setDuration(Math.floor(wavesurferRef.current?.getDuration() || 0));
     });
 
     ws.on("finish", () => {
@@ -69,6 +77,7 @@ export function WaveSurferForm({
   // Play/pause when isPlaying changes
   useEffect(() => {
     wavesurferRef.current?.playPause();
+    console.log("isPlaying wavesurfer:", isPlaying);
   }, [isPlaying]);
   //skip back
   useEffect(() => {
@@ -78,15 +87,19 @@ export function WaveSurferForm({
   useEffect(() => {
     wavesurferRef.current?.skip(15);
   }, [skipForward]);
-
+  //Volume
   useEffect(() => {
     wavesurferRef.current?.setVolume(volume / 100);
   }, [volume]);
 
-  // useEffect(() => {
-  //   if (!wavesurferRef.current) return;
-  //   setCurrentTime(Math.floor(wavesurferRef.current?.getCurrentTime()));
-  // });
+  useEffect(() => {
+    const ws = wavesurferRef.current;
+    if (!ws) return;
+
+    ws.on("audioprocess", () => {
+      setCurrentTime(Math.floor(ws.getCurrentTime()));
+    });
+  }, []);
 
   return (
     <div

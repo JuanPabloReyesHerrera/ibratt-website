@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { use, useState } from "react";
 import { Slider, Button } from "@/components/ui";
 import {
   Play,
@@ -8,18 +8,28 @@ import {
   Heart,
   HeartPlus,
   Ellipsis,
+  Pause,
 } from "lucide-react";
 import Image from "next/image";
 import type { Beat } from "@/types";
 import Link from "next/link";
 import { usePlayerStore } from "@/store/player-store";
+import { useShallow } from "zustand/shallow";
 import { WaveSurferForm } from "@/components/player/wavesurfer-form";
+import { formatDuration } from "@/lib/utils";
 
 export default function AudioPlayer({ beat }: { beat: Beat }) {
   const { portada, name, audioUrl, genre, bpm, key } = beat;
 
   const [isLiked, setIsLiked] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const { togglePlay, currentTime, isPlaying, duration } = usePlayerStore(
+    useShallow((state) => ({
+      togglePlay: state.togglePlay,
+      currentTime: state.currentTime,
+      isPlaying: state.isPlaying,
+      duration: state.duration,
+    })),
+  );
   const [skipBack, setSkipBack] = useState(false);
   const [skipForward, setSkipForward] = useState(false);
   const [volume, setVolume] = useState(80);
@@ -34,7 +44,6 @@ export default function AudioPlayer({ beat }: { beat: Beat }) {
       <section className="w-full h-18 flex flex-row justify-center items-center bg-linear-to-t from-gray-950 from-20% to-transparent to-90% shadow-lg">
         <WaveSurferForm
           audioUrl={audioUrl}
-          isPlaying={isPlaying}
           skipBack={skipBack}
           skipForward={skipForward}
           volume={volume}
@@ -67,9 +76,15 @@ export default function AudioPlayer({ beat }: { beat: Beat }) {
           </Button>
           <Button
             className={buttonControl}
-            onClick={() => setIsPlaying(!isPlaying)}
+            onClick={() => {
+              togglePlay();
+            }}
           >
-            <Play strokeWidth={2} className={`${buttonActive}`} />
+            {isPlaying ? (
+              <Pause strokeWidth={2} className={`${buttonActive}`} />
+            ) : (
+              <Play strokeWidth={2} className={`${buttonActive}`} />
+            )}
           </Button>
           <Button
             onClick={() => {
@@ -87,6 +102,11 @@ export default function AudioPlayer({ beat }: { beat: Beat }) {
             onValueChange={(value) => setVolume(value[0])}
             className="w-full max-w-xs min-w-20 hover:scale-115 active:scale-95 cursor-pointer transition-transform mx-2"
           />
+        </div>
+        <div className="w-full h-full flex justify-center items-center px-2">
+          <span className="text-xs font-bold text-muted-foreground">
+            {formatDuration(duration)} / {formatDuration(currentTime)}
+          </span>
         </div>
 
         {/* BEAT URL */}
