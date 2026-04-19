@@ -1,49 +1,44 @@
-import { useState, useEffect, useRef, use } from "react";
+"use client";
+import { useState, useEffect, useRef } from "react";
 import WaveSurfer from "wavesurfer.js";
-import { useShallow } from "zustand/shallow";
 import { usePlayerStore } from "@/store/player-store";
+import { useShallow } from "zustand/shallow";
 
 type WaveSurferFormOptions = {
   audioUrl: string;
-  //   playbackRate: number;
-
-  skipForward: boolean;
-  skipBack: boolean;
-  volume: number;
-
-  //   onTimeUpdate: (time: number) => void;
-  //   onDuration: (duration: number) => void;
-  //   onFinish: () => void;
 };
 
-export function WaveSurferForm({
-  audioUrl,
-
-  skipForward,
-  skipBack,
-  volume,
-}: WaveSurferFormOptions) {
+export function WaveSurferForm({ audioUrl }: WaveSurferFormOptions) {
   const containerRef = useRef<HTMLDivElement>(null);
   const wavesurferRef = useRef<WaveSurfer | null>(null);
 
   const [isReady, setIsReady] = useState(false);
 
-  const { isPlaying, currentTime, setCurrentTime, duration, setDuration } =
-    usePlayerStore(
-      useShallow((state) => ({
-        isPlaying: state.isPlaying,
-        currentTime: state.currentTime,
-        setCurrentTime: state.setCurrentTime,
-        duration: state.duration,
-        setDuration: state.setDuration,
-      })),
-    );
-
-  //wavesurferRef.current?.destroy();
+  const {
+    isPlaying,
+    setCurrentTime,
+    setDuration,
+    volume,
+    setWavesurfer,
+    next,
+  } = usePlayerStore(
+    useShallow((state) => ({
+      isPlaying: state.isPlaying,
+      setCurrentTime: state.setCurrentTime,
+      setDuration: state.setDuration,
+      volume: state.volume,
+      setWavesurfer: state.setWavesurfer,
+      next: state.next,
+    })),
+  );
 
   // Initialize WaveSurfer when audioUrl changes
   useEffect(() => {
     if (!containerRef.current) return;
+
+    wavesurferRef.current?.destroy();
+    setIsReady(false);
+
     const ws = WaveSurfer.create({
       container: containerRef.current,
       waveColor: "#999",
@@ -54,6 +49,7 @@ export function WaveSurferForm({
       barGap: 4,
       barRadius: 5,
       normalize: true,
+      //url: audioUrl,
     });
 
     ws.load(audioUrl);
@@ -61,10 +57,18 @@ export function WaveSurferForm({
     ws.on("ready", () => {
       setIsReady(true);
       setDuration(Math.floor(wavesurferRef.current?.getDuration() || 0));
+      ws.setVolume(volume / 100);
+      wavesurferRef.current = ws;
+
+      setWavesurfer(wavesurferRef as React.MutableRefObject<WaveSurfer>);
+    });
+
+    ws.on("audioprocess", () => {
+      setCurrentTime(Math.floor(ws.getCurrentTime()));
     });
 
     ws.on("finish", () => {
-      //onFinish();
+      next();
     });
 
     wavesurferRef.current = ws;
@@ -74,32 +78,20 @@ export function WaveSurferForm({
       setIsReady(false);
     };
   }, [audioUrl]);
+
   // Play/pause when isPlaying changes
   useEffect(() => {
-    wavesurferRef.current?.playPause();
-    console.log("isPlaying wavesurfer:", isPlaying);
-  }, [isPlaying]);
-  //skip back
-  useEffect(() => {
-    wavesurferRef.current?.skip(-15);
-  }, [skipBack]);
-  //skip forward
-  useEffect(() => {
-    wavesurferRef.current?.skip(15);
-  }, [skipForward]);
+    const ws = wavesurferRef.current;
+    if (!ws || !isReady) return;
+
+    if (isPlaying) ws.play();
+    else ws.pause();
+  }, [isPlaying, isReady]);
+
   //Volume
   useEffect(() => {
     wavesurferRef.current?.setVolume(volume / 100);
   }, [volume]);
-
-  useEffect(() => {
-    const ws = wavesurferRef.current;
-    if (!ws) return;
-
-    ws.on("audioprocess", () => {
-      setCurrentTime(Math.floor(ws.getCurrentTime()));
-    });
-  }, []);
 
   return (
     <div

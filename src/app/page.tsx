@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { BackGroundImage } from "@/components/shared";
 
 import HeroSection from "@/components/home/hero-section";
 import SpotifySection from "@/components/home/spotify-section";
@@ -14,51 +14,30 @@ import {
 export default function Home() {
   return (
     <div className="w-full font-sans flex flex-col items-center justify-center bg-linear-to-b from-foreground via-foreground to-background">
-      <section className="relative h-[130vh] w-full md:max-w-[80vw] xl:max-w-[60vw]">
-        {/* imagen sticky */}
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
-          <div className="relative w-full h-full">
-            <Image
-              className="object-cover"
-              src="/assets/hero.jpg"
-              alt="Hero"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 50vw"
-              fill
-              priority
-            />
-          </div>
-        </div>
-        {/* contenido encima de la imagen */}
-        <div className="absolute w-full h-[130vh] -mt-[100vh] md:max-w-[80vw] xl:max-w-[60vw] shadow-background shadow-2xl">
-          {/* <div className="w-fit h-fit [clip-path:polygon(-50%_-50%,_150%_-50%,_150%_100%,_-50%_100%)]"> */}
-          <HeroSection
-            socialsMedias={MOCK_SOCIAL_MEDIA}
-            youtubeVideos={MOCK_YOUTUBE_VIDEOS}
-          />
-        </div>
+      <section
+        id="home"
+        className="relative h-[130dvh] w-full md:max-w-[80dvw] xl:max-w-[60dvw]"
+      >
+        <BackGroundImage imageSrc="/assets/hero.jpg" alt="Hero" />
+        <HeroSection
+          socialsMedias={MOCK_SOCIAL_MEDIA}
+          youtubeVideos={MOCK_YOUTUBE_VIDEOS}
+        />
       </section>
-      <section className="relative h-[120vh] w-full md:max-w-[80vw] xl:max-w-[60vw]">
-        {/* imagen sticky */}
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
-          <div className="relative w-full h-full">
-            <Image
-              className="object-cover"
-              src="/assets/spotify-section.jpg"
-              alt="Hero"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 50vw"
-              fill
-              priority
-            />
-          </div>
-        </div>
-        <div className="absolute w-full h-[120vh] -mt-[100vh] md:max-w-[80vw] xl:max-w-[60vw] shadow-background shadow-2xl">
-          <SpotifySection spotifyUrl={MOCK_SPOTIFY_TRACK} />
-        </div>
+
+      <section
+        id="Spotify"
+        className="relative h-[120dvh] w-full md:max-w-[80dvw] xl:max-w-[60dvw]"
+      >
+        <BackGroundImage imageSrc="/assets/spotify-section.jpg" alt="spotify" />
+        <SpotifySection spotifyUrl={MOCK_SPOTIFY_TRACK} />
       </section>
-      <section className="w-full h-[150vh] flex justify-center [clip-path:polygon(-50%_0%,_150%_0%,_150%_150%,_-50%_150%)]">
+      <section
+        id="beats"
+        className="w-full h-[150dvh] flex justify-center [clip-path:polygon(-50%_0%,_150%_0%,_150%_150%,_-50%_150%)]"
+      >
         <BeatsLanding beats={MOCK_BEATS} />
       </section>
-      {/* </div> */}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider, TouchProvider } from "@/components/providers";
 import NavBar from "@/components/layout/nav-bar";
-import AudioPlayer from "@/components/layout/audio-player";
+import { DrawerAudioPlayer } from "@/components/layout/drawer-audio-player";
 import { MOCK_BEATS } from "@/lib/mock-data";
 
 const geistSans = Geist({
@@ -30,20 +30,20 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
     >
-      <body className="min-h-screen flex flex-col">
+      <body className="flex flex-col">
         <NavBar />
         <TouchProvider />
         <ThemeProvider>
-          <main className="flex-1 pt-12 pb-30">
+          <main className="flex-1 pt-12 pb-25 h-screen">
             {children}
-            <footer className="w-full h-12 bg-muted flex items-center justify-center px-4 text-sm text-muted-foreground z-100">
+            <footer className="w-full h-12 bg-muted flex items-center justify-center text-sm text-muted-foreground">
               ibratt.prod@gmail.com
             </footer>
           </main>
         </ThemeProvider>
-        <AudioPlayer beat={MOCK_BEATS[0]} />
+        <DrawerAudioPlayer />
       </body>
     </html>
   );

@@ -27,7 +27,7 @@ export type LicenseType = keyof typeof LICENSE_TYPES;
 import { NavBarCategory } from "@/types/nav-bar";
 
 export const NAV_BAR_CATEGORIES: NavBarCategory[] = [
-  { title: "Inicio", link: "" },
+  { title: "Inicio", link: "#home" },
   {
     title: "Beats",
     link: "/beats",

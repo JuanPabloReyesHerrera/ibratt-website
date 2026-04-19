@@ -40,5 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# MOCK_DATA
-/public/audio/
+# Archivos de prueba de audio
+public/audio/
+
+# Configuraciones locales del editor
+.vscode/

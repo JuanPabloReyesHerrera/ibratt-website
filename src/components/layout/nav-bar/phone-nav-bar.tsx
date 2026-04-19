@@ -13,12 +13,12 @@ import { AudioLines } from "lucide-react";
 import Link from "next/link";
 import type { NavBarCategory } from "@/types";
 import { MOCK_SOCIAL_MEDIA } from "@/lib/mock-data";
-import { SocialsMediasButtons } from "../shared";
+import { SocialsMediasButtons } from "@/components/shared";
 import { siteConfig } from "@/config/site";
 
 type PhoneNavBarProps = { categories: NavBarCategory[] };
 
-export default function PhoneNavBar({ categories }: PhoneNavBarProps) {
+export function PhoneNavBar({ categories }: PhoneNavBarProps) {
   return (
     <Sheet>
       <SheetTrigger className="flex md:hidden text-ring bg-transparent touch-manipulation group">

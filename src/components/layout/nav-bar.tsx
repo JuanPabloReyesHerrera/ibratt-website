@@ -1,9 +1,8 @@
-import DesktopNavbar from "./desktop-nav-bar";
-import PhoneNavBar from "./phone-nav-bar";
 import { AudioLines } from "lucide-react";
 import Link from "next/link";
 import { NAV_BAR_CATEGORIES } from "@/lib/constants";
 import { siteConfig } from "@/config/site";
+import { PhoneNavBar, DesktopNavBar } from "./nav-bar/";
 
 export default function NavBar() {
   return (
@@ -12,7 +11,7 @@ export default function NavBar() {
         🪬 {siteConfig.logo}
       </Link>
 
-      <DesktopNavbar categories={NAV_BAR_CATEGORIES} />
+      <DesktopNavBar categories={NAV_BAR_CATEGORIES} />
       <PhoneNavBar categories={NAV_BAR_CATEGORIES} />
 
       <div className="hidden md:flex">

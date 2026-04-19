@@ -1,17 +1,19 @@
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+
 type SpotifyProps = {
   spotifyUrl: string[];
 };
 
 export default function SpotifySection({ spotifyUrl }: SpotifyProps) {
   return (
-    <div className="bg-linear-to-b from-background from-10% via-transparent via-40% to-transparent shadow-2xl shadow-background w-full h-full flex flex-col items-center justify-center font-sans">
-      <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-t from-primary via-foreground/50 to-transparent font-sans p-8">
-        <h1 className="text-5xl text-background font-bold text-center sm:text-left">
+    <div className="absolute w-full h-full -mt-[100dvh] md:max-w-[80dvw] xl:max-w-[60dvw] shadow-background shadow-2xl flex flex-col items-center justify-center font-sans">
+      <div className="absolute w-full h-full bg-linear-to-b from-background from-10% via-transparent via-40% to-transparent" />
+      <div className="absolute w-full h-full bg-linear-to-t from-primary via-foreground/50 to-transparent" />
+      <div className="dark w-full h-full flex flex-col items-center justify-center font-sans p-8">
+        <h1 className="text-5xl text-foreground font-bold text-center sm:text-left">
           Spotify Section
         </h1>
-        <p className="text-background mt-4 mx-15 text-balance text-2xl text-center sm:text-left">
+        <p className="text-foreground mt-4 mx-15 text-balance text-2xl text-center sm:text-left">
           This is where you can display the ibratt Spotify playlists, tracks, or
           albums.
         </p>
@@ -22,7 +24,7 @@ export default function SpotifySection({ spotifyUrl }: SpotifyProps) {
               orientation="horizontal"
             />
             <div
-              className="h-[400px] w-full border-x border-background/30 p-5 space-y-6 overflow-y-auto"
+              className="h-100 w-full border-x border-fotext-foreground/30 p-5 space-y-6 overflow-y-auto"
               style={{
                 WebkitOverflowScrolling: "touch", // Fuerza el scroll suave en iPhone
                 maskImage:
@@ -34,7 +36,7 @@ export default function SpotifySection({ spotifyUrl }: SpotifyProps) {
               {spotifyUrl.map((url) => (
                 <div key={url} className="h-20">
                   <iframe
-                    className="h-full rounded-3xl w-[100%] border-0"
+                    className="h-full rounded-3xl w-full border-0"
                     data-testid="embed-iframe"
                     style={{ borderRadius: "12px" }}
                     src={url}

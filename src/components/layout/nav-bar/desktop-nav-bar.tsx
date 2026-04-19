@@ -8,9 +8,9 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
-import type { NavBarCategory } from "../../types/nav-bar";
+import type { NavBarCategory } from "@/types/nav-bar";
 
-function renderNavItem({ title, contents }: NavBarCategory) {
+function renderNavItem({ title, contents, link }: NavBarCategory) {
   const navCssColor = "dark text-foreground";
 
   return (
@@ -42,7 +42,7 @@ type DesktopNavBarProp = {
   categories: NavBarCategory[];
 };
 
-export default function DesktopNavBar({ categories }: DesktopNavBarProp) {
+export function DesktopNavBar({ categories }: DesktopNavBarProp) {
   return (
     <NavigationMenu className="hidden md:flex flex-row">
       <NavigationMenuList>
