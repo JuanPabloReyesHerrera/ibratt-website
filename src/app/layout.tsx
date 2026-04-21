@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider, TouchProvider } from "@/components/providers";
-import NavBar from "@/components/layout/nav-bar";
-import { DrawerAudioPlayer } from "@/components/layout/drawer-audio-player";
-import { MOCK_BEATS } from "@/lib/mock-data";
+import { NavBar } from "@/components/layout/nav-bar";
+import { DrawerAudioPlayer } from "@/components/layout/player/drawer-audio-player";
+import { getBeatsFromPublicFolder } from "@/lib/get-beats-from-public-folder";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +26,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const beats = getBeatsFromPublicFolder();
+
   return (
     <html
       lang="en"
@@ -43,7 +45,7 @@ export default function RootLayout({
             </footer>
           </main>
         </ThemeProvider>
-        <DrawerAudioPlayer />
+        <DrawerAudioPlayer beats={beats} />
       </body>
     </html>
   );

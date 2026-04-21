@@ -14,6 +14,7 @@ type PlayerState = {
 
   wavesurfer: React.MutableRefObject<any> | null;
 
+  playBeat: (index: number) => void;
   setPlaylist: (beats: Beat[]) => void;
   setWavesurfer: (ref: React.MutableRefObject<any>) => void;
   togglePlay: () => void;
@@ -25,6 +26,7 @@ type PlayerState = {
   setSkipBack: () => void;
   setSkipForward: () => void;
   setIsLiked: () => void;
+  seekTo: (time: number) => void;
 };
 
 export const usePlayerStore = create<PlayerState>((set, get) => ({
@@ -39,6 +41,13 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   isLiked: false,
 
   wavesurfer: null,
+
+  playBeat: (index) => {
+    const { wavesurfer } = get();
+    const ws = wavesurfer?.current;
+    set({ currentIndex: index, isPlaying: true });
+    if (ws) ws.play();
+  },
 
   setPlaylist: (beats) => set({ playlist: beats, currentIndex: 0 }),
   setWavesurfer: (ref) => set({ wavesurfer: ref }),
@@ -79,7 +88,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
 
     const currentTime = ws.getCurrentTime();
     const duration = ws.getDuration();
-    const newTime = Math.min(0, currentTime - 15);
+    const newTime = Math.min(duration, currentTime - 15);
 
     ws.setTime(newTime);
   },
@@ -97,4 +106,12 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   },
 
   setIsLiked: () => set((state) => ({ isLiked: !state.isLiked })),
+
+  seekTo: (time) => {
+    const { wavesurfer } = get();
+    const ws = wavesurfer?.current;
+    if (!ws) return;
+    ws.setTime(time);
+    set({ currentTime: time });
+  },
 }));

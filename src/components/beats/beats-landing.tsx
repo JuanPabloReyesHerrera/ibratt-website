@@ -1,15 +1,10 @@
-import type { Beat } from "@/types";
 import { UsagePolicies } from "./usage-policies";
 import { BeatCatalog } from "./beats-catalog";
 import { BackGroundImage } from "../shared";
 import Link from "next/link";
 import { BeatsFilter } from "./beats-filter";
 
-type BeatsLandingProps = {
-  beats: Beat[];
-};
-
-export default function BeatsLanding({ beats }: BeatsLandingProps) {
+export default function BeatsLanding() {
   return (
     <div className="h-full w-full md:max-w-[80dvw] xl:max-w-[60dvw] flex flex-col items-center justify-center font-sans shadow-2xl shadow-foreground">
       <BackGroundImage imageSrc="/assets/beat-section.jpg" alt="Beats" />
@@ -23,7 +18,7 @@ export default function BeatsLanding({ beats }: BeatsLandingProps) {
         </Link>
         <BeatsFilter />
 
-        <BeatCatalog beats={beats} />
+        <BeatCatalog />
 
         <UsagePolicies />
       </div>

@@ -10,21 +10,21 @@ import {
   Button,
 } from "@/components/ui";
 
-import { Play } from "lucide-react";
-import { Beat } from "@/types";
+import { Pause, Play } from "lucide-react";
 import { usePlayerStore } from "@/store/player-store";
 import { useShallow } from "zustand/shallow";
-type BeatsCatalogProps = {
-  beats: Beat[];
-};
 
-export function BeatCatalog({ beats }: BeatsCatalogProps) {
-  const { togglePlay, currentIndex } = usePlayerStore(
-    useShallow((state) => ({
-      togglePlay: state.togglePlay,
-      currentIndex: state.currentIndex,
-    })),
-  );
+export function BeatCatalog() {
+  const { togglePlay, currentIndex, playBeat, isPlaying, playlist } =
+    usePlayerStore(
+      useShallow((state) => ({
+        togglePlay: state.togglePlay,
+        currentIndex: state.currentIndex,
+        playBeat: state.playBeat,
+        isPlaying: state.isPlaying,
+        playlist: state.playlist,
+      })),
+    );
   return (
     <section
       className="w-full md:w-[80%] h-fit flex items-start justify-center p-4 overflow-auto"
@@ -50,35 +50,51 @@ export function BeatCatalog({ beats }: BeatsCatalogProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {beats.map(({ portada, name, genre, bpm, key, price, audioUrl }) => (
-            <TableRow key={name} className="border-b-foreground/10">
-              <TableCell>
-                <Button
-                  variant="ghost"
-                  onClick={() => {}}
-                  className="w-full h-12 bg-transparent md:hover:bg-foreground/40 active:bg-primary/70 transition-all active:scale-95 group touch-manipulation"
-                >
-                  <Play className="size-5 text-foreground md:group-hover:scale-125 group-active:scale-95 md:group-hover:text-background transition-transform touch-manipulation" />
-                </Button>
-              </TableCell>
-              <TableCell>
-                <img
-                  src={portada}
-                  alt={name}
-                  className="size-12 rounded-lg object-cover"
-                />
-              </TableCell>
-              <TableCell className="text-foreground">{name}</TableCell>
-              <TableCell className="text-foreground">{genre}</TableCell>
-              <TableCell className="text-foreground">{bpm}</TableCell>
-              <TableCell className="text-foreground">{key}</TableCell>
-              <TableCell className="text-foreground">
-                <Button className="transition-all transform-gpu hover:scale-110 active:scale-95 active:bg-primary/70 touch-manipulation">
-                  {price}
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
+          {playlist.map(
+            ({ portada, name, genre, bpm, key, price, audioUrl }) => (
+              <TableRow key={name} className="border-b-foreground/10">
+                <TableCell>
+                  <Button
+                    variant="ghost"
+                    size={"icon-lg"}
+                    onClick={() => {
+                      if (isPlaying && playlist[currentIndex].name === name)
+                        togglePlay();
+                      else playBeat(currentIndex);
+                    }}
+                    className="md:hover:bg-foreground/40 active:bg-primary/70 transition-all active:scale-95 group touch-manipulation"
+                  >
+                    {isPlaying && playlist[currentIndex].name === name ? (
+                      <Pause />
+                    ) : (
+                      <Play />
+                    )}
+                  </Button>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    size="icon-lg"
+                    className="flex justify-center items-center w-12"
+                  >
+                    <img
+                      src={portada}
+                      alt={name}
+                      className="size-12 rounded-lg object-cover"
+                    />
+                  </Button>
+                </TableCell>
+                <TableCell className="text-foreground">{name}</TableCell>
+                <TableCell className="text-foreground">{genre}</TableCell>
+                <TableCell className="text-foreground">{bpm}</TableCell>
+                <TableCell className="text-foreground">{key}</TableCell>
+                <TableCell className="text-foreground">
+                  <Button className="transition-all transform-gpu hover:scale-110 active:scale-95 active:bg-primary/70 touch-manipulation">
+                    {price}
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ),
+          )}
         </TableBody>
       </Table>
     </section>

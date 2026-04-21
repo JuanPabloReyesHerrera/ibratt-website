@@ -2,18 +2,19 @@
 import { useEffect, useState } from "react";
 import { Drawer } from "vaul";
 import { ColapsedAudioPlayer } from "@/components/layout/player/colapsed-audio-player";
-import { ExpandedAudioPlayer } from "./player/expanded-audio-player";
-import { MOCK_BEATS } from "@/lib/mock-data";
+import { ExpandedAudioPlayer } from "./expanded-audio-player";
 import { usePlayerStore } from "@/store/player-store";
 import { useShallow } from "zustand/shallow";
-import { WaveSurferForm } from "./player/wavesurfer-form";
+import { WaveSurferForm } from "./wavesurfer-form";
 
-export function DrawerAudioPlayer() {
+import { Beat } from "@/types";
+
+export function DrawerAudioPlayer({ beats }: { beats: Beat[] }) {
   const SNAP_POINT = ["100px", 1];
   const [snap, setSnap] = useState<string | number | null>(SNAP_POINT[0]);
   const isExpanded = snap === SNAP_POINT[1];
 
-  const { playlist, setPlaylist, currentIndex } = usePlayerStore(
+  const { playlist, setPlaylist } = usePlayerStore(
     useShallow((state) => ({
       playlist: state.playlist,
       setPlaylist: state.setPlaylist,
@@ -22,10 +23,8 @@ export function DrawerAudioPlayer() {
   );
 
   useEffect(() => {
-    if (playlist.length === 0) setPlaylist(MOCK_BEATS);
+    if (playlist.length === 0) setPlaylist(beats);
   }, [setPlaylist, playlist.length]);
-
-  const currentBeat = playlist[currentIndex];
 
   return (
     <Drawer.Root
@@ -41,8 +40,27 @@ export function DrawerAudioPlayer() {
           <Drawer.Title></Drawer.Title>
           <Drawer.Description></Drawer.Description>
 
-          <div className="flex-1 overflow-hidden p-4">
-            {isExpanded ? <ExpandedAudioPlayer /> : <ColapsedAudioPlayer />}
+          <div className="relative flex-1 p-4">
+            <section
+              className="absolute inset-0 transition-opacity duration-300"
+              style={{
+                opacity: isExpanded ? 1 : 0,
+                pointerEvents: isExpanded ? "auto" : "none",
+                zIndex: isExpanded ? 10 : 0,
+              }}
+            >
+              <ExpandedAudioPlayer wavesurfer={<WaveSurferForm />} />
+            </section>
+            <section
+              className="absolute inset-0 transition-opacity duration-300"
+              style={{
+                opacity: isExpanded ? 0 : 1,
+                pointerEvents: isExpanded ? "none" : "auto",
+                zIndex: isExpanded ? 0 : 10,
+              }}
+            >
+              <ColapsedAudioPlayer />
+            </section>
           </div>
         </Drawer.Content>
       </Drawer.Portal>

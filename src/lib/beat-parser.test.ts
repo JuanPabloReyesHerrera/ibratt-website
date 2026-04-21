@@ -3,7 +3,7 @@ import { parseBeatValidation } from "./beat-parser.js";
 
 describe("Validación de patron del nombre del beat", () => {
   test("Debe extraer los datos correctamente de un string válido", () => {
-    const validString = "MidnightFeelings_@ibratt.wav[94Bpm/Em][25-05-07]";
+    const validString = "MidnightFeelings_@ibratt.wav[94Bpm/Em][25-05-07].wav";
 
     const result = parseBeatValidation(validString);
     expect({
@@ -12,6 +12,7 @@ describe("Validación de patron del nombre del beat", () => {
       bpm: 94,
       key: "Em",
       id: "25-05-07",
+      ext: "wav",
     });
   });
   test("Debe lanzar un objeto error", () => {

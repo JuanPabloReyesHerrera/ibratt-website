@@ -5,7 +5,6 @@ import SpotifySection from "@/components/home/spotify-section";
 import BeatsLanding from "@/components/beats/beats-landing";
 
 import {
-  MOCK_BEATS,
   MOCK_SOCIAL_MEDIA,
   MOCK_YOUTUBE_VIDEOS,
   MOCK_SPOTIFY_TRACK,
@@ -36,7 +35,7 @@ export default function Home() {
         id="beats"
         className="w-full h-[150dvh] flex justify-center [clip-path:polygon(-50%_0%,_150%_0%,_150%_150%,_-50%_150%)]"
       >
-        <BeatsLanding beats={MOCK_BEATS} />
+        <BeatsLanding />
       </section>
     </div>
   );

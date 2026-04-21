@@ -4,14 +4,9 @@ import WaveSurfer from "wavesurfer.js";
 import { usePlayerStore } from "@/store/player-store";
 import { useShallow } from "zustand/shallow";
 
-type WaveSurferFormOptions = {
-  audioUrl: string;
-};
-
-export function WaveSurferForm({ audioUrl }: WaveSurferFormOptions) {
+export function WaveSurferForm() {
   const containerRef = useRef<HTMLDivElement>(null);
   const wavesurferRef = useRef<WaveSurfer | null>(null);
-
   const [isReady, setIsReady] = useState(false);
 
   const {
@@ -21,6 +16,8 @@ export function WaveSurferForm({ audioUrl }: WaveSurferFormOptions) {
     volume,
     setWavesurfer,
     next,
+    playlist,
+    currentIndex,
   } = usePlayerStore(
     useShallow((state) => ({
       isPlaying: state.isPlaying,
@@ -29,42 +26,62 @@ export function WaveSurferForm({ audioUrl }: WaveSurferFormOptions) {
       volume: state.volume,
       setWavesurfer: state.setWavesurfer,
       next: state.next,
+      playlist: state.playlist,
+      currentIndex: state.currentIndex,
     })),
   );
 
-  // Initialize WaveSurfer when audioUrl changes
+  const audioUrl = playlist[currentIndex]?.audioUrl;
+
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !audioUrl) return;
 
     wavesurferRef.current?.destroy();
     setIsReady(false);
 
     const ws = WaveSurfer.create({
       container: containerRef.current,
-      waveColor: "#999",
+      waveColor: "#666",
       progressColor: "hsl(350, 40%, 60%)",
-      cursorColor: "#transparent",
+      cursorColor: "transparent",
       height: 55,
       barWidth: 5,
       barGap: 4,
       barRadius: 5,
       normalize: true,
-      //url: audioUrl,
+      interact: true,
+      autoplay: isPlaying,
     });
+    const safeAudioUrl = audioUrl.replace(/#/g, "%23");
 
-    ws.load(audioUrl);
+    ws.load(safeAudioUrl).catch((error) => {
+      if (error.name === "AbortError")
+        console.log("Desacarga de beat cancelada (Cambio de pista o reload)");
+      else console.log("Error al cargar beat en wavesurfer: ", error);
+    });
 
     ws.on("ready", () => {
       setIsReady(true);
-      setDuration(Math.floor(wavesurferRef.current?.getDuration() || 0));
+      setDuration(Math.floor(ws.getDuration()));
       ws.setVolume(volume / 100);
       wavesurferRef.current = ws;
-
       setWavesurfer(wavesurferRef as React.MutableRefObject<WaveSurfer>);
+
+      // Agrega data-vaul-no-drag a todos los elementos internos
+      if (containerRef.current) {
+        containerRef.current
+          .querySelectorAll("*")
+          .forEach((el) => el.setAttribute("data-vaul-no-drag", ""));
+      }
     });
 
     ws.on("audioprocess", () => {
       setCurrentTime(Math.floor(ws.getCurrentTime()));
+    });
+
+    // Cuando el usuario hace click en la onda, sincroniza el store
+    ws.on("seeking", (currentTime) => {
+      setCurrentTime(Math.floor(currentTime));
     });
 
     ws.on("finish", () => {
@@ -79,16 +96,13 @@ export function WaveSurferForm({ audioUrl }: WaveSurferFormOptions) {
     };
   }, [audioUrl]);
 
-  // Play/pause when isPlaying changes
   useEffect(() => {
     const ws = wavesurferRef.current;
     if (!ws || !isReady) return;
-
     if (isPlaying) ws.play();
     else ws.pause();
   }, [isPlaying, isReady]);
 
-  //Volume
   useEffect(() => {
     wavesurferRef.current?.setVolume(volume / 100);
   }, [volume]);
@@ -96,7 +110,8 @@ export function WaveSurferForm({ audioUrl }: WaveSurferFormOptions) {
   return (
     <div
       ref={containerRef}
-      className="h-full w-[calc(100%-120px)] cursor-pointer hover:scale-y-145 active:scale-y-145 transition-transform duration-400"
+      data-vaul-no-drag
+      className="w-full h-[55px] cursor-pointer hover:scale-y-145 active:scale-y-145 transition-transform duration-400"
     />
   );
 }

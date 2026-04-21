@@ -18,8 +18,9 @@ import {
   Share,
   Shuffle,
 } from "lucide-react";
+import { ReactNode } from "react";
 
-export function ExpandedAudioPlayer() {
+export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
   const { currentIndex, playlist, currentTime, duration, isLiked, setIsLiked } =
     usePlayerStore(
       useShallow((state) => ({
@@ -34,6 +35,7 @@ export function ExpandedAudioPlayer() {
     );
 
   const currentBeat = playlist[currentIndex];
+  const { portada, name, audioUrl, genre, bpm, key } = currentBeat;
 
   // 3. Si el beat no existe todavía (es undefined), retornamos un estado de carga o nada
   if (!currentBeat) {
@@ -43,8 +45,6 @@ export function ExpandedAudioPlayer() {
       </div>
     );
   }
-
-  const { portada, name, audioUrl, genre, bpm, key } = playlist[currentIndex];
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-start gap-16">
@@ -87,7 +87,7 @@ export function ExpandedAudioPlayer() {
 
           <PlayerOptionsButton size={8} onClick={() => setIsLiked()}>
             {isLiked ? (
-              <Heart strokeWidth={3} className="fill-red-500 text-red-500" />
+              <Heart strokeWidth={0} className="fill-red-500 text-red-500" />
             ) : (
               <HeartPlus />
             )}
@@ -95,7 +95,10 @@ export function ExpandedAudioPlayer() {
         </div>
 
         {/* WAVEFORM */}
-        <WaveSurferForm audioUrl={audioUrl} />
+        {/* <WaveSurferForm audioUrl={audioUrl} /> */}
+
+        {wavesurfer}
+
         <div className="w-full flex flex-row items-center justify-between text-xs font-bold text-muted-foreground">
           <span>{formatDuration(currentTime)}</span>
           <span>{formatDuration(duration)}</span>

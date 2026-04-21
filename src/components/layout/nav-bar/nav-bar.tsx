@@ -2,9 +2,9 @@ import { AudioLines } from "lucide-react";
 import Link from "next/link";
 import { NAV_BAR_CATEGORIES } from "@/lib/constants";
 import { siteConfig } from "@/config/site";
-import { PhoneNavBar, DesktopNavBar } from "./nav-bar/";
+import { PhoneNavBar, DesktopNavBar } from "./";
 
-export default function NavBar() {
+export function NavBar() {
   return (
     <header className="dark fixed top-0 bg-gray-950 h-12 w-full flex items-center justify-between z-50 px-4">
       <Link href={"/"} className="text-2xl font-bold text-ring">

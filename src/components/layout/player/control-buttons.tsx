@@ -18,6 +18,36 @@ type PlayerButtonProps = {
   className?: string;
 };
 
+export function PlayerOptionsButton({
+  children,
+  onClick,
+  size = 6,
+  className,
+}: PlayerButtonProps) {
+  const svgSizeClasses = {
+    6: "[&_svg]:size-6!",
+    8: "[&_svg]:size-8!",
+    10: "[&_svg]:size-10!",
+    14: "[&_svg]:size-14!",
+    16: "[&_svg]:size-16!",
+    20: "[&_svg]:size-20!",
+  } as const;
+  return (
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={onClick}
+      className={cn(
+        "[&_svg]:text-foreground hover:scale-115 active:scale-95 transition-transform duration-200 mx-1",
+        svgSizeClasses[size],
+        className,
+      )}
+    >
+      {children}
+    </Button>
+  );
+}
+
 function PlayerButtonItem({
   children,
   onClick,
@@ -37,7 +67,7 @@ function PlayerButtonItem({
       variant="outline"
       onClick={onClick}
       className={cn(
-        "[&_svg]:size-6! transition-all hover:scale-125 active:scale-95",
+        "[&_svg]:size-6! [&_svg]:text-foreground transition-all hover:scale-125 active:scale-95",
         sizeClasses[size],
         className,
       )}
@@ -119,35 +149,5 @@ export function AudioPlayerButtons({ size }: PlayerButtonProps) {
         className="hidden h-4 md:flex w-full max-w-xs min-w-20 hover:scale-115 active:scale-115 cursor-pointer transition-transform mx-2"
       />
     </div>
-  );
-}
-
-export function PlayerOptionsButton({
-  children,
-  onClick,
-  size = 6,
-  className,
-}: PlayerButtonProps) {
-  const svgSizeClasses = {
-    6: "[&_svg]:size-6!",
-    8: "[&_svg]:size-8!",
-    10: "[&_svg]:size-10!",
-    14: "[&_svg]:size-14!",
-    16: "[&_svg]:size-16!",
-    20: "[&_svg]:size-20!",
-  } as const;
-  return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={onClick}
-      className={cn(
-        "dark hover:scale-115 active:scale-95 transition-transform duration-200 mx-1",
-        svgSizeClasses[size],
-        className,
-      )}
-    >
-      {children}
-    </Button>
   );
 }
