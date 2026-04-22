@@ -4,7 +4,10 @@ import Image from "next/image";
 import { usePlayerStore } from "@/store/player-store";
 import { useShallow } from "zustand/shallow";
 import { formatDuration } from "@/lib/utils";
-import { PlayerOptionsButton, AudioPlayerButtons } from "./control-buttons";
+import {
+  PlayerOptionsButton,
+  AudioPlayerButtons,
+} from "../../ui/control-buttons";
 import { Ellipsis, Heart, HeartPlus } from "lucide-react";
 
 export function ColapsedAudioPlayer() {

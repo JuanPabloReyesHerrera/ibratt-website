@@ -6,7 +6,10 @@ import { usePlayerStore } from "@/store/player-store";
 import { useShallow } from "zustand/shallow";
 import { WaveSurferForm } from "@/components/layout/player/wavesurfer-form";
 import { formatDuration } from "@/lib/utils";
-import { AudioPlayerButtons, PlayerOptionsButton } from "./control-buttons";
+import {
+  AudioPlayerButtons,
+  PlayerOptionsButton,
+} from "../../ui/control-buttons";
 import {
   ChevronDown,
   Ellipsis,

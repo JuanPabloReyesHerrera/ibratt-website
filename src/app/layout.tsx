@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider, TouchProvider } from "@/components/providers";
 import { NavBar } from "@/components/layout/nav-bar";
 import { DrawerAudioPlayer } from "@/components/layout/player/drawer-audio-player";
-import { getBeatsFromPublicFolder } from "@/lib/get-beats-from-public-folder";
+import { getBeatsFromPublicFolder } from "@/lib/get-from-public-folder";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

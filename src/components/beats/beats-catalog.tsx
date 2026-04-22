@@ -25,6 +25,27 @@ export function BeatCatalog() {
         playlist: state.playlist,
       })),
     );
+
+  function handlePlay(beatName: string) {
+    // Busca el índice real del beat dentro de la playlist del store
+    const beatIndex = playlist.findIndex((b) => b.name === beatName);
+    if (beatIndex === -1) return; // el beat no está en la playlist todavía
+
+    const isCurrentBeat = playlist[currentIndex]?.name === beatName;
+
+    if (isCurrentBeat) {
+      // El usuario tocó el beat que ya está sonando → pausa o reanuda
+      togglePlay();
+    } else {
+      // El usuario tocó un beat diferente → cambia y reproduce
+      playBeat(beatIndex);
+    }
+  }
+
+  function isThisBeatPlaying(beatName: string): boolean {
+    return isPlaying && playlist[currentIndex]?.name === beatName;
+  }
+
   return (
     <section
       className="w-full md:w-[80%] h-fit flex items-start justify-center p-4 overflow-auto"
@@ -50,51 +71,41 @@ export function BeatCatalog() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {playlist.map(
-            ({ portada, name, genre, bpm, key, price, audioUrl }) => (
-              <TableRow key={name} className="border-b-foreground/10">
-                <TableCell>
-                  <Button
-                    variant="ghost"
-                    size={"icon-lg"}
-                    onClick={() => {
-                      if (isPlaying && playlist[currentIndex].name === name)
-                        togglePlay();
-                      else playBeat(currentIndex);
-                    }}
-                    className="md:hover:bg-foreground/40 active:bg-primary/70 transition-all active:scale-95 group touch-manipulation"
-                  >
-                    {isPlaying && playlist[currentIndex].name === name ? (
-                      <Pause />
-                    ) : (
-                      <Play />
-                    )}
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    size="icon-lg"
-                    className="flex justify-center items-center w-12"
-                  >
-                    <img
-                      src={portada}
-                      alt={name}
-                      className="size-12 rounded-lg object-cover"
-                    />
-                  </Button>
-                </TableCell>
-                <TableCell className="text-foreground">{name}</TableCell>
-                <TableCell className="text-foreground">{genre}</TableCell>
-                <TableCell className="text-foreground">{bpm}</TableCell>
-                <TableCell className="text-foreground">{key}</TableCell>
-                <TableCell className="text-foreground">
-                  <Button className="transition-all transform-gpu hover:scale-110 active:scale-95 active:bg-primary/70 touch-manipulation">
-                    {price}
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ),
-          )}
+          {playlist.map(({ portada, name, genre, bpm, key, price }) => (
+            <TableRow key={name} className="border-b-foreground/10">
+              <TableCell>
+                <Button
+                  variant="ghost"
+                  size={"icon-lg"}
+                  onClick={() => handlePlay(name)}
+                  className="md:hover:bg-foreground/40 active:bg-primary/70 transition-all active:scale-95 group touch-manipulation"
+                >
+                  {isThisBeatPlaying(name) ? <Pause /> : <Play />}
+                </Button>
+              </TableCell>
+              <TableCell>
+                <Button
+                  size="icon-lg"
+                  className="flex justify-center items-center w-12"
+                >
+                  <img
+                    src={portada}
+                    alt={name}
+                    className="size-12 rounded-lg object-cover"
+                  />
+                </Button>
+              </TableCell>
+              <TableCell className="text-foreground">{name}</TableCell>
+              <TableCell className="text-foreground">{genre}</TableCell>
+              <TableCell className="text-foreground">{bpm}</TableCell>
+              <TableCell className="text-foreground">{key}</TableCell>
+              <TableCell className="text-foreground">
+                <Button className="transition-all transform-gpu hover:scale-110 active:scale-95 active:bg-primary/70 touch-manipulation">
+                  {price}
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </section>

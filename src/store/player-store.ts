@@ -70,10 +70,16 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     set({ currentIndex: nextIndex, isPlaying: true });
   },
   previous: () => {
-    const { currentIndex, playlist } = get();
-    const previousIndex =
-      currentIndex === 0 ? playlist.length - 1 : currentIndex - 1;
-    set({ currentIndex: previousIndex, isPlaying: true });
+    const { currentIndex, playlist, currentTime, wavesurfer } = get();
+    if (currentTime > 3) {
+      console.log(currentTime);
+      set({ currentTime: 0 });
+      if (wavesurfer && wavesurfer?.current) wavesurfer.current.setTime(0);
+    } else {
+      const previousIndex =
+        currentIndex === 0 ? playlist.length - 1 : currentIndex - 1;
+      set({ currentIndex: previousIndex, isPlaying: true });
+    }
   },
 
   setVolume: (volume) => set({ volume }),
