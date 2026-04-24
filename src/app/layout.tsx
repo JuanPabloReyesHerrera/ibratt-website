@@ -38,7 +38,7 @@ export default function RootLayout({
         <NavBar />
         <TouchProvider />
         <ThemeProvider>
-          <main className="flex-1 pt-12 pb-25 h-screen">
+          <main className="flex-1 pt-12 pb-25 w-full">
             {children}
             <footer className="w-full h-12 bg-muted flex items-center justify-center text-sm text-muted-foreground">
               ibratt.prod@gmail.com

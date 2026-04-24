@@ -1,3 +1,5 @@
+import type { Master, MyNextRelease, ReleaseVersion } from "@/types";
+
 function converSpotifyLinks(shortLinks: string[]) {
   const embedLinks: string[] = [];
   for (const link of shortLinks) {
@@ -66,19 +68,6 @@ export const MOCK_YOUTUBE_VIDEOS = [
   "https://www.youtube.com/embed/F2ZgxyBY8HQ?si=U_HI9SZBD-n5X2t8",
 ];
 
-type Master = {
-  name: string;
-  isPay?: boolean;
-  released: string;
-  key: string;
-  bpm: string;
-  wav: string;
-  mp3: string;
-  beat: string;
-  show: string;
-  steems?: string;
-};
-
 export const MOCK_MY_MASTERS: Master[] = [
   {
     name: "Punto Aparte",
@@ -91,4 +80,44 @@ export const MOCK_MY_MASTERS: Master[] = [
     beat: "PuntoAparte",
     show: "PuntoAparte",
   },
+  {
+    name: "Brillo",
+    isPay: true,
+    released: "24/02/2026",
+    key: "Fm",
+    bpm: "90",
+    wav: "brillo",
+    mp3: "brillo",
+    beat: "brillo",
+    show: "brillo",
+  },
 ];
+
+export const MOCK_MY_Next_Releases: MyNextRelease = {
+  id: "release-001",
+  name: "Midnight Feelings",
+  maxModifications: 3,
+  isFullyApproved: false,
+  versions: [
+    {
+      audioUrl: "/audio/midnight-v3.mp3",
+      version: 3,
+      isApproved: false,
+      createdAt: "2025-04-20",
+      notes: "Ajuste de bajos y reverb en los coros",
+    },
+    {
+      audioUrl: "/audio/midnight-v2.mp3",
+      version: 2,
+      isApproved: false,
+      createdAt: "2025-04-15",
+      notes: "Primera mezcla con voces",
+    },
+    {
+      audioUrl: "/audio/midnight-v1.mp3",
+      version: 1,
+      isApproved: false,
+      createdAt: "2025-04-10",
+    },
+  ],
+};

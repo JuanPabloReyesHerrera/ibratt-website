@@ -33,7 +33,7 @@ export default function Home() {
       </section>
       <section
         id="beats"
-        className="w-full h-[150dvh] flex justify-center [clip-path:polygon(-50%_0%,_150%_0%,_150%_150%,_-50%_150%)]"
+        className="w-full h-[150dvh] flex justify-center md:max-w-[80dvw] xl:max-w-[60dvw]"
       >
         <BeatsLanding />
       </section>

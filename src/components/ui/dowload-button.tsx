@@ -24,14 +24,17 @@ type DownloadButtonProps = {
     | null
     | undefined;
   className?: string;
+  onClick: () => void;
 };
 export function DownloadButton({
   variant = "secondary",
   size = "icon-lg",
+  onClick,
   className,
 }: DownloadButtonProps) {
   return (
     <Button
+      onClick={onClick}
       variant={variant}
       size={size}
       className={cn("active:scale-90 hover:bg-primary!", className)}

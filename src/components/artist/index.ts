@@ -1,2 +1,3 @@
 export { MyMasters } from "./my-masters";
-export { MyRefs } from "./my-refs";
+export { MySongDemos } from "./my-song-demos";
+export { MyNextReleases } from "./my-next-releases";

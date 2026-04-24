@@ -6,7 +6,7 @@ import {
   SkipBack,
   SkipForward,
 } from "lucide-react";
-import { Button, Slider } from ".";
+import { Button, Slider } from "../ui";
 import { usePlayerStore } from "@/store/player-store";
 import { useShallow } from "zustand/shallow";
 import { cn } from "@/lib/utils";
@@ -15,23 +15,45 @@ type PlayerButtonProps = {
   children?: React.ReactNode;
   onClick?: () => void;
   size?: 6 | 8 | 10 | 14 | 16 | 20;
+  svgSize?: 6 | 8 | 10 | 14 | 16 | 20;
   className?: string;
+  variant?:
+    | "default"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "destructive"
+    | "link";
+
+  isPlaying?: any;
+  strokeWidth?: number;
 };
+
+const svgSizeClasses = {
+  6: "[&_svg]:size-6!",
+  8: "[&_svg]:size-8!",
+  10: "[&_svg]:size-10!",
+  14: "[&_svg]:size-14!",
+  16: "[&_svg]:size-16!",
+  20: "[&_svg]:size-20!",
+} as const;
+
+const sizeClasses = {
+  6: "size-6!",
+  8: "size-8!",
+  10: "size-10!",
+  14: "size-14!",
+  16: "size-16!",
+  20: "size-20!",
+} as const;
 
 export function PlayerOptionsButton({
   children,
   onClick,
-  size = 6,
+  size = 8,
   className,
+  svgSize = 6,
 }: PlayerButtonProps) {
-  const svgSizeClasses = {
-    6: "[&_svg]:size-6!",
-    8: "[&_svg]:size-8!",
-    10: "[&_svg]:size-10!",
-    14: "[&_svg]:size-14!",
-    16: "[&_svg]:size-16!",
-    20: "[&_svg]:size-20!",
-  } as const;
   return (
     <Button
       variant="ghost"
@@ -39,7 +61,8 @@ export function PlayerOptionsButton({
       onClick={onClick}
       className={cn(
         "[&_svg]:text-foreground hover:scale-115 active:scale-95 transition-transform duration-200 mx-1",
-        svgSizeClasses[size],
+        svgSizeClasses[svgSize],
+        sizeClasses[size],
         className,
       )}
     >
@@ -52,22 +75,17 @@ export function PlayerButton({
   children,
   onClick,
   size = 10,
+  svgSize = 6,
   className,
+  variant = "outline",
 }: PlayerButtonProps) {
-  const sizeClasses = {
-    6: "size-6!",
-    8: "size-8!",
-    10: "size-10!",
-    14: "size-14!",
-    16: "size-16!",
-    20: "size-20!",
-  } as const;
   return (
     <Button
-      variant="outline"
+      variant={variant}
       onClick={onClick}
       className={cn(
-        "[&_svg]:size-6! [&_svg]:text-foreground transition-all hover:scale-125 active:scale-80",
+        "[&_svg]:text-foreground transition-all hover:scale-125 active:scale-80",
+        svgSizeClasses[svgSize],
         sizeClasses[size],
         className,
       )}
@@ -76,7 +94,40 @@ export function PlayerButton({
     </Button>
   );
 }
-export function AudioPlayerButtons({ size }: PlayerButtonProps) {
+
+export function PlayButton({
+  size = 10,
+  onClick,
+  isPlaying,
+  variant,
+  svgSize = 6,
+  className,
+  strokeWidth = 3,
+}: PlayerButtonProps) {
+  return (
+    <PlayerButton
+      svgSize={svgSize}
+      size={size}
+      onClick={onClick}
+      variant={variant}
+      className={cn(
+        "[&_svg]:text-foreground transition-all hover:scale-125 active:scale-80",
+        className,
+      )}
+    >
+      {isPlaying ? (
+        <Pause strokeWidth={strokeWidth} />
+      ) : (
+        <Play strokeWidth={strokeWidth} />
+      )}
+    </PlayerButton>
+  );
+}
+
+export function AudioPlayerButtons({
+  size,
+  strokeWidth = 3,
+}: PlayerButtonProps) {
   const {
     isPlaying,
     togglePlay,
@@ -107,7 +158,7 @@ export function AudioPlayerButtons({ size }: PlayerButtonProps) {
           previous();
         }}
       >
-        <SkipBack strokeWidth={3} />
+        <SkipBack strokeWidth={strokeWidth} />
       </PlayerButton>
       <PlayerButton
         size={size}
@@ -116,17 +167,19 @@ export function AudioPlayerButtons({ size }: PlayerButtonProps) {
           setSkipBack();
         }}
       >
-        <RotateCcw strokeWidth={3} />
+        <RotateCcw strokeWidth={strokeWidth} />
         <span className="absolute text-[10px] font-bold">-15</span>
       </PlayerButton>
-      <PlayerButton
-        size={size}
+
+      <PlayButton
         onClick={() => {
           togglePlay();
         }}
-      >
-        {isPlaying ? <Pause strokeWidth={3} /> : <Play strokeWidth={3} />}
-      </PlayerButton>
+        isPlaying={isPlaying}
+        size={size}
+        strokeWidth={strokeWidth}
+      />
+
       <PlayerButton
         size={size}
         className={`hidden md:flex `}
@@ -134,12 +187,12 @@ export function AudioPlayerButtons({ size }: PlayerButtonProps) {
           setSkipForward();
         }}
       >
-        <RotateCw strokeWidth={3} />
+        <RotateCw strokeWidth={strokeWidth} />
         <span className="absolute text-[10px] font-bold">+15</span>
       </PlayerButton>
 
       <PlayerButton size={size} onClick={() => next()}>
-        <SkipForward strokeWidth={3} />
+        <SkipForward strokeWidth={strokeWidth} />
       </PlayerButton>
       <Slider
         step={1}

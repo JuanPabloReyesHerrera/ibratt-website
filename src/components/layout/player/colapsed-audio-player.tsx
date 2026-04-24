@@ -7,7 +7,7 @@ import { formatDuration } from "@/lib/utils";
 import {
   PlayerOptionsButton,
   AudioPlayerButtons,
-} from "../../ui/control-buttons";
+} from "../../shared/control-buttons";
 import { Ellipsis, Heart, HeartPlus } from "lucide-react";
 
 export function ColapsedAudioPlayer() {
@@ -68,16 +68,16 @@ export function ColapsedAudioPlayer() {
           </div>
         </div>
         {/* CONTROL BUTTONS */}
-        <AudioPlayerButtons />
+        <AudioPlayerButtons strokeWidth={2} />
         <div className="flex flex-row justify-end items-center">
-          <PlayerOptionsButton onClick={() => setIsLiked()}>
+          <PlayerOptionsButton size={6} onClick={() => setIsLiked()}>
             {isLiked ? (
               <Heart strokeWidth={0} className="fill-red-500 text-red-500" />
             ) : (
               <HeartPlus />
             )}
           </PlayerOptionsButton>
-          <PlayerOptionsButton>
+          <PlayerOptionsButton size={6}>
             <Ellipsis />
           </PlayerOptionsButton>
         </div>

@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { parseBeatValidation } from "./beat-parser";
-import type { Beat } from "@/types";
+import type { Beat, SongDemo } from "@/types";
 
 export function getBeatsFromPublicFolder(): Beat[] {
   const audioDir = path.join(process.cwd(), "public", "audio");
@@ -40,7 +40,7 @@ export function getBeatsFromPublicFolder(): Beat[] {
   return beats;
 }
 
-export function getRefFromPublicFolder() {
+export function getDemosFromPublicFolder() {
   const audioDir = path.join(process.cwd(), "public", "my-ref");
 
   if (!fs.existsSync(audioDir)) {
@@ -51,12 +51,12 @@ export function getRefFromPublicFolder() {
   const files = fs.readdirSync(audioDir);
   //console.log("Los documentos son: ", files);
 
-  const refs = [];
+  const refs: SongDemo[] = [];
 
   for (const fileName of files) {
     if (!(fileName.endsWith(".mp3") || fileName.endsWith(".wav"))) continue;
     //console.warn("FILE NAME: ", fileName);
-    refs.push(fileName);
+    refs.push({ audioUrl: fileName });
   }
 
   return refs;

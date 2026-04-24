@@ -9,7 +9,7 @@ import { formatDuration } from "@/lib/utils";
 import {
   AudioPlayerButtons,
   PlayerOptionsButton,
-} from "../../ui/control-buttons";
+} from "../../shared/control-buttons";
 import {
   ChevronDown,
   Ellipsis,
@@ -111,7 +111,7 @@ export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
             <Shuffle />
           </PlayerOptionsButton>
 
-          <AudioPlayerButtons size={16} />
+          <AudioPlayerButtons size={16} strokeWidth={2} />
 
           <PlayerOptionsButton>
             <Repeat />
@@ -124,10 +124,10 @@ export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
 
           <div>
             <PlayerOptionsButton>
-              <List />
+              <Share />
             </PlayerOptionsButton>
             <PlayerOptionsButton>
-              <Share />
+              <List />
             </PlayerOptionsButton>
           </div>
         </div>
