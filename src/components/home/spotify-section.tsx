@@ -4,16 +4,16 @@ type SpotifyProps = {
   spotifyUrl: string[];
 };
 
-export default function SpotifySection({ spotifyUrl }: SpotifyProps) {
+export function SpotifySection({ spotifyUrl }: SpotifyProps) {
   return (
     <div className="absolute w-full h-full -mt-[100dvh] shadow-background shadow-2xl flex flex-col items-center justify-center font-sans">
       <div className="absolute w-full h-full bg-linear-to-b from-background from-10% via-transparent via-40% to-transparent" />
       <div className="absolute w-full h-full bg-linear-to-t from-primary via-foreground/50 to-transparent" />
       <section className="dark w-full h-full flex flex-col items-center justify-center font-sans p-8">
-        <h1 className="text-5xl text-foreground font-bold text-center sm:text-left">
+        <h1 className="text-5xl text-foreground font-bold text-center sm:text-left z-10">
           Spotify Section
         </h1>
-        <p className="text-foreground mt-4 mx-15 text-balance text-2xl text-center sm:text-left">
+        <p className="text-foreground mt-4 mx-15 text-balance text-2xl text-center sm:text-left z-10">
           This is where you can display the ibratt Spotify playlists, tracks, or
           albums.
         </p>

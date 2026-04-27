@@ -1,3 +1,4 @@
+import { useSocialMediaStore } from "@/store";
 import type { Master, MyNextRelease, ReleaseVersion } from "@/types";
 
 function converSpotifyLinks(shortLinks: string[]) {
@@ -44,19 +45,22 @@ export const MOCK_SPOTIFY_TRACK: string[] = converSpotifyLinks([
 
 export const MOCK_SOCIAL_MEDIA = [
   {
+    id: "1",
     page: "instagram",
     link: "instagram",
     userId: "ibratt.wav",
     className: "bg-gradient-to-bl from-purple-600 via-pink-500 to-yellow-400",
   },
-  { page: "youtube", link: "youtube", className: "bg-white" },
+  { id: "2", page: "youtube", link: "youtube", className: "bg-white" },
   {
+    id: "3",
     page: "github",
     link: "github",
     userId: "ibratt.wav",
     className: "bg-gray-800",
   },
   {
+    id: "4",
     page: "x",
     link: "x",
     userId: "ibratt.wav",

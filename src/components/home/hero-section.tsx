@@ -1,10 +1,8 @@
-import { SocialsMediasButtons, Skills } from "../shared";
-import PresentationsText from "./presentations-text";
-import YoutubeCarousel from "./youtube-carousel";
-import type { SocialMedia } from "@/types";
+import { PresentationsText, YoutubeCarousel, Skills } from "../hero";
+import type { SocialMediaEntry } from "@/types";
+import { HeroSocialMedia } from "../hero/hero-social-media";
 
 type HeroSectionProps = {
-  socialsMedias: SocialMedia[];
   youtubeVideos: string[];
 };
 
@@ -16,10 +14,7 @@ const producerSkills = [
   "Audio Engineering",
 ];
 
-export default function HeroSection({
-  socialsMedias,
-  youtubeVideos,
-}: HeroSectionProps) {
+export function HeroSection({ youtubeVideos }: HeroSectionProps) {
   return (
     <div className="absolute w-full h-full -mt-[100dvh] shadow-background shadow-2xl flex flex-col items-center justify-around gap-1 bg-linear-to-b from-transparent via-transparent to-background to-90% overflow-hidden">
       {/* PRESENTATION */}
@@ -29,20 +24,8 @@ export default function HeroSection({
       <YoutubeCarousel videos={youtubeVideos} />
 
       {/* SOCIAL MEDIA */}
-      <section className="flex flex-col items-center">
-        <h1 className="p-2 w-fit text-lg sm:text-2xl md:text-2xl text-foreground font-extrabold mb-4 flex items-center justify-center gap-2 border-2 border-foreground/50 rounded-full px-4 hover:scale-115 transition-transform cursor-pointer shadow-md shadow-foreground/30 bg-background/50">
-          @ibratt.wav
-          <svg
-            viewBox="0 0 24 24"
-            className="size-5 fill-sky-500"
-            aria-label="Verificado"
-          >
-            <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.99-3.818-3.99-.47 0-.914.087-1.325.244C14.79 2.545 13.48 1.5 12 1.5s-2.79 1.045-3.447 2.254c-.41-.157-.856-.244-1.325-.244-2.108 0-3.818 1.78-3.818 3.99 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6 0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.71 3.99 3.818 3.99.47 0 .914-.087 1.325-.244C9.21 21.455 10.52 22.5 12 22.5s2.79-1.045 3.447-2.254c.41.157.856.244 1.325.244 2.108 0 3.818-1.78 3.818-3.99 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-12.445 4.5L6.5 13.11l1.442-1.53 2.113 2.112 5.003-5.267 1.442 1.53-6.445 6.55z"></path>
-          </svg>
-        </h1>
+      <HeroSocialMedia />
 
-        <SocialsMediasButtons socialsMedias={socialsMedias} size={8} />
-      </section>
       {/* SKILL */}
       <Skills skills={producerSkills} />
     </div>

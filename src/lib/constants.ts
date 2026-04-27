@@ -48,5 +48,9 @@ export const NAV_BAR_CATEGORIES: NavBarCategory[] = [
   },
   { title: "Contacto", link: "/contacto" },
   { title: "Plataformas", link: "/plataformas" },
-  { title: "Galeria", link: "/galeria" },
+  //{ title: "Galeria", link: "/galeria" },
+  {
+    title: "Login",
+    link: "/login-form",
+  },
 ];

@@ -1,0 +1,38 @@
+"use client";
+import { Button } from "../ui";
+import { SocialsMediasButtons } from "../shared";
+import { useSocialMediaStore } from "@/store";
+
+export function HeroSocialMedia() {
+  const { socialMedia } = useSocialMediaStore();
+
+  return (
+    <section className="flex flex-col items-center gap-8">
+      <Button
+        asChild
+        variant={"ghost"}
+        className="bg-background/30 flex items-center justify-center sm:size-fit px-4 hover:scale-105 shadow-sm shadow-foreground/50 border-2 border-foreground/50"
+      >
+        <a
+          href="https://instagram.com/ibratt.wav"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-6 sm:p-2 rounded-full! w-fit  "
+        >
+          <h1 className="font-extrabold text-foreground text-2xl sm:text-3xl">
+            {socialMedia.instagram.userId}
+          </h1>
+          <svg
+            viewBox="0 0 24 24"
+            className="size-5 fill-sky-500"
+            aria-label="Verificado"
+          >
+            <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.99-3.818-3.99-.47 0-.914.087-1.325.244C14.79 2.545 13.48 1.5 12 1.5s-2.79 1.045-3.447 2.254c-.41-.157-.856-.244-1.325-.244-2.108 0-3.818 1.78-3.818 3.99 0 .495.084.965.238 1.4-1.273.65-2.148 2.02-2.148 3.6 0 1.58.875 2.95 2.148 3.6-.154.435-.238.905-.238 1.4 0 2.21 1.71 3.99 3.818 3.99.47 0 .914-.087 1.325-.244C9.21 21.455 10.52 22.5 12 22.5s2.79-1.045 3.447-2.254c.41.157.856.244 1.325.244 2.108 0 3.818-1.78 3.818-3.99 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6zm-12.445 4.5L6.5 13.11l1.442-1.53 2.113 2.112 5.003-5.267 1.442 1.53-6.445 6.55z"></path>
+          </svg>
+        </a>
+      </Button>
+
+      <SocialsMediasButtons size={30} />
+    </section>
+  );
+}

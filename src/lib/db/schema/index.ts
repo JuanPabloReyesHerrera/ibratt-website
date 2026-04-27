@@ -1,1 +1,1 @@
-export const users = {};
+export * from "./profiles.schema";

@@ -1,10 +1,8 @@
-import { UsagePolicies } from "./usage-policies";
-import { BeatCatalog } from "./beats-catalog";
+import { UsagePolicies, BeatCatalog, BeatsFilter } from "@/components/beats";
 import { BackGroundImage } from "../shared";
 import Link from "next/link";
-import { BeatsFilter } from "./beats-filter";
 
-export default function BeatsLanding() {
+export function BeatsLanding() {
   return (
     <div className="h-full w-full md:max-w-[80dvw] xl:max-w-[60dvw] flex flex-col items-center justify-center font-sans shadow-2xl shadow-foreground">
       <BackGroundImage imageSrc="/assets/beat-section.jpg" alt="Beats" />

@@ -10,8 +10,6 @@ import {
   Button,
   PlayButton,
 } from "@/components/ui";
-
-import { Pause, Play } from "lucide-react";
 import { usePlayerStore } from "@/store/player-store";
 import { useShallow } from "zustand/shallow";
 
@@ -75,20 +73,13 @@ export function BeatCatalog() {
           {playlist.map(({ portada, name, genre, bpm, key, price }) => (
             <TableRow key={name} className="border-b-foreground/10">
               <TableCell>
-                {/* <Button
-                  variant="ghost"
-                  size={"icon-lg"}
-                  onClick={() => handlePlay(name)}
-                  className="md:hover:bg-foreground/40 active:bg-primary/70 transition-all active:scale-95 group touch-manipulation"
-                >
-                  {isThisBeatPlaying(name) ? <Pause /> : <Play />}
-                </Button> */}
                 <PlayButton
-                  variant="destructive"
-                  onClick={() => handlePlay(name)}
-                  isPlaying={isThisBeatPlaying(name)}
+                  variant="outline"
+                  strokeWidth={1}
                   size={10}
                   svgSize={6}
+                  onClick={() => handlePlay(name)}
+                  isPlaying={isThisBeatPlaying(name)}
                 />
               </TableCell>
               <TableCell>

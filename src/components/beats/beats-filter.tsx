@@ -2,7 +2,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui";
 
 export function BeatsFilter() {
   return (
-    <div className="w-[98vw] md:max-w-[75vw] lg:max-w-[55vw] h-10 bg-primary-foreground px-4 flex flex-row items-center justify-between border border-foreground/30 rounded-xl shadow-sm shadow-foreground/30">
+    <div className="w-[90vw] md:max-w-[75vw] lg:max-w-[55vw] h-10 bg-primary-foreground flex flex-row items-center justify-between border border-foreground/30 rounded-xl shadow-sm shadow-foreground/30">
       <div>filter...</div>
       <ToggleGroup
         type="multiple"

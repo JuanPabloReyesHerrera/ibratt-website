@@ -7,8 +7,7 @@ if (!process.env.DATABASE_URL) {
 }
 
 const client = postgres(process.env.DATABASE_URL!, {
-  ssl: "require",
-  max: 1,
+  prepare: false, // requerido para Transaction pooler (pgbouncer)
 });
 
 export const db = drizzle(client, { schema });

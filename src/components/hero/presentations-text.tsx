@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-export default function PresentationsText() {
+export function PresentationsText() {
   const { name } = siteConfig;
   return (
     <div className="dark flex flex-col items-center mx-20 mt-10 space-y-4">

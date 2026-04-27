@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import type { NavBarCategory } from "@/types/nav-bar";
+import { AudioLines } from "lucide-react";
 
 function renderNavItem({ title, contents, link }: NavBarCategory) {
   const navCssColor = "dark text-foreground";
@@ -44,7 +45,7 @@ type DesktopNavBarProp = {
 
 export function DesktopNavBar({ categories }: DesktopNavBarProp) {
   return (
-    <NavigationMenu className="hidden md:flex flex-row">
+    <NavigationMenu className="hidden sm:flex flex-row">
       <NavigationMenuList>
         {categories.map((category) => renderNavItem(category))}
       </NavigationMenuList>

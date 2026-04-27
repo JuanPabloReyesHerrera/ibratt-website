@@ -1,27 +1,18 @@
 import { BackGroundImage } from "@/components/shared";
-
-import HeroSection from "@/components/home/hero-section";
-import SpotifySection from "@/components/home/spotify-section";
-import BeatsLanding from "@/components/beats/beats-landing";
-
-import {
-  MOCK_SOCIAL_MEDIA,
-  MOCK_YOUTUBE_VIDEOS,
-  MOCK_SPOTIFY_TRACK,
-} from "@/lib/mock-data";
+import { BeatsLanding, SpotifySection, HeroSection } from "@/components/home";
+import { MOCK_YOUTUBE_VIDEOS, MOCK_SPOTIFY_TRACK } from "@/lib/mock-data";
+import { AddSocialMedia } from "@/components/producer/add-social-media";
 
 export default function Home() {
   return (
     <div className="w-full font-sans flex flex-col items-center justify-center bg-linear-to-b from-foreground via-foreground to-background">
+      <AddSocialMedia />
       <section
         id="home"
         className="relative h-[130dvh] w-full md:max-w-[80dvw] xl:max-w-[60dvw]"
       >
         <BackGroundImage imageSrc="/assets/hero.jpg" alt="Hero" />
-        <HeroSection
-          socialsMedias={MOCK_SOCIAL_MEDIA}
-          youtubeVideos={MOCK_YOUTUBE_VIDEOS}
-        />
+        <HeroSection youtubeVideos={MOCK_YOUTUBE_VIDEOS} />
       </section>
 
       <section
