@@ -1,4 +1,3 @@
-import { AudioLines } from "lucide-react";
 import Link from "next/link";
 import { NAV_BAR_CATEGORIES } from "@/lib/constants";
 import { siteConfig } from "@/config/site";
@@ -11,7 +10,8 @@ export function NavBar() {
         href={"/"}
         className="text-2xl font-bold text-ring flex items-center"
       >
-        🪬 {siteConfig.logo}
+        <p>{siteConfig.logo}</p>
+        <p className="uppercase">{siteConfig.name}</p>
       </Link>
 
       <DesktopNavBar categories={NAV_BAR_CATEGORIES} />

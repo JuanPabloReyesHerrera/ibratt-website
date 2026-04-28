@@ -4,6 +4,31 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Wrapper del país: flag + select juntos */
+.PhoneInputCountry {
+  @apply flex flex-row items-center gap-1;
+}
+
+/* El flag icon */
+.PhoneInputCountryIcon {
+  @apply w-5 h-4 overflow-hidden flex-shrink-0;
+}
+
+/* La imagen del flag dentro */
+.PhoneInputCountryIcon img {
+  @apply w-full h-full object-cover;
+}
+
+/* El select encima del flag (es transparente, solo para clicks) */
+.PhoneInputCountrySelect {
+  @apply absolute inset-0 opacity-0 cursor-pointer w-full h-full;
+}
+
+/* Posición relativa para que el select absoluto funcione */
+.PhoneInputCountry {
+  @apply relative;
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-geist-sans);

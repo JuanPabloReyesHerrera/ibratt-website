@@ -51,6 +51,6 @@ export const NAV_BAR_CATEGORIES: NavBarCategory[] = [
   //{ title: "Galeria", link: "/galeria" },
   {
     title: "Login",
-    link: "/login-form",
+    link: "/login",
   },
 ];

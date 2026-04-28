@@ -1,5 +1,5 @@
 import { expect, test, describe } from "vitest";
-import { parseBeatValidation } from "./beat-parser.js";
+import { parseBeatValidation } from "./beat.schemas.js";
 
 describe("Validación de patron del nombre del beat", () => {
   test("Debe extraer los datos correctamente de un string válido", () => {

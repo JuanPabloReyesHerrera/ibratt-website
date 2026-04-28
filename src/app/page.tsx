@@ -6,6 +6,7 @@ import { AddSocialMedia } from "@/components/producer/add-social-media";
 export default function Home() {
   return (
     <div className="w-full font-sans flex flex-col items-center justify-center bg-linear-to-b from-foreground via-foreground to-background">
+      {/** ARREGLAR ESTE PARCHE */}
       <AddSocialMedia />
       <section
         id="home"

@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { parseBeatValidation } from "./beat-parser";
+import { parseBeatValidation } from "./validators/beat.schemas";
 import type { Beat, SongDemo } from "@/types";
 
 export function getBeatsFromPublicFolder(): Beat[] {

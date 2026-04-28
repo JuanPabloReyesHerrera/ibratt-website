@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePlayerStore } from "@/store/player-store";
 import { useShallow } from "zustand/shallow";
-import { WaveSurferForm } from "@/components/layout/player/wavesurfer-form";
 import { formatDuration } from "@/lib/utils";
 import {
   AudioPlayerButtons,

@@ -1,0 +1,77 @@
+"use client";
+
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { GoogleIcon } from "@/components/ui/google-icon";
+
+export function LoginForm() {
+  async function handleSubmit(formData: FormData) {
+    // await authService.login({ ... })
+  }
+
+  return (
+    <Card className="dark w-full bg-black z-10">
+      <CardHeader>
+        <CardTitle>Login to your account</CardTitle>
+        <CardDescription>
+          Enter your email below to login to your account
+        </CardDescription>
+        <CardAction>
+          <Button variant="link" asChild>
+            <Link href="/signup">Sign Up</Link>
+          </Button>
+        </CardAction>
+      </CardHeader>
+
+      <form action={handleSubmit}>
+        <CardContent>
+          <div className="flex flex-col gap-6">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="m@example.com"
+                required
+              />
+            </div>
+            <div className="grid gap-2">
+              <div className="flex items-center">
+                <Label htmlFor="password">Password</Label>
+                <Link
+                  href="/forgot-password"
+                  className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                >
+                  Forgot your password?
+                </Link>
+              </div>
+              <Input id="password" name="password" type="password" required />
+            </div>
+          </div>
+        </CardContent>
+
+        <CardFooter className="flex-col gap-2">
+          <Button type="submit" className="w-full">
+            Login
+          </Button>
+          <Button variant="outline" className="w-full" type="button">
+            Login with Google
+            <GoogleIcon />
+          </Button>
+        </CardFooter>
+      </form>
+    </Card>
+  );
+}

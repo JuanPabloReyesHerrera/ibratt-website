@@ -36,7 +36,7 @@ export function DrawerAudioPlayer({ beats }: { beats: Beat[] }) {
       dismissible={false}
     >
       <Drawer.Portal>
-        <Drawer.Content className="dark bg-linear-to-t from-primary to-black fixed bottom-0 left-0 right-0 z-50 flex flex-col h-[100dvh] rounded-t-lg p-6 shadow-lg">
+        <Drawer.Content className="shadow-2xl shadow-white dark bg-linear-to-t from-primary to-black fixed bottom-0 left-0 right-0 z-50 flex flex-col h-dvh rounded-t-lg p-6">
           <Drawer.Title></Drawer.Title>
           <Drawer.Description></Drawer.Description>
 
