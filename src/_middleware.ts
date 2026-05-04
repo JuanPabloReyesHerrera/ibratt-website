@@ -1,4 +1,3 @@
-// middleware.ts (raíz del proyecto, al mismo nivel que src/)
 import { updateSession } from "@/lib/supabase/middleware";
 import type { NextRequest } from "next/server";
 
