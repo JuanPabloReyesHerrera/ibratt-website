@@ -16,7 +16,10 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { GoogleIcon } from "@/components/ui/google-icon";
-import { loginSchema, type LoginFormData } from "@/lib/validators/auth.schemas";
+import {
+  loginSchema,
+  type LoginFormData,
+} from "@/features/auth/schemas/auth.schemas";
 // import { loginAction } from "@/lib/actions/auth.actions"  ← tu action aquí
 
 type LoginFormProps = {

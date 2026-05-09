@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
-import { parseBeatValidation } from "./validators/beat.schemas";
-import type { Beat, SongDemo } from "@/types";
+import { parseBeatValidation } from "../features/beats/validators/beat.schemas";
+import type { SongDemo } from "../types";
+import type { Beat } from "@/features/beats/core/beat.types";
 
 export function getBeatsFromPublicFolder(): Beat[] {
   const audioDir = path.join(process.cwd(), "public", "audio");
@@ -29,7 +30,8 @@ export function getBeatsFromPublicFolder(): Beat[] {
     beats.push({
       portada: "/assets/portada-beat-1.jpg",
       name: result.data!.name,
-      genre: "trap",
+      genre: "Trap",
+      tags: ["perreo", "bellakeo", "sad"],
       bpm: result.data!.bpm.toString(),
       key: result.data!.key,
       price: (20).toString(),

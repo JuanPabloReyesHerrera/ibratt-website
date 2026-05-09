@@ -10,16 +10,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { GoogleIcon } from "@/components/ui/google-icon";
+  Input,
+  Label,
+  GoogleIcon,
+} from "@/components/ui";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   signupSchema,
   type SignupFormData,
-} from "@/lib/validators/auth.schemas";
+} from "@/features/auth/schemas/auth.schemas";
 import PhoneInput from "react-phone-number-input";
 
 type SignUpFormProps = {

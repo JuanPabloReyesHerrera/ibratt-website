@@ -1,4 +1,5 @@
 "use client";
+import { BuyButton } from "@/components/shared/buy-button";
 import {
   Table,
   TableBody,
@@ -56,7 +57,7 @@ export function BeatCatalog() {
           "linear-gradient(to bottom, transparent 0%, black 5%, black 90%, transparent 100%)",
       }}
     >
-      <Table className="dark">
+      <Table className="dark table-fixed">
         <TableCaption className="text-foreground">Beats Catalog</TableCaption>
         <TableHeader>
           <TableRow>
@@ -68,40 +69,53 @@ export function BeatCatalog() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {playlist.map(({ portada, name, genre, bpm, key, price }) => (
-            <TableRow key={name} className="border-b-foreground/10">
-              <TableCell>
-                <PlayButton
-                  variant="outline"
-                  strokeWidth={1}
-                  size={10}
-                  svgSize={6}
-                  onClick={() => handlePlay(name)}
-                  isPlaying={isThisBeatPlaying(name)}
-                />
-              </TableCell>
-              <TableCell>
-                <Button
-                  size="icon-lg"
-                  className="flex justify-center items-center w-12"
-                >
-                  <img
-                    src={portada}
-                    alt={name}
-                    className="size-12 rounded-lg object-cover"
+          {playlist.map(
+            ({ portada, name, genre, bpm, key, price, audioUrl }) => (
+              <TableRow key={name} className="border-b-foreground/10">
+                <TableCell>
+                  <PlayButton
+                    variant="outline"
+                    strokeWidth={1}
+                    size={10}
+                    svgSize={6}
+                    onClick={() => handlePlay(name)}
+                    isPlaying={isThisBeatPlaying(name)}
                   />
-                </Button>
-              </TableCell>
-              <TableCell className="text-foreground truncate ">
-                {name}
-              </TableCell>
-              <TableCell className="text-foreground">{genre}</TableCell>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    size="icon-lg"
+                    className="flex justify-center items-center w-12"
+                  >
+                    <img
+                      src={portada}
+                      alt={name}
+                      className="size-12 rounded-lg object-cover"
+                    />
+                  </Button>
+                </TableCell>
+                <TableCell className="text-foreground truncate ">
+                  {name}
+                </TableCell>
+                <TableCell className="text-foreground">{genre}</TableCell>
 
-              <TableCell className="text-foreground">
-                <Button className="">${price}</Button>
-              </TableCell>
-            </TableRow>
-          ))}
+                <TableCell className="text-foreground">
+                  <BuyButton
+                    label={`$${price}`}
+                    product={{
+                      id: name,
+                      type: "beat",
+                      title: name,
+                      coverUrl: portada,
+                      audioUrl: audioUrl,
+                      metadata: { key: key, bpm: bpm, genre: genre },
+                    }}
+                  ></BuyButton>
+                  {/* <Button className="">${price}</Button> */}
+                </TableCell>
+              </TableRow>
+            ),
+          )}
         </TableBody>
       </Table>
     </section>

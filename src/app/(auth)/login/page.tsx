@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { LoginForm } from "@/features/auth/login-form";
+import { LoginForm } from "@/features/auth/components/login-form";
 
 export const metadata = {
   title: `Login | ${siteConfig.name}`,

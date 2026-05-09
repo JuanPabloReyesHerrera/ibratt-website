@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils";
 import { AuthMode } from "../store/checkout.store";
 
 // Importa tus formularios existentes
-import { LoginForm } from "@/features/auth/login-form";
-import { SignUpForm } from "@/features/auth/signup-form";
+import { LoginForm } from "@/features/auth/components/login-form";
+import { SignUpForm } from "@/features/auth/components/signup-form"; // ← capital U
 
 type Props = {
   mode: AuthMode;

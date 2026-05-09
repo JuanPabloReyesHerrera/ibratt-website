@@ -108,7 +108,7 @@ export default function CheckoutPage() {
           <ProductSummaryCard product={product} selectedPlan={selectedPlan} />
 
           {/* ── Right: checkout flow ── */}
-          <div>
+          <div className="relative bg-linear-to-t from-black from-50% via-black via-90%">
             {/* Stepper solo durante los pasos activos */}
             {currentStep !== "confirmation" && (
               <CheckoutStepper currentStep={currentStep} />

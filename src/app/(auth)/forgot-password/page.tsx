@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { ForgotPasswordForm } from "@/features/auth/forgot-password-form";
+import { ForgotPasswordForm } from "@/features/auth/components/forgot-password-form";
 
 export const metadata = {
   title: `Reset Password | ${siteConfig.name}`,
