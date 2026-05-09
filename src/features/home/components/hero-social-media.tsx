@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "../ui";
-import { SocialsMediasButtons } from "../shared";
+import { Button } from "@/components/ui";
+import { SocialsMediasButtons } from "@/components/shared";
 import { useSocialMediaStore } from "@/store";
 
 export function HeroSocialMedia() {

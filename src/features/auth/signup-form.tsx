@@ -22,7 +22,11 @@ import {
 } from "@/lib/validators/auth.schemas";
 import PhoneInput from "react-phone-number-input";
 
-export function SignupForm() {
+type SignUpFormProps = {
+  onSuccess?: () => void;
+};
+
+export function SignUpForm({ onSuccess }: SignUpFormProps) {
   const {
     register,
     handleSubmit,

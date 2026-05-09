@@ -84,7 +84,7 @@ export function PlayerButton({
       variant={variant}
       onClick={onClick}
       className={cn(
-        "[&_svg]:text-foreground transition-all hover:scale-125 active:scale-80",
+        "[&_svg]:text-foreground transition-all",
         svgSizeClasses[svgSize],
         sizeClasses[size],
         className,
@@ -102,7 +102,7 @@ export function PlayButton({
   variant,
   svgSize = 6,
   className,
-  strokeWidth = 3,
+  strokeWidth = 1,
 }: PlayerButtonProps) {
   return (
     <PlayerButton
@@ -110,10 +110,7 @@ export function PlayButton({
       size={size}
       onClick={onClick}
       variant={variant}
-      className={cn(
-        "[&_svg]:text-foreground transition-all hover:scale-125 active:scale-80",
-        className,
-      )}
+      className={cn("[&_svg]:text-foreground transition-all", className)}
     >
       {isPlaying ? (
         <Pause strokeWidth={strokeWidth} />
@@ -126,7 +123,7 @@ export function PlayButton({
 
 export function AudioPlayerButtons({
   size,
-  strokeWidth = 3,
+  strokeWidth = 1,
 }: PlayerButtonProps) {
   const {
     isPlaying,
@@ -199,7 +196,7 @@ export function AudioPlayerButtons({
         max={100}
         defaultValue={[volume]}
         onValueChange={(value) => setVolume(value[0])}
-        className="hidden h-4 md:flex w-full max-w-xs min-w-20 hover:scale-115 active:scale-115 cursor-pointer transition-transform mx-2"
+        className="hidden h-4 md:flex w-full max-w-xs min-w-20 mx-2"
       />
     </div>
   );

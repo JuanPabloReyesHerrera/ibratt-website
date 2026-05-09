@@ -12,10 +12,10 @@ export function BackGroundImage({
   className,
 }: BackGroundImageProps) {
   return (
-    <div className={`sticky top-0 h-dvh w-full ${className}`}>
-      <div className="relative inset-0 w-full h-full">
+    <div className={`sticky top-0 h-dvh w-full ${className} `}>
+      <div className={`relative inset-0 w-full h-full `}>
         <Image
-          className="object-cover"
+          className={`object-cover`}
           src={imageSrc}
           alt={alt}
           sizes="(max-width: 768px) 100dvw, (max-width: 1200px) 80vw, 50dvw"

@@ -7,10 +7,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui";
 
 import { cn } from "@/lib/utils";
-import { DownloadButton } from "../ui/dowload-button";
+import { DownloadButton } from "@/components/ui/dowload-button";
 import type { Master } from "@/types";
 
 type MyMasterItemProps = {

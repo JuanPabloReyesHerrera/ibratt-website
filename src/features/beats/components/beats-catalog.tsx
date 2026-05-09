@@ -47,13 +47,13 @@ export function BeatCatalog() {
 
   return (
     <section
-      className="w-full md:w-[80%] h-fit flex items-start justify-center p-4 overflow-auto"
+      className="w-full md:w-[80%] h-full flex items-start justify-center p-4 overflow-auto"
       style={{
         WebkitOverflowScrolling: "touch",
         maskImage:
-          "linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)",
+          "linear-gradient(to bottom, transparent 0%, black 5%, black 90%, transparent 100%)",
         WebkitMaskImage:
-          "linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)",
+          "linear-gradient(to bottom, transparent 0%, black 5%, black 90%, transparent 100%)",
       }}
     >
       <Table className="dark">
@@ -64,8 +64,6 @@ export function BeatCatalog() {
             <TableHead className="text-foreground">Beat</TableHead>
             <TableHead className="text-foreground">Name</TableHead>
             <TableHead className="text-foreground">Genre</TableHead>
-            <TableHead className="text-foreground">BPM</TableHead>
-            <TableHead className="text-foreground">Key</TableHead>
             <TableHead className="text-foreground">Price</TableHead>
           </TableRow>
         </TableHeader>
@@ -94,14 +92,13 @@ export function BeatCatalog() {
                   />
                 </Button>
               </TableCell>
-              <TableCell className="text-foreground">{name}</TableCell>
+              <TableCell className="text-foreground truncate ">
+                {name}
+              </TableCell>
               <TableCell className="text-foreground">{genre}</TableCell>
-              <TableCell className="text-foreground">{bpm}</TableCell>
-              <TableCell className="text-foreground">{key}</TableCell>
+
               <TableCell className="text-foreground">
-                <Button className="transition-all transform-gpu hover:scale-110 active:scale-95 active:bg-primary/70 touch-manipulation">
-                  {price}
-                </Button>
+                <Button className="">${price}</Button>
               </TableCell>
             </TableRow>
           ))}

@@ -1,6 +1,10 @@
-import { PresentationsText, YoutubeCarousel, Skills } from "../hero";
 import type { SocialMediaEntry } from "@/types";
-import { HeroSocialMedia } from "../hero/hero-social-media";
+import {
+  HeroSocialMedia,
+  PresentationsText,
+  YoutubeCarousel,
+  Skills,
+} from "./components";
 
 type HeroSectionProps = {
   youtubeVideos: string[];

@@ -1,6 +1,11 @@
 "use client";
 import React from "react";
-import { PlayButton, DownloadButton, Separator, ScrollArea } from "../ui";
+import {
+  PlayButton,
+  DownloadButton,
+  Separator,
+  ScrollArea,
+} from "@/components/ui";
 import type { SongDemo } from "@/types";
 
 type MySongDemosProps = {

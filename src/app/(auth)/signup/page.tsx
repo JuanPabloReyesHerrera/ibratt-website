@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { SignupForm } from "@/components/auth/signup-form";
+import { SignUpForm } from "@/features/auth/signup-form";
 
 export const metadata = {
   title: `Sign Up | ${siteConfig.name}`,
@@ -13,7 +13,7 @@ export default function SignupPage() {
         {siteConfig.name}
       </h1>
       <div className="w-[75dvw] max-w-sm h-fit rounded-xl shadow-sm shadow-background/20">
-        <SignupForm />
+        <SignUpForm />
       </div>
     </div>
   );

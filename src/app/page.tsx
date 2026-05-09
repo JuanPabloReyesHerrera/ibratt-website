@@ -1,7 +1,7 @@
 import { BackGroundImage } from "@/components/shared";
-import { BeatsLanding, SpotifySection, HeroSection } from "@/components/home";
+import { BeatsLanding, SpotifySection, HeroSection } from "@/features/home";
 import { MOCK_YOUTUBE_VIDEOS, MOCK_SPOTIFY_TRACK } from "@/lib/mock-data";
-import { AddSocialMedia } from "@/components/producer/add-social-media";
+import { AddSocialMedia } from "@/features/producer/add-social-media";
 
 export default function Home() {
   return (
