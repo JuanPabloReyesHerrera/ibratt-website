@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui";
 import Image from "next/image";
 import Link from "next/link";
-import { usePlayerStore } from "@/store/player-store";
+import { usePlayerStore } from "@/features/beats/store/player-store";
 import { useShallow } from "zustand/shallow";
 import { formatDuration } from "@/lib/utils";
 import {

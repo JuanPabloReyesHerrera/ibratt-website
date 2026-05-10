@@ -7,7 +7,7 @@ import {
   SkipForward,
 } from "lucide-react";
 import { Button, Slider } from "../ui";
-import { usePlayerStore } from "@/store/player-store";
+import { usePlayerStore } from "@/features/beats/store/player-store";
 import { useShallow } from "zustand/shallow";
 import { cn } from "@/lib/utils";
 

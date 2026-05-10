@@ -36,6 +36,7 @@ export function getBeatsFromPublicFolder(): Beat[] {
       key: result.data!.key,
       price: (20).toString(),
       audioUrl: `audio/${fileName}`,
+      id: result.data!.id,
     });
   }
 

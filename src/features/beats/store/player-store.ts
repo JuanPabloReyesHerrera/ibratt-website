@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Beat } from "@/types";
+import { Beat } from "@/features/beats/core/beat.types";
 
 type PlayerState = {
   playlist: Beat[];

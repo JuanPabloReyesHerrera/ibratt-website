@@ -4,7 +4,7 @@
 import { useState, useRef, useEffect } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Search } from "lucide-react";
-import { GENRES } from "../constants";
+import { GENRES } from "../core/constants";
 import { useBeatsFilter } from "../hooks/use-beats-filters";
 
 export function BeatsFilter() {

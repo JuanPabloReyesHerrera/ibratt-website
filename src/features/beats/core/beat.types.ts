@@ -7,4 +7,5 @@ export type Beat = {
   key: string;
   price: string;
   audioUrl: string;
+  id: string;
 };

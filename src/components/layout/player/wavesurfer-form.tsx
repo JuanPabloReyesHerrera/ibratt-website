@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import WaveSurfer from "wavesurfer.js";
-import { usePlayerStore } from "@/store/player-store";
+import { usePlayerStore } from "@/features/beats/store/player-store";
 import { useShallow } from "zustand/shallow";
 
 export function WaveSurferForm() {

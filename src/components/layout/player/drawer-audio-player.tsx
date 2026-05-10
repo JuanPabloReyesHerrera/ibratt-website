@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Drawer } from "vaul";
 import { ColapsedAudioPlayer } from "@/components/layout/player/colapsed-audio-player";
 import { ExpandedAudioPlayer } from "./expanded-audio-player";
-import { usePlayerStore } from "@/store/player-store";
+import { usePlayerStore } from "@/features/beats/store/player-store";
 import { useShallow } from "zustand/shallow";
 import { WaveSurferForm } from "./wavesurfer-form";
 

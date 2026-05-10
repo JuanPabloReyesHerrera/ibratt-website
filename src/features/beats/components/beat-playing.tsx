@@ -7,7 +7,6 @@ import Image from "next/image";
 import {
   Card,
   CardAction,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -18,16 +17,14 @@ import Link from "next/link";
 import { BuyButton } from "@/components/shared/buy-button";
 
 export function BeatPlaying() {
-  const { togglePlay, currentIndex, playBeat, isPlaying, playlist } =
-    usePlayerStore(
-      useShallow((state) => ({
-        togglePlay: state.togglePlay,
-        currentIndex: state.currentIndex,
-        playBeat: state.playBeat,
-        isPlaying: state.isPlaying,
-        playlist: state.playlist,
-      })),
-    );
+  const { togglePlay, currentIndex, isPlaying, playlist } = usePlayerStore(
+    useShallow((state) => ({
+      togglePlay: state.togglePlay,
+      currentIndex: state.currentIndex,
+      isPlaying: state.isPlaying,
+      playlist: state.playlist,
+    })),
+  );
 
   const currentBeat = playlist[currentIndex];
   if (!currentBeat) {
@@ -39,7 +36,8 @@ export function BeatPlaying() {
     );
   }
 
-  const { portada, name, key, bpm, genre, price, audioUrl, tags } = currentBeat;
+  const { portada, name, key, bpm, genre, price, audioUrl, tags, id } =
+    currentBeat;
   return (
     <div className="flex items-center h-[30dvh] w-dvw overflow-hidden">
       <BackGroundImage portada={portada} name={name} />
@@ -54,7 +52,10 @@ export function BeatPlaying() {
         <Card className="bg-gray-800/10 backdrop-blur-xs w-full md:w-[50dvw] h-45 shadow-xs shadow-foreground/10">
           <CardHeader>
             <div className="h-full w-full flex flex-row items-end justify-start gap-4">
-              <Link href="/" className="block group">
+              <Link
+                href={`/beats/${id}`}
+                className="block hover:scale-105 transition-transform active:scale-90 group"
+              >
                 {/* Contenedor con tamaño fijo */}
                 <div className="relative size-20 border border-foreground rounded-2xl overflow-hidden">
                   <Image

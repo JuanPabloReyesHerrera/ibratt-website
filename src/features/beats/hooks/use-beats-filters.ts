@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Genre } from "../constants";
+import type { Genre } from "../core/constants";
 
 export type BeatsFilterParams = {
   search: string;
