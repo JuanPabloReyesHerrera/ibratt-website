@@ -1,5 +1,4 @@
-import { usePlayerStore } from "@/features/beats/store/player-store";
-import { useShallow } from "zustand/shallow";
+import { Beat } from "@/features/beats/components/beat";
 type SigleBeatPageProps = {
   params: Promise<{ id: string }>;
 };
@@ -7,5 +6,9 @@ type SigleBeatPageProps = {
 export default async function SigleBeatPage({ params }: SigleBeatPageProps) {
   const { id } = await params;
 
-  return <div>{id}</div>;
+  return (
+    <div>
+      <Beat id={id} />
+    </div>
+  );
 }

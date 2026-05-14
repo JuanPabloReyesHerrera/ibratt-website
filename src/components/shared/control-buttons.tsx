@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 type PlayerButtonProps = {
   children?: React.ReactNode;
   onClick?: () => void;
-  size?: 6 | 8 | 10 | 14 | 16 | 20;
+  size?: 6 | 8 | 10 | 14 | 16 | 20 | 22;
   svgSize?: 6 | 8 | 10 | 14 | 16 | 20;
   className?: string;
   variant?:
@@ -24,7 +24,6 @@ type PlayerButtonProps = {
     | "ghost"
     | "destructive"
     | "link";
-
   isPlaying?: any;
   strokeWidth?: number;
 };
@@ -45,6 +44,7 @@ const sizeClasses = {
   14: "size-14!",
   16: "size-16!",
   20: "size-20!",
+  22: "size-22!",
 } as const;
 
 export function PlayerOptionsButton({
@@ -103,6 +103,7 @@ export function PlayButton({
   svgSize = 6,
   className,
   strokeWidth = 1,
+  children,
 }: PlayerButtonProps) {
   return (
     <PlayerButton
@@ -113,9 +114,9 @@ export function PlayButton({
       className={cn("[&_svg]:text-foreground transition-all", className)}
     >
       {isPlaying ? (
-        <Pause strokeWidth={strokeWidth} />
+        <Pause strokeWidth={strokeWidth}>{children}</Pause>
       ) : (
-        <Play strokeWidth={strokeWidth} />
+        <Play strokeWidth={strokeWidth}>children</Play>
       )}
     </PlayerButton>
   );

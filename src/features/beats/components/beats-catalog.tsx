@@ -12,39 +12,11 @@ import {
   PlayButton,
 } from "@/components/ui";
 import { usePlayerStore } from "@/features/beats/store/player-store";
-import { useShallow } from "zustand/shallow";
+import { useBeatPlayer } from "../hooks/use-beat-player";
 
 export function BeatCatalog() {
-  const { togglePlay, currentIndex, playBeat, isPlaying, playlist } =
-    usePlayerStore(
-      useShallow((state) => ({
-        togglePlay: state.togglePlay,
-        currentIndex: state.currentIndex,
-        playBeat: state.playBeat,
-        isPlaying: state.isPlaying,
-        playlist: state.playlist,
-      })),
-    );
-
-  function handlePlay(beatName: string) {
-    // Busca el índice real del beat dentro de la playlist del store
-    const beatIndex = playlist.findIndex((b) => b.name === beatName);
-    if (beatIndex === -1) return; // el beat no está en la playlist todavía
-
-    const isCurrentBeat = playlist[currentIndex]?.name === beatName;
-
-    if (isCurrentBeat) {
-      // El usuario tocó el beat que ya está sonando → pausa o reanuda
-      togglePlay();
-    } else {
-      // El usuario tocó un beat diferente → cambia y reproduce
-      playBeat(beatIndex);
-    }
-  }
-
-  function isThisBeatPlaying(beatName: string): boolean {
-    return isPlaying && playlist[currentIndex]?.name === beatName;
-  }
+  const playlist = usePlayerStore((state) => state.playlist);
+  const { isThisBeatPlaying, handlePlay } = useBeatPlayer();
 
   return (
     <section
@@ -70,7 +42,7 @@ export function BeatCatalog() {
         </TableHeader>
         <TableBody>
           {playlist.map(
-            ({ portada, name, genre, bpm, key, price, audioUrl }) => (
+            ({ portada, name, genre, bpm, key, price, audioUrl, id }) => (
               <TableRow key={name} className="border-b-foreground/10">
                 <TableCell>
                   <PlayButton
@@ -110,8 +82,8 @@ export function BeatCatalog() {
                       audioUrl: audioUrl,
                       metadata: { key: key, bpm: bpm, genre: genre },
                     }}
-                  ></BuyButton>
-                  {/* <Button className="">${price}</Button> */}
+                    href={`/beats/${id}`}
+                  />
                 </TableCell>
               </TableRow>
             ),

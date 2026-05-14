@@ -1,14 +1,6 @@
-"use client";
-
-import { Check } from "lucide-react";
+import { BeatLicensePlan } from "../core";
 import { cn } from "@/lib/utils";
-import { PricingPlan } from "../store/checkout.store";
-
-type Props = {
-  plans: PricingPlan[];
-  selectedPlanId: string | null;
-  onSelect: (planId: string) => void;
-};
+import { Check } from "lucide-react";
 
 const BADGE_STYLES: Record<string, string> = {
   Popular: "bg-amber-400/10 text-amber-400 border-amber-400/20",
@@ -16,7 +8,17 @@ const BADGE_STYLES: Record<string, string> = {
   Exclusive: "bg-zinc-800 text-zinc-400 border-zinc-700",
 };
 
-export function LicenseSelector({ plans, selectedPlanId, onSelect }: Props) {
+type LicenseSelectorProps = {
+  plans: BeatLicensePlan[];
+  selectedPlanId: string | null;
+  onSelect: (planId: string) => void;
+};
+
+export function LicenseSelector({
+  plans,
+  selectedPlanId,
+  onSelect,
+}: LicenseSelectorProps) {
   return (
     <div className="space-y-3">
       {plans.map((plan) => {
@@ -27,7 +29,7 @@ export function LicenseSelector({ plans, selectedPlanId, onSelect }: Props) {
             key={plan.id}
             onClick={() => onSelect(plan.id)}
             className={cn(
-              "w-full text-left rounded-xl border p-4 transition-all duration-200",
+              "w-full h-fit text-left rounded-xl border p-4 transition-all duration-200",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50",
               isSelected
                 ? "border-amber-400/50 bg-amber-400/5"
@@ -35,10 +37,9 @@ export function LicenseSelector({ plans, selectedPlanId, onSelect }: Props) {
             )}
           >
             <div className="flex items-start justify-between gap-4">
-              {/* Left: info */}
+              {/* Left */}
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2.5 mb-2.5">
-                  {/* Radio indicator */}
                   <div
                     className={cn(
                       "w-4 h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors duration-200",
@@ -69,7 +70,6 @@ export function LicenseSelector({ plans, selectedPlanId, onSelect }: Props) {
                   )}
                 </div>
 
-                {/* Features */}
                 <div className="grid grid-cols-2 gap-x-4 gap-y-1 pl-6">
                   {plan.features.map((feature) => (
                     <div key={feature} className="flex items-center gap-1.5">

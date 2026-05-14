@@ -14,6 +14,7 @@ type Props = {
   label?: string;
   className?: string;
   variant?: "default" | "destructive" | "outline" | "ghost";
+  href?: string;
 };
 
 export function BuyButton({
@@ -21,6 +22,7 @@ export function BuyButton({
   label,
   className,
   variant = "default",
+  href = "/checkout",
 }: Props) {
   const router = useRouter();
   const { setProduct, setStep } = useCheckoutStore();
@@ -28,7 +30,7 @@ export function BuyButton({
   function handleBuy() {
     setProduct(product);
     setStep("summary"); // siempre empieza desde el principio
-    router.push("/checkout");
+    router.push(href);
   }
 
   return (
