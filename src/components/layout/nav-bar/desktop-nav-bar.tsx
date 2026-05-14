@@ -7,34 +7,17 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
 import type { NavBarCategory } from "@/types/nav-bar";
-import { AudioLines } from "lucide-react";
+import Link from "next/link";
 
-function renderNavItem({ title, contents, link }: NavBarCategory) {
-  const navCssColor = "dark text-foreground";
-
+function renderNavItem({ title, link }: NavBarCategory) {
   return (
     <NavigationMenuItem key={title}>
-      <NavigationMenuTrigger className={`${navCssColor}`}>
-        {title}
-      </NavigationMenuTrigger>
-      <NavigationMenuContent className="bg-black text-white pt-4">
-        <ul className="w-86 px-0">
-          {contents?.map(({ content, description, link }) => (
-            <li key={content} className="hover:bg-foreground/20 py-1">
-              <Link href={link}>
-                <div className="flex flex-col w-3xl gap-1 text-sm">
-                  <div className="leading-none font-medium">{content}</div>
-                  <div className="line-clamp-2 text-muted-foreground">
-                    {description}
-                  </div>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </NavigationMenuContent>
+      <NavigationMenuLink asChild>
+        <Link href={link} className="dark text-foreground active:scale-90">
+          {title}
+        </Link>
+      </NavigationMenuLink>
     </NavigationMenuItem>
   );
 }

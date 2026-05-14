@@ -28,7 +28,7 @@ export function getBeatsFromPublicFolder(): Beat[] {
     }
 
     beats.push({
-      portada: "/assets/portada-beat-1.jpg",
+      cover: "/assets/portada-beat-1.jpg",
       name: result.data!.name,
       genre: "Trap",
       tags: ["perreo", "bellakeo", "sad"],

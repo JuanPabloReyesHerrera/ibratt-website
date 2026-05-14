@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { GradientBackground } from "@/components/shared/gradient-background";
+import { Overlay } from "@/components/shared/overlay";
 import { PlayButton } from "@/components/ui";
 import { MetaChip } from "./meta-chip";
 import type { Beat, BeatLicensePlan } from "@/features/beats/core";
@@ -14,9 +14,9 @@ export function BeatCard({ beat, selectedPlan }: BeatCardProps) {
     <div className="sticky top-8 animate-in fade-in slide-in-from-left-50 duration-500">
       {/* Cover art */}
       <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-zinc-900 border border-zinc-800/60 mb-5">
-        {beat.portada ? (
+        {beat.cover ? (
           <Image
-            src={beat.portada}
+            src={beat.cover}
             alt={beat.name}
             fill
             className="object-cover"
@@ -32,7 +32,7 @@ export function BeatCard({ beat, selectedPlan }: BeatCardProps) {
         )}
 
         {/* Overlay gradient en la parte inferior */}
-        <GradientBackground
+        <Overlay
           to="t"
           from="from-black"
           via="to-80%"
@@ -41,7 +41,7 @@ export function BeatCard({ beat, selectedPlan }: BeatCardProps) {
         {/* Type badge */}
         <div className="absolute top-3 left-3">
           <span className="text-[10px] tracking-widest uppercase font-medium px-2 py-1 rounded-md bg-zinc-950/70 text-zinc-400 border border-zinc-800/60 backdrop-blur-sm">
-            {/* {TYPE_LABELS[product.type]} */}
+            BEAT
           </span>
         </div>
         <div className="dark absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -54,9 +54,6 @@ export function BeatCard({ beat, selectedPlan }: BeatCardProps) {
         <h2 className="text-xl font-semibold text-zinc-100 leading-tight mb-1">
           {beat.name}
         </h2>
-        {/* {beat.subtitle && (
-          <p className="text-sm text-zinc-500">{beat.subtitle}</p>
-        )} */}
 
         {/* Metadata chips — BPM, key, formato, etc. */}
 

@@ -1,3 +1,4 @@
+import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
 import {
   Carousel,
   CarouselContent,
@@ -11,8 +12,9 @@ type YoutubeCarouselProps = {
 };
 
 export function YoutubeCarousel({ videos }: YoutubeCarouselProps) {
+  if (!videos.length) return <LoadingSkeleton />;
   return (
-    <div className="w-full h-fit flex items-center justify-center">
+    <div className="w-full h-fit flex items-center justify-center animate-in fade-in slide-in-from-bottom-5 duration-2000">
       <Carousel className="w-2/3 h-full">
         <CarouselContent>
           {videos.map((video, index) => (

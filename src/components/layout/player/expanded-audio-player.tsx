@@ -1,6 +1,19 @@
+/**
+ * EXPANDED AUDIO PLAYER
+ *
+ * Vista expandida del reproductor de audio (pantalla completa del drawer).
+ * Características:
+ * - Portada grande del beat (tamaño 70)
+ * - Información del beat: nombre, género, BPM, tonalidad
+ * - Waveform visual (WaveSurfer integrado)
+ * - Controles completos: play/pause, shuffle, repeat
+ * - Botones secundarios: like, share, playlist, headphones
+ * - Timestamps de progreso (tiempo actual / duración)
+ * - Layout vertical centrado con espaciado amplio
+ */
+
 "use client";
-import { Button } from "@/components/ui";
-import Image from "next/image";
+
 import Link from "next/link";
 import { usePlayerStore } from "@/features/beats/store/player-store";
 import { useShallow } from "zustand/shallow";
@@ -21,8 +34,11 @@ import {
   Shuffle,
 } from "lucide-react";
 import { ReactNode } from "react";
+import { BeatCover } from "@/features/beats/components/ui/beat-cover";
+import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
 
 export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
+  // Obtiene del store solo el estado necesario
   const { currentIndex, playlist, currentTime, duration, isLiked, setIsLiked } =
     usePlayerStore(
       useShallow((state) => ({
@@ -36,21 +52,19 @@ export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
       })),
     );
 
+  // Obtiene el beat actual y desestructura propiedades
   const currentBeat = playlist[currentIndex];
-  const { portada, name, audioUrl, genre, bpm, key } = currentBeat;
+  const { cover, name, genre, bpm, key, id } = currentBeat;
 
-  // 3. Si el beat no existe todavía (es undefined), retornamos un estado de carga o nada
-  if (!currentBeat) {
-    return (
-      <div className="z-100 h-30 w-dvw flex flex-col justify-center items-center bg-gray-950">
-        <span className="text-muted-foreground text-xs">Cargando beat...</span>
-      </div>
-    );
-  }
+  /**
+   * Fallback: si el beat no existe todavía (undefined),
+   * retorna un estado de carga
+   */
+  if (!currentBeat) return <LoadingSkeleton />;
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-start gap-16">
-      {/* BANNER */}
+      {/* Header: botones de cerrar (chevron down) y menú (ellipsis) */}
       <section className="w-full flex flex-row justify-between items-center">
         <PlayerOptionsButton size={8}>
           <ChevronDown />
@@ -59,34 +73,29 @@ export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
           <Ellipsis />
         </PlayerOptionsButton>
       </section>
-      <Button
-        variant="outline"
-        size="icon-lg"
-        className="size-[40dvh] flex justify-center items-center bg-linear-to-t from-primary/70 to-black hover:bg-black/10 active:bg-primary/50 group"
-      >
-        <Image
-          src={portada}
-          alt={name}
-          width={40}
-          height={40}
-          className={`size-70 rounded-sm border-2 border-accent-foreground transition-all group-hover:scale-105 group-active:scale-95`}
-        />
-      </Button>
 
+      {/* Portada del beat grande (70px) */}
+      <BeatCover cover={cover} href={`/beats/${id}`} alt={name} size={70} />
+
+      {/* Sección principal: info + waveform + controles */}
       <section className="w-[90dvw] h-[20dvh] flex flex-col items-center space-y-2">
+        {/* Info del beat: nombre, género, BPM, tonalidad + botón like */}
         <div className="w-full flex flex-row justify-between items-center">
           <div>
+            {/* Link al beat (usa ID extraído de audioUrl) */}
             <Link
-              href={`/beats/${audioUrl ? audioUrl.split("/").slice(-1)[0].replace(".mp3", "") : ""}`}
+              href={`/beats/${id}`}
               className="flex items-end text-muted-foreground font-bold hover:text-primary transition-colors"
             >
               <h1>{name}</h1>
             </Link>
+            {/* Metadatos: género, BPM, tonalidad */}
             <p className="flex w-full flex-row justify-start items-start text-muted-foreground font-bold text-[10px] md:text-sm lg:text-base">
               {genre} Bpm: {bpm} Key: {key}
             </p>
           </div>
 
+          {/* Botón like/unlike */}
           <PlayerOptionsButton size={8} onClick={() => setIsLiked()}>
             {isLiked ? (
               <Heart strokeWidth={0} className="fill-red-500 text-red-500" />
@@ -96,15 +105,17 @@ export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
           </PlayerOptionsButton>
         </div>
 
-        {/* WAVEFORM */}
-        {/* <WaveSurferForm audioUrl={audioUrl} /> */}
-
+        {/* Waveform visual (WaveSurfer) */}
+        {/* {<WaveSurferForm audioUrl={audioUrl} />} */}
         {wavesurfer}
 
+        {/* Timestamps: tiempo actual / duración total */}
         <div className="w-full flex flex-row items-center justify-between text-xs font-bold text-muted-foreground">
           <span>{formatDuration(currentTime)}</span>
           <span>{formatDuration(duration)}</span>
         </div>
+
+        {/* Row 1: Shuffle | Controles principales (skip, play, forward, volumen) | Repeat */}
         <div className="w-full h-full flex flex-row justify-between items-center">
           <PlayerOptionsButton>
             <Shuffle />
@@ -116,6 +127,8 @@ export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
             <Repeat />
           </PlayerOptionsButton>
         </div>
+
+        {/* Row 2: Headphones | Share + Playlist */}
         <div className="w-full h-full flex flex-row justify-between items-center">
           <PlayerOptionsButton>
             <Headphones />

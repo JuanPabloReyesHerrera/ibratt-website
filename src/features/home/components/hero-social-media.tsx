@@ -2,12 +2,14 @@
 import { Button } from "@/components/ui";
 import { SocialsMediasButtons } from "@/components/shared";
 import { useSocialMediaStore } from "@/store";
+import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
 
 export function HeroSocialMedia() {
   const { socialMedia } = useSocialMediaStore();
+  if (!socialMedia) return <LoadingSkeleton />;
 
   return (
-    <section className="flex flex-col items-center gap-8">
+    <section className="flex flex-col items-center gap-8 z-10">
       <Button
         asChild
         variant={"ghost"}

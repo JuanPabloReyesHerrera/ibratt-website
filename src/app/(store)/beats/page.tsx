@@ -1,5 +1,5 @@
 import {
-  BeatCatalog,
+  BeatList,
   BeatsFilter,
   BeatPlaying,
 } from "@/features/beats/components";
@@ -10,7 +10,7 @@ export default function BeatsPage() {
       <BeatPlaying />
       <BeatsFilter />
       <section className="h-[50dvh] w-full md:w-[85dvw] flex flex-col items-center justify-center">
-        <BeatCatalog />
+        <BeatList />
       </section>
     </div>
   );

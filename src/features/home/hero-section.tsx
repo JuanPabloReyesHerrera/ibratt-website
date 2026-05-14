@@ -5,6 +5,7 @@ import {
   YoutubeCarousel,
   Skills,
 } from "./components";
+import { Overlay } from "@/components/shared/overlay";
 
 type HeroSectionProps = {
   youtubeVideos: string[];
@@ -17,10 +18,17 @@ const producerSkills = [
   "Music Production",
   "Audio Engineering",
 ];
-
+//bg-linear-to-b from-transparent via-transparent to-background to-90%
 export function HeroSection({ youtubeVideos }: HeroSectionProps) {
   return (
-    <div className="absolute w-full h-full -mt-[100dvh] shadow-background shadow-2xl flex flex-col items-center justify-around gap-1 bg-linear-to-b from-transparent via-transparent to-background to-90% overflow-hidden">
+    <div className="absolute w-full h-full -mt-[100dvh] shadow-background shadow-2xl flex flex-col items-center justify-around gap-1 overflow-hidden">
+      <Overlay
+        to="t"
+        from="from-background"
+        via="via-transparent"
+        toColor="to-transparent"
+      />
+
       {/* PRESENTATION */}
       <PresentationsText />
 

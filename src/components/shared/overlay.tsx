@@ -7,7 +7,7 @@ type GradientBackgroundProps = {
   //"10" | "20" | "30" | "40" | "50" | "60" | "70" | "80" | "90";
 };
 
-export function GradientBackground({
+export function Overlay({
   to,
   from = "transparent",
   fromVia = "from-10%",
@@ -25,7 +25,7 @@ export function GradientBackground({
 
   return (
     <div
-      className={`absolute w-full h-full ${DIRECTIONS[to]} ${from} ${fromVia} ${via} via-40% ${toColor}`}
+      className={`absolute w-full h-full ${DIRECTIONS[to]} ${from} ${fromVia} ${via} via-40% ${toColor} `}
     />
   );
 }

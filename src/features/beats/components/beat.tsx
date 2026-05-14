@@ -83,7 +83,7 @@ export function Beat({ id }: BeatProps) {
           <BeatCard beat={beat} selectedPlan={selectedPlan} />
 
           {/* ── Right: checkout flow ── */}
-          <div className="relative bg-linear-to-t from-black from-50% via-black via-90%">
+          <div className="relative bg-linear-to-t from-zinc-950 from-50% via-zinc-950 via-90%">
             {/* ── Paso 1: Elegir licencia ── */}
             <div className="animate-in fade-in slide-in-from-right-4 duration-500">
               <div className="mb-6">

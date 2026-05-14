@@ -1,5 +1,5 @@
 "use client";
-import { GradientBackground } from "@/components/shared/gradient-background";
+import { Overlay } from "@/components/shared/overlay";
 import { Button, PlayButton } from "@/components/ui";
 import { usePlayerStore } from "@/store";
 import { useShallow } from "zustand/shallow";
@@ -13,11 +13,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Download } from "lucide-react";
-import Link from "next/link";
 import { BuyButton } from "@/components/shared/buy-button";
+import { BeatCover } from "./ui/beat-cover";
+import { useBeatPlayer } from "../hooks/use-beat-player";
+import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
 
 export function BeatPlaying() {
-  const { togglePlay, currentIndex, isPlaying, playlist } = usePlayerStore(
+  const { currentIndex, playlist } = usePlayerStore(
     useShallow((state) => ({
       togglePlay: state.togglePlay,
       currentIndex: state.currentIndex,
@@ -26,22 +28,19 @@ export function BeatPlaying() {
     })),
   );
 
+  const { handlePlay, isThisBeatPlaying } = useBeatPlayer();
+
   const currentBeat = playlist[currentIndex];
   if (!currentBeat) {
-    // Puedes retornar null para no mostrar nada, o un "Skeleton" de carga
-    return (
-      <div className="flex items-center h-[40dvh] w-dvw text-gray-500">
-        <p>Cargando beat...</p>
-      </div>
-    );
+    return <LoadingSkeleton />;
   }
 
-  const { portada, name, key, bpm, genre, price, audioUrl, tags, id } =
+  const { cover, name, key, bpm, genre, price, audioUrl, tags, id } =
     currentBeat;
   return (
-    <div className="flex items-center h-[30dvh] w-dvw overflow-hidden">
-      <BackGroundImage portada={portada} name={name} />
-      <GradientBackground
+    <div className="flex items-center h-[45dvh] w-dvw overflow-hidden">
+      <BackGroundImage cover={cover} name={name} />
+      <Overlay
         to="t"
         from="from-black"
         fromVia="from-30%"
@@ -49,31 +48,21 @@ export function BeatPlaying() {
         toColor="transparent"
       />
       <div className="dark absolute w-full flex justify-evenly items-center text-foreground p-4 gap-2">
-        <Card className="bg-gray-800/10 backdrop-blur-xs w-full md:w-[50dvw] h-45 shadow-xs shadow-foreground/10">
+        <Card className="bg-gray-800/10 backdrop-blur-xs w-full md:w-[50dvw] shadow-xs shadow-foreground/10 animate-in fade-in slide-in-from-left-15 duration-500">
           <CardHeader>
             <div className="h-full w-full flex flex-row items-end justify-start gap-4">
-              <Link
+              <BeatCover
                 href={`/beats/${id}`}
-                className="block hover:scale-105 transition-transform active:scale-90 group"
-              >
-                {/* Contenedor con tamaño fijo */}
-                <div className="relative size-20 border border-foreground rounded-2xl overflow-hidden">
-                  <Image
-                    src={portada}
-                    alt={name}
-                    fill // El componente ocupa todo el div padre
-                    sizes="80px" // Ayuda a Next.js a optimizar el tamaño
-                    className="object-cover transition-transform group-hover:scale-110"
-                  />
-                </div>
-              </Link>
-
+                alt={name}
+                cover={cover}
+                size={24}
+              />
               <div className="flex flex-row justify-between items-end h-full w-full ">
                 <CardTitle className="h-full flex flex-col justify-between">
                   <PlayButton
                     variant="destructive"
-                    isPlaying={isPlaying}
-                    onClick={togglePlay}
+                    isPlaying={isThisBeatPlaying(name)}
+                    onClick={() => handlePlay(name)}
                   />
                   {name}
                 </CardTitle>
@@ -93,12 +82,12 @@ export function BeatPlaying() {
             <CardAction>
               <BuyButton
                 variant="destructive"
-                label={`$${price}`}
+                label={price}
                 product={{
                   id: name,
                   type: "beat",
                   title: name,
-                  coverUrl: portada,
+                  coverUrl: cover,
                   audioUrl: audioUrl,
                   metadata: {
                     key: key,
@@ -109,9 +98,8 @@ export function BeatPlaying() {
               ></BuyButton>
             </CardAction>
           </CardHeader>
-
-          <CardFooter className="bg-transparent justify-between items-center h-full">
-            <p className="w-full h-full truncate flex items-center gap-2">
+          <CardFooter className="bg-transparent justify-between p-2 md:p-3">
+            <p className="truncate flex items-center gap-2">
               <span className=" bg-gray-900 border shadow-xs shadow-gray-600/10 px-2 py-1 rounded-lg">
                 {genre}
               </span>
@@ -132,17 +120,18 @@ export function BeatPlaying() {
   );
 }
 
-function BackGroundImage({ portada, name }: { portada: string; name: string }) {
+function BackGroundImage({ cover, name }: { cover: string; name: string }) {
   return (
-    <div className={`sticky top-0 h-full w-full `}>
+    <div
+      className={`sticky top-0 h-full w-full animate-in fade-in duration-3000`}
+    >
       <div className={`relative inset-0 w-full h-full `}>
         <Image
           className={`object-cover`}
-          src={portada}
+          src={cover}
           alt={name}
-          sizes="(max-width: 768px) 100dvw, (max-width: 1200px) 80vw, 50dvw"
           fill
-          priority
+          loading="eager"
         />
       </div>
     </div>

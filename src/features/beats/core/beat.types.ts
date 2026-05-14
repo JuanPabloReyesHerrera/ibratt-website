@@ -1,5 +1,5 @@
 export type Beat = {
-  portada: string;
+  cover: string;
   name: string;
   genre: string;
   tags: string[];

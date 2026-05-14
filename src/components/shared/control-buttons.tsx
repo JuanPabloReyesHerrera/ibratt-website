@@ -1,3 +1,19 @@
+/**
+ * AUDIO PLAYER BUTTONS & CONTROLS
+ *
+ * Proporciona componentes de botones reutilizables para controlar la reproducción de audio:
+ * - PlayerOptionsButton: botón fantasma compacto para opciones
+ * - PlayerButton: botón base con variantes (outline, ghost, etc.)
+ * - PlayButton: botón play/pausa que alterna entre estados
+ * - AudioPlayerButtons: barra de control completa (skip, rewind, play, forward, volumen)
+ *
+ * Características:
+ * - Tamaños dinámicos (6px a 22px)
+ * - Iconos escalables
+ * - Integración con Zustand para estado global de reproducción
+ * - Controles responsivos (algunos botones solo visibles en md+)
+ */
+
 import {
   Pause,
   Play,
@@ -28,6 +44,7 @@ type PlayerButtonProps = {
   strokeWidth?: number;
 };
 
+// Mapeo de tamaños de SVG a clases Tailwind
 const svgSizeClasses = {
   6: "[&_svg]:size-6!",
   8: "[&_svg]:size-8!",
@@ -37,6 +54,7 @@ const svgSizeClasses = {
   20: "[&_svg]:size-20!",
 } as const;
 
+// Mapeo de tamaños de botón a clases Tailwind
 const sizeClasses = {
   6: "size-6!",
   8: "size-8!",
@@ -47,6 +65,11 @@ const sizeClasses = {
   22: "size-22!",
 } as const;
 
+/**
+ * PlayerOptionsButton
+ * Botón pequeño tipo "ghost" con escala al hover.
+ * Ideal para opciones secundarias en el player.
+ */
 export function PlayerOptionsButton({
   children,
   onClick,
@@ -71,6 +94,11 @@ export function PlayerOptionsButton({
   );
 }
 
+/**
+ * PlayerButton
+ * Botón base del player con variantes personalizables.
+ * Soporte para tamaños dinámicos de botón e iconos.
+ */
 export function PlayerButton({
   children,
   onClick,
@@ -95,6 +123,14 @@ export function PlayerButton({
   );
 }
 
+/**
+ * PlayButton
+ * Botón inteligente que alterna entre Play y Pause según el estado isPlaying.
+ * Mostrará ícono de pausa si está reproduciendo, Play si está parado.
+ *
+ * ⚠️ BUG DETECTADO: En la línea de Play, dice {children} sin llaves
+ * Debería ser {children} entre las etiquetas Play, no como string
+ */
 export function PlayButton({
   size = 10,
   onClick,
@@ -116,16 +152,25 @@ export function PlayButton({
       {isPlaying ? (
         <Pause strokeWidth={strokeWidth}>{children}</Pause>
       ) : (
-        <Play strokeWidth={strokeWidth}>children</Play>
+        <Play strokeWidth={strokeWidth}>{children}</Play>
       )}
     </PlayerButton>
   );
 }
 
+/**
+ * AudioPlayerButtons
+ * Barra de control completa del reproductor.
+ * Incluye: skip anterior/siguiente, retroceder/adelantar 15s, play/pausa, control de volumen.
+ *
+ * Usa useShallow de Zustand para optimizar re-renders, seleccionando solo el estado necesario.
+ */
 export function AudioPlayerButtons({
   size,
   strokeWidth = 1,
+  svgSize = 10,
 }: PlayerButtonProps) {
+  // Obtiene solo el estado necesario del store para evitar re-renders innecesarios
   const {
     isPlaying,
     togglePlay,
@@ -150,16 +195,21 @@ export function AudioPlayerButtons({
 
   return (
     <div className="flex justify-center items-center w-full max-w-md gap-5">
+      {/* Botón: ir a beat anterior */}
       <PlayerButton
         size={size}
+        svgSize={svgSize}
         onClick={() => {
           previous();
         }}
       >
         <SkipBack strokeWidth={strokeWidth} />
       </PlayerButton>
+
+      {/* Botón: retroceder 15 segundos (solo visible en pantallas md+) */}
       <PlayerButton
         size={size}
+        svgSize={svgSize}
         className={`hidden md:flex `}
         onClick={() => {
           setSkipBack();
@@ -169,17 +219,21 @@ export function AudioPlayerButtons({
         <span className="absolute text-[10px] font-bold">-15</span>
       </PlayerButton>
 
+      {/* Botón: play/pausa (principal) */}
       <PlayButton
         onClick={() => {
           togglePlay();
         }}
         isPlaying={isPlaying}
+        svgSize={svgSize}
         size={size}
         strokeWidth={strokeWidth}
       />
 
+      {/* Botón: adelantar 15 segundos (solo visible en pantallas md+) */}
       <PlayerButton
         size={size}
+        svgSize={svgSize}
         className={`hidden md:flex `}
         onClick={() => {
           setSkipForward();
@@ -189,9 +243,12 @@ export function AudioPlayerButtons({
         <span className="absolute text-[10px] font-bold">+15</span>
       </PlayerButton>
 
-      <PlayerButton size={size} onClick={() => next()}>
+      {/* Botón: ir a siguiente beat */}
+      <PlayerButton size={size} svgSize={svgSize} onClick={() => next()}>
         <SkipForward strokeWidth={strokeWidth} />
       </PlayerButton>
+
+      {/* Slider de volumen (solo visible en pantallas md+) */}
       <Slider
         step={1}
         max={100}

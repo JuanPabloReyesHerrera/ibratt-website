@@ -1,3 +1,15 @@
+/**
+ * DRAWER AUDIO PLAYER
+ *
+ * Contenedor principal del reproductor de audio con drawer expandible (vaul).
+ * Características:
+ * - Drawer con dos snap points: colapsado (100px) y expandido (pantalla completa)
+ * - Toggle entre vista compacta (ColapsedAudioPlayer) y expandida (ExpandedAudioPlayer)
+ * - Sincronización con Zustand: carga beats en la playlist al montar
+ * - WaveSurfer integrado en la vista expandida
+ * - Transiciones suaves de opacidad entre vistas
+ */
+
 "use client";
 import { useEffect, useState } from "react";
 import { Drawer } from "vaul";
@@ -7,13 +19,19 @@ import { usePlayerStore } from "@/features/beats/store/player-store";
 import { useShallow } from "zustand/shallow";
 import { WaveSurferForm } from "./wavesurfer-form";
 
-import { Beat } from "@/types";
+import type { Beat } from "@/features/beats/core";
 
 export function DrawerAudioPlayer({ beats }: { beats: Beat[] }) {
+  // Puntos de snap del drawer: colapsado (100px) y expandido (pantalla completa)
   const SNAP_POINT = ["100px", 1];
+
+  // Estado actual del snap point
   const [snap, setSnap] = useState<string | number | null>(SNAP_POINT[0]);
+
+  // Determina si el drawer está completamente expandido
   const isExpanded = snap === SNAP_POINT[1];
 
+  // Obtiene playlist y función para actualizarla del store
   const { playlist, setPlaylist } = usePlayerStore(
     useShallow((state) => ({
       playlist: state.playlist,
@@ -22,6 +40,10 @@ export function DrawerAudioPlayer({ beats }: { beats: Beat[] }) {
     })),
   );
 
+  /**
+   * Effect: Inicializa la playlist con los beats pasados como prop
+   * Solo se ejecuta si la playlist está vacía para evitar sobrescrituras
+   */
   useEffect(() => {
     if (playlist.length === 0) setPlaylist(beats);
   }, [setPlaylist, playlist.length]);
@@ -36,11 +58,14 @@ export function DrawerAudioPlayer({ beats }: { beats: Beat[] }) {
       dismissible={false}
     >
       <Drawer.Portal>
-        <Drawer.Content className="shadow-2xl shadow-white dark bg-linear-to-t from-primary to-black fixed bottom-0 left-0 right-0 z-50 flex flex-col h-dvh rounded-t-lg p-6">
+        <Drawer.Content className="shadow-2xl shadow-white dark bg-linear-to-b from-black/90 from-30% via-gray-950 to-primary/50 backdrop-blur-lg fixed bottom-0 left-0 right-0 z-50 flex flex-col h-dvh rounded-t-lg py-4 px-6">
+          {/* Titles ocultos pero necesarios para accesibilidad */}
           <Drawer.Title></Drawer.Title>
           <Drawer.Description></Drawer.Description>
 
+          {/* Contenedor de vistas intercambiables */}
           <div className="relative flex-1 p-4">
+            {/* Vista expandida: muestra reproductor completo con WaveSurfer */}
             <section
               className="absolute inset-0 transition-opacity duration-300"
               style={{
@@ -51,6 +76,8 @@ export function DrawerAudioPlayer({ beats }: { beats: Beat[] }) {
             >
               <ExpandedAudioPlayer wavesurfer={<WaveSurferForm />} />
             </section>
+
+            {/* Vista colapsada: muestra reproductor compacto */}
             <section
               className="absolute inset-0 transition-opacity duration-300"
               style={{

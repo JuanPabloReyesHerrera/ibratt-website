@@ -2,6 +2,7 @@ import { BackGroundImage } from "@/components/shared";
 import { BeatsLanding, SpotifySection, HeroSection } from "@/features/home";
 import { MOCK_YOUTUBE_VIDEOS, MOCK_SPOTIFY_TRACK } from "@/lib/mock-data";
 import { AddSocialMedia } from "@/features/producer/add-social-media";
+import { Overlay } from "@/components/shared/overlay";
 
 export default function Home() {
   return (
