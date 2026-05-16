@@ -1,22 +1,34 @@
+import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
 import { Button } from "@/components/ui";
 import { useCartStore } from "@/features/cart/store/useCartStore";
 import { Check, Trash } from "lucide-react";
+import { useShallow } from "zustand/shallow";
 
 export function ProductSummaryCard() {
-  const items = useCartStore((state) => state.items);
-  const removeItem = useCartStore((state) => state.removeItem);
+  const { items, removeItem, total } = useCartStore(
+    useShallow((state) => ({
+      items: state.items,
+      removeItem: state.removeItem,
+      total: state.total,
+    })),
+  );
 
   function handleRemoveItem(productId: string) {
     removeItem(productId);
   }
 
+  const totalCheckout = total();
+
+  if (!items) return <LoadingSkeleton />;
+
   return (
-    <div className="sticky top-8 ">
-      <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-zinc-900/50 border border-zinc-800/60 mb-5 ">
-        {items.map((item) => (
+    <div className="relative w-full h-fit rounded-xl bg-zinc-900/50 border border-zinc-800/60">
+      <div className="aspect-square overflow-scroll [scrollbar-width:none] [&::-webkit-scrollbar]:hidden animate-in fade-in duration-1500 mb-12">
+        {items.map((item, i) => (
           <h1
             key={item.productId}
-            className="text-white bg-zinc-950/90 border rounded-2xl p-4 m-2 shadow-sm shadow-zinc-500/20"
+            className="text-white bg-zinc-950/90 border rounded-2xl p-4 m-2 shadow-sm shadow-zinc-500/20 animate-in slide-in-from-bottom duration-1000 hover:bg-zinc-700/10 active:bg-zinc-700/10:"
+            style={{ animationDelay: `${i * 100}ms` }}
           >
             <div className="flex items-start justify-between gap-4">
               {/* Left */}
@@ -38,7 +50,7 @@ export function ProductSummaryCard() {
                   {typeof item.licenseId === "object" ? (
                     item.licenseId.features.map((feature) => (
                       <div key={feature} className="flex items-center gap-1.5">
-                        <Check className="w-3 h-3 flex-shrink-0 text-zinc-700" />
+                        <Check className="w-3 h-3 shrink-0 text-zinc-700" />
                         <span className="text-xs text-zinc-500 truncate">
                           {feature}
                         </span>
@@ -68,6 +80,10 @@ export function ProductSummaryCard() {
             </div>
           </h1>
         ))}
+        <div className="absolute bottom-0 rounded-b-xl h-12 w-full border-t border-zinc-800 flex justify-between items-center px-4 bg-gray-950 animate-in fade-in slide-in-from-bottom duration-5000">
+          <span>total</span>
+          <span>{totalCheckout}</span>
+        </div>
       </div>
     </div>
   );

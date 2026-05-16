@@ -1,4 +1,8 @@
-import { MyMasters, MyNextReleases, MySongDemos } from "@/features/artist";
+import {
+  MyMasters,
+  MyNextReleases,
+  MySongDemos,
+} from "@/features/artist/components";
 import { MOCK_MY_MASTERS, MOCK_MY_Next_Releases } from "@/lib/mock-data";
 import { getDemosFromPublicFolder } from "@/lib/get-from-public-folder";
 import type { SongDemo } from "@/types";

@@ -4,7 +4,7 @@ import { BeatLicensePlan } from "@/features/beats/core/beat.license";
 
 interface CartItem {
   productId: string;
-  licenseId: string | BeatLicensePlan;
+  licenseId: BeatLicensePlan;
   name: string;
   price: number;
 }
@@ -34,7 +34,7 @@ export const useCartStore = create<CartStore>()(
           items: state.items.filter((i) => i.productId !== productId),
         })),
       clear: () => set({ items: [] }),
-      total: () => get().items.reduce((sum, i) => sum + i.price, 0),
+      total: () => get().items.reduce((sum, i) => sum + i.licenseId.price, 0),
       count: () => get().items.length,
     }),
     { name: "ibratt-cart", partialize: (state) => ({ items: state.items }) },

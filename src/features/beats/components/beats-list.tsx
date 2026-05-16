@@ -65,10 +65,11 @@ export function BeatList() {
         {/* Cuerpo de la tabla: renderiza cada beat de la playlist */}
         <TableBody>
           {playlist.map(
-            ({ cover, name, genre, bpm, key, price, audioUrl, id }) => (
+            ({ cover, name, genre, bpm, key, price, audioUrl, id }, i) => (
               <TableRow
                 key={name}
-                className="border-b-foreground/10 animate-in fade-in slide-in-from-bottom duration-500"
+                className="border-b-foreground/10 animate-in fade-in-0 slide-in-from-bottom duration-1000"
+                style={{ animationDelay: `${i * 100}ms` }}
               >
                 {/* Columna 1: Botón de reproducción/pausa */}
                 <TableCell>

@@ -52,7 +52,7 @@ export function PaymentForm({ total, onSubmit, isLoading = false }: Props) {
   return (
     <div>
       {/* Header */}
-      <div className="mb-6">
+      <div className="my-6 md:my-12">
         <h3 className="text-lg font-semibold text-zinc-100 mb-1">Pago</h3>
         <p className="text-sm text-zinc-500">
           Tus datos están protegidos con cifrado SSL.
@@ -60,7 +60,7 @@ export function PaymentForm({ total, onSubmit, isLoading = false }: Props) {
       </div>
 
       {/* Card preview strip */}
-      <div className="rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-zinc-700/50 p-5 mb-6">
+      <div className="rounded-xl bg-linear-to-br from-zinc-800 to-zinc-900 border border-zinc-700/50 p-5 mb-6">
         <div className="flex items-center justify-between mb-8">
           <CreditCard className="w-7 h-7 text-zinc-500" />
           <div className="flex gap-1">
