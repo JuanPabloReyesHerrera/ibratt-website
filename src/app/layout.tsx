@@ -45,7 +45,7 @@ export default function RootLayout({
             </footer>
           </main>
         </ThemeProvider>
-        <DrawerAudioPlayer beats={beats} />
+        {/* <DrawerAudioPlayer beats={beats} /> */}
       </body>
     </html>
   );
