@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { NAV_BAR_CATEGORIES } from "@/components/layout/constants";
+import { NAV_BAR_CATEGORIES } from "../core/constants";
 import { siteConfig } from "@/config/site";
-import { PhoneNavBar, DesktopNavBar } from "./";
+import { PhoneNavBar, DesktopNavBar } from ".";
 import { Button } from "@/components/ui";
 
 export function NavBar() {

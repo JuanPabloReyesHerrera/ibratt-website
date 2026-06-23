@@ -1,13 +1,13 @@
 "use client";
 import {
   NavigationMenu,
-  NavigationMenuContent,
+  // NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
+  // NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import type { NavBarCategory } from "@/types/nav-bar";
+import type { NavBarCategory } from "../core/types";
 import Link from "next/link";
 
 function renderNavItem({ title, link }: NavBarCategory) {

@@ -4,7 +4,7 @@ export const ROUTES = {
   checkout: "/checkout",
 } as const;
 
-import { NavBarCategory } from "@/types/nav-bar";
+import { NavBarCategory } from "./types";
 
 export const NAV_BAR_CATEGORIES: NavBarCategory[] = [
   { title: "Inicio", link: "/" },

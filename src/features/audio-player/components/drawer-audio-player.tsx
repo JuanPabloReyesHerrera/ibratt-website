@@ -13,11 +13,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Drawer } from "vaul";
-import { ColapsedAudioPlayer } from "@/components/layout/player/colapsed-audio-player";
+import { ColapsedAudioPlayer } from "@/features/audio-player/components/colapsed-audio-player";
 import { ExpandedAudioPlayer } from "./expanded-audio-player";
-import { usePlayerStore } from "@/features/beats/store/player-store";
+import { usePlayerStore } from "@/features/audio-player/store/player-store";
 import { useShallow } from "zustand/shallow";
-import { WaveSurferForm } from "./wavesurfer-form";
+import { WaveSurferForm } from "../core/wavesurfer-form";
 
 import type { Beat } from "@/features/beats/core";
 

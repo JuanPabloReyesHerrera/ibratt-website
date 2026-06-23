@@ -1,4 +1,4 @@
-import { usePlayerStore } from "@/features/beats/store/player-store";
+import { usePlayerStore } from "@/features/audio-player/store/player-store";
 import { useShallow } from "zustand/shallow";
 
 export function useBeatPlayer() {

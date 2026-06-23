@@ -11,7 +11,7 @@ import {
   TableRow,
   PlayButton,
 } from "@/components/ui";
-import { usePlayerStore } from "@/features/beats/store/player-store";
+import { usePlayerStore } from "@/features/audio-player/store/player-store";
 import { useBeatPlayer } from "../hooks/use-beat-player";
 import { BeatCover } from "./ui/beat-cover";
 import { LoadingSkeleton } from "@/components/shared/loading-skeleton";

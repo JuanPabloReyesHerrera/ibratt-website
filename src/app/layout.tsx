@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider, TouchProvider } from "@/components/providers";
-import { NavBar } from "@/components/layout/nav-bar";
-import { DrawerAudioPlayer } from "@/components/layout/player/drawer-audio-player";
+import { NavBar } from "@/features/nav-bar/components";
+import { DrawerAudioPlayer } from "@/features/audio-player/components/drawer-audio-player";
 import { getBeatsFromPublicFolder } from "@/lib/get-from-public-folder";
 
 const geistSans = Geist({

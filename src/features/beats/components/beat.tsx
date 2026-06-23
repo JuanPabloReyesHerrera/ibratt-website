@@ -1,6 +1,6 @@
 "use client";
 
-import { usePlayerStore } from "@/features/beats/store/player-store";
+import { usePlayerStore } from "@/features/audio-player/store/player-store";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui";

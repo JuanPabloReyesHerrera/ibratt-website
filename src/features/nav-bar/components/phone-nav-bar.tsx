@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/sheet";
 import { AudioLines, Menu } from "lucide-react";
 import Link from "next/link";
-import type { NavBarCategory } from "@/types";
+import type { NavBarCategory } from "../core/types";
 import { SocialsMediasButtons } from "@/components/shared";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui";

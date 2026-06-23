@@ -1,4 +1,3 @@
-import type { SocialMedia } from "./social-media";
 export type NavBarCategory = {
   title: string;
   description?: string;
