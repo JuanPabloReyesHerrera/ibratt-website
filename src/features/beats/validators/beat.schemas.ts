@@ -17,8 +17,7 @@ const beatDataSchema = z.object({
 });
 
 export const parseBeatValidation = (beatData: string) => {
-  const pattern =
-    /^(.+)_@(.+)\[(\d+)[bB]pm[-:\/]([A-Ga-g][#b]?m?)\]\[(.+)\]\.(mp3|wav)$/;
+  const pattern = /^(.+)_@(.+)_(\d+)Bpm_([A-Ga-g][#b]?m?)_(.+)\.(mp3|wav)$/;
   const match = beatData.match(pattern);
 
   //console.log("MATCH: ", match);
@@ -50,7 +49,7 @@ export const parseBeatValidation = (beatData: string) => {
       success: false,
       error: {
         message: "El nombre no coincide con el esquema requerido.",
-        file: result.data,
+        file: result.error.message,
       },
     };
   }
