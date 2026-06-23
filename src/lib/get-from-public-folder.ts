@@ -31,7 +31,7 @@ export function getBeatsFromPublicFolder(): Beat[] {
       cover: "/assets/portada-beat-1.jpg",
       name: result.data!.name,
       genre: "Trap",
-      tags: ["perreo", "bellakeo", "sad"],
+      moods: ["perreo", "bellakeo", "sad"],
       bpm: result.data!.bpm.toString(),
       key: result.data!.key,
       price: (20).toString(),

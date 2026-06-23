@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
 
 type BeatCoverProps = {
   href: string;
@@ -42,15 +43,19 @@ export function BeatCover({ href, cover, alt, size = 12 }: BeatCoverProps) {
           sizeClass[size],
         )}
       >
-        <Image
-          className="object-cover transition-transform group-hover:scale-110"
-          src={cover}
-          alt={alt}
-          fill // El componente ocupa todo el div padre
-          sizes={sizesMap[size]} // Ayuda a Next.js a optimizar el tamaño
-          priority={size > 18} // Tip opcional: Prioriza la carga si es una portada grande (ej. Hero/Header)
-          loading="eager"
-        />
+        {cover ? (
+          <Image
+            className="object-cover transition-transform group-hover:scale-110"
+            src={cover}
+            alt={alt}
+            fill // El componente ocupa todo el div padre
+            sizes={sizesMap[size]} // Ayuda a Next.js a optimizar el tamaño
+            priority={size > 18} // Tip opcional: Prioriza la carga si es una portada grande (ej. Hero/Header)
+            loading="eager"
+          />
+        ) : (
+          <LoadingSkeleton />
+        )}
       </div>
     </Link>
   );

@@ -35,7 +35,7 @@ export function BeatPlaying() {
     return <LoadingSkeleton />;
   }
 
-  const { cover, name, key, bpm, genre, price, audioUrl, tags, id } =
+  const { cover, name, key, bpm, genre, price, audioUrl, moods, id } =
     currentBeat;
   return (
     <div className="flex items-center h-[45dvh] w-dvw overflow-hidden">
@@ -103,11 +103,11 @@ export function BeatPlaying() {
               <span className=" bg-gray-900 border shadow-xs shadow-gray-600/10 px-2 py-1 rounded-lg">
                 {genre}
               </span>
-              {tags.map((tag) => (
+              {moods.map((mood) => (
                 <span
-                  key={tag}
+                  key={mood}
                   className="text-muted-foreground"
-                >{` #${tag}`}</span>
+                >{` #${mood}`}</span>
               ))}
             </p>
             <Button>
@@ -126,13 +126,17 @@ function BackGroundImage({ cover, name }: { cover: string; name: string }) {
       className={`sticky top-0 h-full w-full animate-in fade-in duration-3000`}
     >
       <div className={`relative inset-0 w-full h-full `}>
-        <Image
-          className={`object-cover`}
-          src={cover}
-          alt={name}
-          fill
-          loading="eager"
-        />
+        {cover ? (
+          <Image
+            className={`object-cover`}
+            src={cover}
+            alt={name}
+            fill
+            loading="eager"
+          />
+        ) : (
+          <LoadingSkeleton />
+        )}
       </div>
     </div>
   );

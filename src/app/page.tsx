@@ -28,7 +28,7 @@ export default function Home() {
         id="beats"
         className="w-full h-[150dvh] flex justify-center md:max-w-[80dvw] xl:max-w-[60dvw]"
       >
-        {/* <BeatsLanding /> */}
+        <BeatsLanding />
       </section>
     </div>
   );
