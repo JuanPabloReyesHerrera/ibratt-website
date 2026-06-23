@@ -3,7 +3,6 @@ export * from "./button";
 export * from "./table";
 export * from "./slider";
 export * from "./toggle-group";
-export * from "../shared/control-buttons";
 export * from "./dowload-button";
 export * from "./separator";
 export * from "./scroll-area";

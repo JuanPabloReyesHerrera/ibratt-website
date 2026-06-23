@@ -25,7 +25,7 @@ import {
 import { AudioLines, Menu } from "lucide-react";
 import Link from "next/link";
 import type { NavBarCategory } from "../core/types";
-import { SocialsMediasButtons } from "@/components/shared";
+import { SocialsMediasButtons } from "@/shared/components";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui";
 

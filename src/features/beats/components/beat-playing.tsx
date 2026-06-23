@@ -1,7 +1,7 @@
 "use client";
-import { Overlay } from "@/components/shared/overlay";
-import { Button, PlayButton } from "@/components/ui";
-import { usePlayerStore } from "@/store";
+import { Overlay } from "@/shared/components";
+import { Button } from "@/components/ui";
+import { usePlayerStore } from "@/features/audio-player/store/player-store";
 import { useShallow } from "zustand/shallow";
 import Image from "next/image";
 import {
@@ -13,10 +13,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Download } from "lucide-react";
-import { BuyButton } from "@/components/shared/buy-button";
+import { BuyButton, PlayButton } from "@/shared/components";
 import { BeatCover } from "./ui/beat-cover";
 import { useBeatPlayer } from "../hooks/use-beat-player";
-import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
+import { LoadingSkeleton } from "@/shared/components/loading-skeleton";
 
 export function BeatPlaying() {
   const { currentIndex, playlist } = usePlayerStore(

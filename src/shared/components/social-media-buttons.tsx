@@ -1,7 +1,7 @@
 // components/SocialsMediasButtons.tsx
-import { useSocialMediaStore } from "@/store";
+import { useSocialMediaStore } from "../store";
 import { SOCIAL_MEDIA_CONFIG } from "@/config/social-media.config";
-import { Icon } from "../ui";
+import { Icon } from "@/components/ui";
 
 type SocialsMediasButtonsProps = {
   size: number;

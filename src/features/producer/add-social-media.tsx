@@ -1,5 +1,5 @@
 "use client";
-import { useSocialMediaStore } from "@/store";
+import { useSocialMediaStore } from "@/shared/store";
 import { useEffect } from "react";
 
 export function AddSocialMedia() {

@@ -17,10 +17,7 @@ import { Slider } from "@/components/ui";
 import { usePlayerStore } from "@/features/audio-player/store/player-store";
 import { useShallow } from "zustand/shallow";
 import { formatDuration } from "@/lib/utils";
-import {
-  PlayerOptionsButton,
-  AudioPlayerButtons,
-} from "../../../components/shared/control-buttons";
+import { PlayerOptionsButton, AudioPlayerButtons } from "@/shared/components";
 import { Ellipsis, Heart, HeartPlus } from "lucide-react";
 import { BeatCover } from "@/features/beats/components/ui/beat-cover";
 

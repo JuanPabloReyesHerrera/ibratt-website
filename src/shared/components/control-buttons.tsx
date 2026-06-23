@@ -22,7 +22,7 @@ import {
   SkipBack,
   SkipForward,
 } from "lucide-react";
-import { Button, Slider } from "../ui";
+import { Button, Slider } from "@/components/ui";
 import { usePlayerStore } from "@/features/audio-player/store/player-store";
 import { useShallow } from "zustand/shallow";
 import { cn } from "@/lib/utils";

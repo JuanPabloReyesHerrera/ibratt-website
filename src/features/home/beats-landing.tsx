@@ -3,7 +3,7 @@ import {
   BeatList,
   BeatsFilter,
 } from "@/features/beats/components";
-import { BackGroundImage } from "@/components/shared";
+import { BackGroundImage } from "@/shared/components";
 import { Button } from "@/components/ui";
 import Link from "next/link";
 

@@ -1,4 +1,4 @@
-import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
+import { LoadingSkeleton } from "@/shared/components";
 import { siteConfig } from "@/config/site";
 export function PresentationsText() {
   const { title, description } = siteConfig;

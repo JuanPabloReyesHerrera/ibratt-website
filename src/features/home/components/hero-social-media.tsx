@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "@/components/ui";
-import { SocialsMediasButtons } from "@/components/shared";
-import { useSocialMediaStore } from "@/store";
-import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
+import { SocialsMediasButtons } from "@/shared/components";
+import { useSocialMediaStore } from "@/shared/store";
+import { LoadingSkeleton } from "@/shared/components";
 
 export function HeroSocialMedia() {
   const { socialMedia } = useSocialMediaStore();

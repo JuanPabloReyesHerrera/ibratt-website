@@ -18,10 +18,7 @@ import Link from "next/link";
 import { usePlayerStore } from "@/features/audio-player/store/player-store";
 import { useShallow } from "zustand/shallow";
 import { formatDuration } from "@/lib/utils";
-import {
-  AudioPlayerButtons,
-  PlayerOptionsButton,
-} from "../../../components/shared/control-buttons";
+import { AudioPlayerButtons, PlayerOptionsButton } from "@/shared/components";
 import {
   ChevronDown,
   Ellipsis,
@@ -35,7 +32,7 @@ import {
 } from "lucide-react";
 import { ReactNode } from "react";
 import { BeatCover } from "@/features/beats/components/ui/beat-cover";
-import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
+import { LoadingSkeleton } from "@/shared/components";
 
 export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
   // Obtiene del store solo el estado necesario

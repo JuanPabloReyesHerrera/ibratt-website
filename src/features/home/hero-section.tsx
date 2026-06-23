@@ -5,7 +5,7 @@ import {
   YoutubeCarousel,
   Skills,
 } from "./components";
-import { Overlay } from "@/components/shared/overlay";
+import { Overlay } from "@/shared/components";
 
 type HeroSectionProps = {
   youtubeVideos: string[];

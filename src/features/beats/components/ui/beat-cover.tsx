@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
+import { LoadingSkeleton } from "@/shared/components";
 
 type BeatCoverProps = {
   href: string;

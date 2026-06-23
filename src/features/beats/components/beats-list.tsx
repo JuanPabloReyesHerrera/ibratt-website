@@ -1,6 +1,6 @@
 "use client";
 
-import { BuyButton } from "@/components/shared/buy-button";
+import { BuyButton, PlayButton, LoadingSkeleton } from "@/shared/components";
 import {
   Table,
   TableBody,
@@ -9,12 +9,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  PlayButton,
 } from "@/components/ui";
 import { usePlayerStore } from "@/features/audio-player/store/player-store";
 import { useBeatPlayer } from "../hooks/use-beat-player";
 import { BeatCover } from "./ui/beat-cover";
-import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
 
 /**
  * Componente BeatCatalog
