@@ -30,7 +30,7 @@ export const BEAT_LICENSE_PLANS = [
       "Copias ilimitadas",
       "Beat retirado del catálogo",
     ],
-    deliverables: ["beat.wav", "beat.mp3", "stems.zip", "stems_trackout.zip"],
+    deliverables: ["beat.wav", "beat.mp3", "stems.zip", "stems_trackout"],
     isExclusive: true,
   },
 ];

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "20.x"
+    "node": ">=20.x"
   },
   "packageManager": "pnpm@10.33.0",
   "scripts": {
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^22.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-phone-number-input": "^3.1.37",
