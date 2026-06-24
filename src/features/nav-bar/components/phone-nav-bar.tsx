@@ -36,14 +36,14 @@ export function PhoneNavBar({ categories }: PhoneNavBarProps) {
     <>
       {/* Ícono de audio: visible solo en pantallas sm+ (escritorio) */}
       <div className="hidden sm:flex items-center justify-end h-full">
-        <AudioLines className="size-8 text-destructive " />
+        <AudioLines className="size-8 text-ring " />
       </div>
 
       {/* Sheet (drawer) del menú móvil */}
       <Sheet>
         {/* Trigger: botón hamburguesa visible solo en móviles (sm:hidden) */}
         <SheetTrigger className="sm:hidden justify-end items-center flex text-ring touch-manipulation group">
-          <Menu className="size-8 rounded-md p-1 group-hover:border group-hover:scale-125 group-active:bg-accent/50 group-active:text-white group-active:scale-90 transition-all" />
+          <Menu className="size-9 rounded-md p-1 group-hover:border group-hover:scale-125 group-active:bg-accent/50 group-active:text-white group-active:scale-90 transition-all" />
         </SheetTrigger>
 
         {/* Contenido del drawer: oscuro y semi-transparente */}

@@ -11,7 +11,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { DownloadButton } from "@/components/ui/dowload-button";
-import type { Master } from "@/types";
+import { Master } from "@/shared/types";
 
 type MyMasterItemProps = {
   master: Master;

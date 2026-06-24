@@ -5,9 +5,10 @@ import { DownloadButton } from "@/components/ui/dowload-button";
 import { Button } from "@/components/ui/button";
 import { MessageSquareMore } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { PlayButton } from "@/components/shared/control-buttons";
-import type { ReleaseVersion } from "@/types";
+
 import React from "react";
+import { ReleaseVersion } from "@/shared/types";
+import { PlayButton } from "@/shared/components";
 
 type ReleaseVersionItemProps = ReleaseVersion & {
   onDownload: () => void;

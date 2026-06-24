@@ -9,8 +9,9 @@ import { Button } from "@/components/ui";
 import { useCartStore } from "@/features/cart/store/useCartStore";
 import { ProductSummaryCard } from "./product-summary-card";
 import { LoginForm } from "@/features/auth/components/login-form";
-import HeaderBack from "@/components/shared/header-back";
+
 import { useRouter } from "next/navigation";
+import HeaderBack from "@/shared/components/header-back";
 
 type CheckoutProps = {
   productId: string;

@@ -1,6 +1,6 @@
-import { LoadingSkeleton } from "@/components/shared/loading-skeleton";
 import { Button } from "@/components/ui";
 import { useCartStore } from "@/features/cart/store/useCartStore";
+import { LoadingSkeleton } from "@/shared/components";
 import { Check, Trash } from "lucide-react";
 import { useShallow } from "zustand/shallow";
 

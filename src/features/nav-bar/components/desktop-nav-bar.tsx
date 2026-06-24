@@ -28,10 +28,12 @@ type DesktopNavBarProp = {
 
 export function DesktopNavBar({ categories }: DesktopNavBarProp) {
   return (
-    <NavigationMenu className="hidden sm:flex flex-row">
-      <NavigationMenuList>
-        {categories.map((category) => renderNavItem(category))}
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className="hidden sm:flex items-center justify-center w-full">
+      <NavigationMenu>
+        <NavigationMenuList>
+          {categories.map((category) => renderNavItem(category))}
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
   );
 }

@@ -1,11 +1,7 @@
 // store/social-media.store.ts
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import type {
-  SocialMediaState,
-  SocialMediaActions,
-  SocialMediaPage,
-} from "@/types";
+import { SocialMediaActions, SocialMediaState } from "../types";
 
 const initialState: SocialMediaState = {
   socialMedia: {

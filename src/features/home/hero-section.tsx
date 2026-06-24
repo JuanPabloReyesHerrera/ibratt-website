@@ -1,4 +1,3 @@
-import type { SocialMediaEntry } from "@/types";
 import {
   HeroSocialMedia,
   PresentationsText,

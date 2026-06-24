@@ -1,8 +1,9 @@
 import fs from "fs";
 import path from "path";
 import { parseBeatValidation } from "../features/beats/validators/beat.schemas";
-import type { SongDemo } from "../types";
+
 import type { Beat } from "@/features/beats/core/beat.types";
+import { SongDemo } from "@/shared/types";
 
 export function getBeatsFromPublicFolder(): Beat[] {
   const audioDir = path.join(process.cwd(), "public", "audio");

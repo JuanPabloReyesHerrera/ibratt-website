@@ -17,11 +17,13 @@ import {
   Button,
 } from "@/components/ui";
 import { CheckCheck, Lock } from "lucide-react";
-import { useMyNextReleasesStore } from "@/store/my-next-releases-store";
+
 import { ModificationCounter } from "./my-next-reales/modification-counter";
 import { ApprovalDialog } from "./my-next-reales/approval-dialog";
 import { ReleaseVersionItem } from "./my-next-reales/release-version-item";
-import type { MyNextRelease } from "@/types";
+
+import { useMyNextReleasesStore } from "@/shared/store";
+import { MyNextRelease } from "@/shared/types";
 
 type MyNextReleasesProps = {
   release: MyNextRelease;
@@ -149,13 +151,13 @@ export function MyNextReleases({ release }: MyNextReleasesProps) {
                   </AccordionTrigger>
                   <AccordionContent>
                     <ScrollArea className="h-48 w-full">
-                      {previousVersions.map((v) => (
+                      {/* { previousVersions.map((v) => (
                         <ReleaseVersionItem
                           key={v.audioUrl}
                           {...v}
                           onDownload={() => handleDownload(v.audioUrl)}
                         />
-                      ))}
+                      ))} */}
                     </ScrollArea>
                   </AccordionContent>
                 </AccordionItem>

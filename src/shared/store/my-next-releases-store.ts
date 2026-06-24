@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { MyNextRelease } from "@/types";
+import { MyNextRelease } from "../types";
 
 type MyNextReleasesState = {
   release: MyNextRelease | null;

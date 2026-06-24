@@ -1,12 +1,9 @@
 "use client";
 import React from "react";
-import {
-  PlayButton,
-  DownloadButton,
-  Separator,
-  ScrollArea,
-} from "@/components/ui";
-import type { SongDemo } from "@/types";
+import { DownloadButton, Separator, ScrollArea } from "@/components/ui";
+
+import { PlayButton } from "@/shared/components";
+import { SongDemo } from "@/shared/types";
 
 type MySongDemosProps = {
   songDemos: SongDemo[];

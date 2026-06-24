@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export function BeatsLanding() {
   return (
-    <div className="h-full w-full md:max-w-[80dvw] xl:max-w-[60dvw] flex flex-col items-center justify-center font-sans shadow-2xl shadow-foreground">
+    <div className="h-full w-full md:max-w-[80dvw] xl:max-w-[60dvw] flex flex-col items-center justify-center">
       <BackGroundImage imageSrc="/assets/beat-section.jpg" alt="Beats" />
 
       <div className="w-full h-full -mt-[100dvh] flex flex-col items-center justify-start z-10 bg-linear-to-b from-primary via-foreground/10 to-transparent">

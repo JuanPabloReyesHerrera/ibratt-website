@@ -7,7 +7,7 @@ type BeatCoverProps = {
   href: string;
   cover: string;
   alt: string;
-  size?: 12 | 14 | 16 | 18 | 20 | 22 | 24 | 70;
+  size?: 12 | 14 | 16 | 18 | 20 | 22 | 24 | 70 | 82;
 };
 
 const sizeClass = {
@@ -19,6 +19,7 @@ const sizeClass = {
   22: "size-22",
   24: "size-24",
   70: "size-70",
+  82: "size-82",
 };
 const sizesMap = {
   12: "48px",
@@ -29,6 +30,7 @@ const sizesMap = {
   22: "88px",
   24: "96px",
   70: "280px",
+  82: "328px",
 };
 export function BeatCover({ href, cover, alt, size = 12 }: BeatCoverProps) {
   return (

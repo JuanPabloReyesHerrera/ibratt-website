@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { useMyNextReleasesStore } from "@/store/my-next-releases-store";
+import { useMyNextReleasesStore } from "@/shared/store";
 
 export function ModificationCounter() {
   const { getRemainingModifications, release } = useMyNextReleasesStore();

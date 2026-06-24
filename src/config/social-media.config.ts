@@ -1,5 +1,5 @@
 // config/social-media.config.ts
-import type { SocialMediaPage } from "@/types";
+import type { SocialMediaPage } from "@/shared/types";
 
 type SocialMediaConfig = {
   page: SocialMediaPage;

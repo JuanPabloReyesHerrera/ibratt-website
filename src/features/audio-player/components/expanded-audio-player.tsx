@@ -60,9 +60,9 @@ export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
   if (!currentBeat) return <LoadingSkeleton />;
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-start gap-16">
+    <div className="w-full h-full flex flex-col items-center justify-start">
       {/* Header: botones de cerrar (chevron down) y menú (ellipsis) */}
-      <section className="w-full flex flex-row justify-between items-center">
+      <section className="w-full h-[15svh] flex flex-row justify-between items-start pt-4 px-2">
         <PlayerOptionsButton size={8}>
           <ChevronDown />
         </PlayerOptionsButton>
@@ -72,10 +72,12 @@ export function ExpandedAudioPlayer({ wavesurfer }: { wavesurfer: ReactNode }) {
       </section>
 
       {/* Portada del beat grande (70px) */}
-      <BeatCover cover={cover} href={`/beats/${id}`} alt={name} size={70} />
+      <section className="w-full h-[50svh] flex items-center justify-center">
+        <BeatCover cover={cover} href={`/beats/${id}`} alt={name} size={70} />
+      </section>
 
       {/* Sección principal: info + waveform + controles */}
-      <section className="w-[90dvw] h-[20dvh] flex flex-col items-center space-y-2">
+      <section className="w-[90dvw] h-[35dvh] flex flex-col items-center space-y-2">
         {/* Info del beat: nombre, género, BPM, tonalidad + botón like */}
         <div className="w-full flex flex-row justify-between items-center">
           <div>

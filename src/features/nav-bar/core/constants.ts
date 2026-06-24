@@ -26,7 +26,7 @@ export const NAV_BAR_CATEGORIES: NavBarCategory[] = [
       { content: "Tech", description: "Los mejores beats de Tech", link: "" },
     ],
   },
-  { title: "Contacto", link: "/contacto" },
+  { title: "Contacto", link: "/contact" },
   { title: "Plataformas", link: "/plataformas" },
   //{ title: "Galeria", link: "/galeria" },
   {

@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { Overlay } from "@/components/shared/overlay";
-import { PlayButton } from "@/components/ui";
+import { Overlay } from "@/shared/components";
+import { PlayButton } from "@/shared/components";
 import { MetaChip } from "./meta-chip";
 import type { Beat, BeatLicensePlan } from "@/features/beats/core";
 

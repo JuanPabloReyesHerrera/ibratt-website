@@ -23,7 +23,7 @@ import type { Beat } from "@/features/beats/core";
 
 export function DrawerAudioPlayer({ beats }: { beats: Beat[] }) {
   // Puntos de snap del drawer: colapsado (100px) y expandido (pantalla completa)
-  const SNAP_POINT = ["100px", 1];
+  const SNAP_POINT = ["64px", 1];
 
   // Estado actual del snap point
   const [snap, setSnap] = useState<string | number | null>(SNAP_POINT[0]);
@@ -58,7 +58,7 @@ export function DrawerAudioPlayer({ beats }: { beats: Beat[] }) {
       dismissible={false}
     >
       <Drawer.Portal>
-        <Drawer.Content className="shadow-2xl shadow-white dark bg-linear-to-b from-black/90 from-30% via-gray-950 to-primary/50 backdrop-blur-lg fixed bottom-0 left-0 right-0 z-50 flex flex-col h-dvh rounded-t-lg py-4 px-6">
+        <Drawer.Content className="shadow-2xl shadow-white dark bg-linear-to-b from-black/90 from-30% via-gray-950 to-primary/50 backdrop-blur-lg fixed bottom-0 left-0 right-0 z-50 flex flex-col h-full rounded-t-md">
           {/* Titles ocultos pero necesarios para accesibilidad */}
           <Drawer.Title></Drawer.Title>
           <Drawer.Description></Drawer.Description>
@@ -79,7 +79,7 @@ export function DrawerAudioPlayer({ beats }: { beats: Beat[] }) {
 
             {/* Vista colapsada: muestra reproductor compacto */}
             <section
-              className="absolute inset-0 transition-opacity duration-300"
+              className="absolute inset-0 transition-opacity duration-300 h-full"
               style={{
                 opacity: isExpanded ? 0 : 1,
                 pointerEvents: isExpanded ? "none" : "auto",

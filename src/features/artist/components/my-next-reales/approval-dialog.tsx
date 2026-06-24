@@ -13,8 +13,9 @@ import {
   ScrollArea,
   Checkbox,
 } from "@/components/ui";
-import { useMyNextReleasesStore } from "@/store/my-next-releases-store";
+
 import { siteConfig } from "@/config/site";
+import { useMyNextReleasesStore } from "@/shared/store";
 
 export function ApprovalDialog() {
   const { isApprovalDialogOpen, closeApprovalDialog, approveRelease, release } =

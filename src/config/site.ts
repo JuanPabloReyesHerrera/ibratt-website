@@ -16,6 +16,12 @@ export const siteConfig = {
     spotify:
       "https://open.spotify.com/artist/1wUKssr6AfhdTG67hcfnRY?si=slFWfNT-RO2_yXFacxzRqA",
     youtube: "https://youtube.com/@ibratt",
+    whatsapp: {
+      url: "",
+      number: "",
+      className:
+        "bg-gradient-to-b from-green-700 via-green-400 to-green-500 text-white",
+    },
   },
 } as const;
 

@@ -169,6 +169,7 @@ export function AudioPlayerButtons({
   size,
   strokeWidth = 1,
   svgSize = 10,
+  variant,
 }: PlayerButtonProps) {
   // Obtiene solo el estado necesario del store para evitar re-renders innecesarios
   const {
@@ -197,6 +198,7 @@ export function AudioPlayerButtons({
     <div className="flex justify-center items-center w-full max-w-md gap-5">
       {/* Botón: ir a beat anterior */}
       <PlayerButton
+        variant={variant}
         size={size}
         svgSize={svgSize}
         onClick={() => {
@@ -208,6 +210,7 @@ export function AudioPlayerButtons({
 
       {/* Botón: retroceder 15 segundos (solo visible en pantallas md+) */}
       <PlayerButton
+        variant={variant}
         size={size}
         svgSize={svgSize}
         className={`hidden md:flex `}
@@ -221,6 +224,7 @@ export function AudioPlayerButtons({
 
       {/* Botón: play/pausa (principal) */}
       <PlayButton
+        variant={variant}
         onClick={() => {
           togglePlay();
         }}
@@ -232,6 +236,7 @@ export function AudioPlayerButtons({
 
       {/* Botón: adelantar 15 segundos (solo visible en pantallas md+) */}
       <PlayerButton
+        variant={variant}
         size={size}
         svgSize={svgSize}
         className={`hidden md:flex `}
@@ -244,7 +249,12 @@ export function AudioPlayerButtons({
       </PlayerButton>
 
       {/* Botón: ir a siguiente beat */}
-      <PlayerButton size={size} svgSize={svgSize} onClick={() => next()}>
+      <PlayerButton
+        variant={variant}
+        size={size}
+        svgSize={svgSize}
+        onClick={() => next()}
+      >
         <SkipForward strokeWidth={strokeWidth} />
       </PlayerButton>
 

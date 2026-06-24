@@ -5,6 +5,7 @@ import { ThemeProvider, TouchProvider } from "@/components/providers";
 import { NavBar } from "@/features/nav-bar/components";
 import { DrawerAudioPlayer } from "@/features/audio-player/components/drawer-audio-player";
 import { getBeatsFromPublicFolder } from "@/lib/get-from-public-folder";
+import { getBeats } from "@/features/beats/db/beats.queries";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,12 +22,13 @@ export const metadata: Metadata = {
   description: "Landing page and beatstore for IBRATT, music producer.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const beats = getBeatsFromPublicFolder();
+  // const beats = getBeatsFromPublicFolder();
+  const beats = await getBeats();
 
   return (
     <html
@@ -34,13 +36,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
     >
-      <body className="flex flex-col">
+      <body className="flex flex-col h-svh">
         <NavBar />
         <TouchProvider />
         <ThemeProvider>
-          <main className="flex-1 pt-12 pb-25 w-full">
+          <main className="flex-1 pt-navbar pb-audioplayer w-full">
             {children}
-            <footer className="w-full h-12 bg-muted flex items-center justify-center text-sm text-muted-foreground">
+            <footer className="relative w-full h-footer bg-black flex items-center justify-center text-sm text-muted-foreground">
               ibratt.prod@gmail.com
             </footer>
           </main>

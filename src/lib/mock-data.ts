@@ -1,5 +1,4 @@
-import { useSocialMediaStore } from "@/store";
-import type { Master, MyNextRelease, ReleaseVersion } from "@/types";
+import { Master, MyNextRelease } from "@/shared/types";
 
 function converSpotifyLinks(shortLinks: string[]) {
   const embedLinks: string[] = [];
