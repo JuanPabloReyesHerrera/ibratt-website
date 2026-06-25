@@ -1,3 +1,3 @@
-export { BeatsLanding } from "./beats-landing";
+export { BeatsSection } from "./beats-section";
 export { SpotifySection } from "./spotify-section";
 export { HeroSection } from "./hero-section";

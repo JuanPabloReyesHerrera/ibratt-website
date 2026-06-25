@@ -1,7 +1,8 @@
 import { BackGroundImage, Overlay } from "@/shared/components";
-import { BeatsLanding, SpotifySection, HeroSection } from "@/features/home";
+import { BeatsSection, SpotifySection, HeroSection } from "@/features/home";
 import { MOCK_YOUTUBE_VIDEOS, MOCK_SPOTIFY_TRACK } from "@/lib/mock-data";
 import { AddSocialMedia } from "@/features/producer/add-social-media";
+import { UsagePolicies } from "@/features/beats/components";
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       />
       {/** ARREGLAR ESTE PARCHE */}
       <AddSocialMedia />
-      <div className="relative w-full md:max-w-[80dvw] xl:max-w-[60dvw] shadow-xl shadow-amber-50/50 -mt-[calc(100svh-var(--spacing-navbar)-var(--spacing-audioplayer))]">
+      <div className="relative w-full md:max-w-[80dvw] xl:max-w-[60dvw] shadow-xl shadow-amber-50/50 -mt-main-content">
         {/* -mt-[calc(100svh-var(--spacing-navbar)-var(--spacing-audioplayer))] */}
         <section id="hero" className="relative h-fit">
           <BackGroundImage imageSrc="/assets/hero.jpg" alt="Hero" />
@@ -26,8 +27,10 @@ export default function Home() {
             alt="spotify"
           />
         </section> */}
-        <section id="beats" className="w-full h-[150dvh] flex justify-center">
-          <BeatsLanding />
+        <section id="beats" className="w-full h-fit">
+          <BackGroundImage imageSrc="/assets/beat-section.jpg" alt="Beats" />
+          <BeatsSection />
+          <UsagePolicies />
         </section>
       </div>
     </div>

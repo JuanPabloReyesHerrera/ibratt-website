@@ -29,6 +29,7 @@ export function HeroSection({ youtubeVideos }: HeroSectionProps) {
       <div className="overlay-fade-t" />
       <div className="overlay-grain" />
       <div className="vignette-radial" />
+      <div className="overlay-dim" />
 
       {/* ─── Contenido principal ─── */}
       <div className="relative z-10 flex flex-col h-full justify-between pt-[5vh] pb-6 px-6 sm:px-10">

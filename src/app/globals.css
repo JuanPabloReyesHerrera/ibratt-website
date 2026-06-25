@@ -177,7 +177,7 @@
 /* OVERLAY */
 .overlay-fade-b,
 .overlay-fade-t {
-  @apply absolute inset-0 from-background from-5% via-transparent to-transparent pointer-events-none;
+  @apply absolute inset-0 from-background from-5% via-transparent via-20% to-transparent pointer-events-none;
 }
 .overlay-fade-b {
   @apply bg-linear-to-b;
@@ -191,7 +191,7 @@
   @apply absolute inset-0 z-1 pointer-events-none opacity-65;
   background: radial-gradient(
     ellipse 95% 85% at 50% 50%,
-    transparent 20%,
+    transparent 50%,
     black 100%
   );
 }

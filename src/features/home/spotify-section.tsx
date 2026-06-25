@@ -12,11 +12,12 @@ export function SpotifySection({ spotifyUrl }: SpotifyProps) {
     >
       <div className="overlay-fade-b" />
       <div className="overlay-fade-t" />
+      <div className="vignette-radial" />
       <div className="overlay-dim" />
       <div className="overlay-grain" />
 
       {/* ─── Contenido ─── */}
-      <div className="relative z-10 dark flex flex-col h-full items-center justify-start px-6 py-10 gap-8">
+      <div className="relative z-10 flex flex-col h-full items-center justify-start px-6 py-10 gap-8">
         {/* ── HEADER EDITORIAL ── */}
         <div className="w-full max-w-xl flex flex-col gap-1">
           <span className="text-[10px] tracking-[0.65em] text-amber-400 uppercase font-semibold">
