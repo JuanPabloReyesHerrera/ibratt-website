@@ -18,7 +18,7 @@ export function SocialsMediasButtons({ size }: SocialsMediasButtonsProps) {
 
   return (
     <div
-      className="w-full flex items-center justify-center"
+      className="flex items-center justify-center"
       style={{ gap: `${Math.ceil((1 / 4) * size) * 4}px` }}
     >
       {buttons.map(({ page, link, className }) => (

@@ -12,8 +12,8 @@ export function BackGroundImage({
   className,
 }: BackGroundImageProps) {
   return (
-    <div className={`sticky top-navbar h-svh w-full ${className} `}>
-      <div className={`relative inset-0 w-full h-full `}>
+    <div className={`sticky top-navbar h-main-content w-full ${className} `}>
+      <div className={`relative inset-0 w-full h-main-content `}>
         <Image
           className={`object-cover`}
           src={imageSrc}

@@ -12,19 +12,20 @@ export default function Home() {
       />
       {/** ARREGLAR ESTE PARCHE */}
       <AddSocialMedia />
-      <div className="relative w-full md:max-w-[80dvw] xl:max-w-[60dvw] h-fit shadow-xl shadow-amber-50/50  -mt-[100svh]">
-        <section id="home" className="relative h-[130dvh]">
+      <div className="relative w-full md:max-w-[80dvw] xl:max-w-[60dvw] shadow-xl shadow-amber-50/50 -mt-[calc(100svh-var(--spacing-navbar)-var(--spacing-audioplayer))]">
+        {/* -mt-[calc(100svh-var(--spacing-navbar)-var(--spacing-audioplayer))] */}
+        <section id="hero" className="relative h-fit">
           <BackGroundImage imageSrc="/assets/hero.jpg" alt="Hero" />
           <HeroSection youtubeVideos={MOCK_YOUTUBE_VIDEOS} />
+          <SpotifySection spotifyUrl={MOCK_SPOTIFY_TRACK} />
         </section>
 
-        <section id="Spotify" className="relative h-[120dvh] w-full">
+        {/* <section id="Spotify" className="relative h-main-content w-full">
           <BackGroundImage
             imageSrc="/assets/spotify-section.jpg"
             alt="spotify"
           />
-          <SpotifySection spotifyUrl={MOCK_SPOTIFY_TRACK} />
-        </section>
+        </section> */}
         <section id="beats" className="w-full h-[150dvh] flex justify-center">
           <BeatsLanding />
         </section>

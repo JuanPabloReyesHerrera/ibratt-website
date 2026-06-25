@@ -4,9 +4,30 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3. Marquee infinito para la tira de skills */
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Wrapper del país: flag + select juntos */
 .PhoneInputCountry {
-  @apply flex flex-row items-center gap-1;
+  @apply relative flex flex-row items-center gap-1;
 }
 
 /* El flag icon */
@@ -24,12 +45,11 @@
   @apply absolute inset-0 opacity-0 cursor-pointer w-full h-full;
 }
 
-/* Posición relativa para que el select absoluto funcione */
-.PhoneInputCountry {
-  @apply relative;
-}
-
 @theme inline {
+  --spacing-main-content: calc(
+    100svh - var(--spacing-navbar) - var(--spacing-audioplayer)
+  );
+
   --font-heading: var(--font-sans);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -154,12 +174,37 @@
   }
 }
 
-@layer utilities {
-  /* Fix iOS — viewport height real sin la barra del navegador */
-  .h-dvh {
-    height: 100dvh;
-  }
-  .min-h-dvh {
-    min-height: 100dvh;
-  }
+/* OVERLAY */
+.overlay-fade-b,
+.overlay-fade-t {
+  @apply absolute inset-0 from-background from-5% via-transparent to-transparent pointer-events-none;
+}
+.overlay-fade-b {
+  @apply bg-linear-to-b;
+}
+.overlay-fade-t {
+  @apply bg-linear-to-t;
+}
+
+/* VIGNETTE RADIAL */
+@utility vignette-radial {
+  @apply absolute inset-0 z-1 pointer-events-none opacity-65;
+  background: radial-gradient(
+    ellipse 95% 85% at 50% 50%,
+    transparent 20%,
+    black 100%
+  );
+}
+/* TEXTURE GRAIN Film grain — textura cinematográfica*/
+@utility overlay-grain {
+  @apply absolute inset-0 z-1 pointer-events-none;
+  opacity: 0.055;
+  background-size: 200px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Wash Capa de oscurecimiento / Backdrop */
+
+@utility overlay-dim {
+  @apply absolute inset-0 bg-black/55 pointer-events-none;
 }

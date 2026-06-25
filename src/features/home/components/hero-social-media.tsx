@@ -9,17 +9,17 @@ export function HeroSocialMedia() {
   if (!socialMedia) return <LoadingSkeleton />;
 
   return (
-    <section className="flex flex-col items-center gap-8 z-10">
+    <section className="flex flex-col lg:flex-row-reverse items-center justify-center gap-4 z-10">
       <Button
         asChild
         variant={"ghost"}
-        className="bg-background/30 flex items-center justify-center sm:size-fit px-4 hover:scale-105 shadow-sm shadow-foreground/50 border-2 border-foreground/50"
+        className="bg-background/30 flex items-center justify-center sm:size-fit px-4 hover:scale-105 shadow-md shadow-foreground/10 border-2 border-foreground/50"
       >
         <a
           href="https://instagram.com/ibratt.wav"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-6 sm:p-2 rounded-full! w-fit  "
+          className="p-6 sm:p-2 rounded-full! w-fit lg:hidden"
         >
           <h1 className="font-extrabold text-foreground text-2xl sm:text-3xl">
             {socialMedia.instagram.userId}
